@@ -9,7 +9,8 @@ client.on('ready', () => {
 client.on('message', msg => {
  if (msg.content.startsWith('[[') && msg.content.endsWith(']]')) {
      var l = msg.content.length;
-     const article = msg.content.slice(2, l-2);
+     var article = msg.content.slice(2, l-2);
+     article = article.replace(" ", "_");
      const rad_reply = "Hi, I'm Rad, and I want to tell you about https://tfwiki.net/wiki/" + article;
      msg.channel.send(rad_reply);
  }
