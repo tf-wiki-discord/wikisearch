@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-client.user.setUsername('GO!-Bot')
-client.user.setActivity('Hanging with Carlos and Alexis')
 require('dotenv').config()
 
 client.on('ready', () => {
  console.log(`Logged in as ${client.user.tag}!`);
+ client.user.setUsername('GO!-Bot')
+ client.user.setActivity('Hanging with Carlos and Alexis')
  });
 
 client.on('message', msg => {
