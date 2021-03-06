@@ -18,7 +18,8 @@ client.on('message', msg => {
      msg.channel.send(rad_reply);
 
      var bot = tfwiki({
-         server: 'http://tfwiki.net',
+         protocol: 'http',
+         server: 'tfwiki.net',
          path: '/mediawiki/api.php',
          "username": process.env.WIKIUSERNAME,
          "password": process.env.WIKIUSERPASSWORD
