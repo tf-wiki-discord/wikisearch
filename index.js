@@ -32,11 +32,15 @@ client.on('message', msg => {
             let boldEnd = editpage.indexOf(".", boldStart);
             console.log(editpage.slice(boldStart, boldEnd+1));
 
+            let templateImageRE = /image=.*(jpg|png)/
+            const templateMatches = editpage.match(templateImageRE)
             let imageRE = /(Image:|File:).*jpg/;
             const matches = editpage.match(imageRE)
             var imageName;
+            if(templateImageRE) {
+                console.log("TEMPLATE FOUND: " + templateMatches[0])
             if(matches) {
-                //console.log(matches[0])
+                console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
                 imageName = matches[0].split(" ").join("_");
             }
             if(imageName) {
