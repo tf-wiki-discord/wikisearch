@@ -43,9 +43,9 @@ client.on('message', msg => {
             let boldEnd = editpage.indexOf(".", boldStart);
             // text to embed
             var description = editpage.slice(boldStart, boldEnd+1)
-            description = description.replace("'''", "");
-            description = description.replace("[[", "");
-            description = description.replace("]]", "");
+            description = description.replace(/'''/g, "");
+            description = description.replace(/\[\[/g, "");
+            description = description.replace(/\]\]/g, "");
             console.log(description)
 
             // oh boy. so the wiki-text may have File:blahblah.jpg or Image:blahblah.jpg.
