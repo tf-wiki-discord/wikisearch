@@ -11,7 +11,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
  // [[ ]] activates the bot
- if (/\[\[(.*)\]\]/.test(msg.content)) && msg.content.endsWith(']]')) {
+ if (/\[\[(.*)\]\]/.test(msg.content)) {
     
      //strip off the [[ ]]s
      var pageName = msg.content.match(/\[\[(.*)\]\]/)[0];
