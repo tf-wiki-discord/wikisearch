@@ -49,7 +49,9 @@ client.on('message', msg => {
                 },
             }).then(r => {
                 if(r.status===200) {
-                    console.log(r.data)
+                    var img = r.data
+                    let imRE = /<a href="\/mediawiki\/images.*?">/
+                    console.log(img.search(imRE)
                 }
             })
             const radEmbed = new Discord.MessageEmbed()
