@@ -20,7 +20,7 @@ client.on('message', msg => {
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
       const rad_reply = "Hi, I'm Rad, and I want to tell you about " + pageURL;
-      msg.channel.send(rad_reply);
+      //msg.channel.send(rad_reply);
 
       // here's a trick: Pull the wiki-text by pulling an "edit" page.
       // this prevents unnecessary downloading of the whole main page.
@@ -62,9 +62,11 @@ client.on('message', msg => {
             }
             const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
-              .setDescription(editpage.slice(boldStart, boldEnd+1))
+              .setDescription(editpage.slice(boldStart, boldEnd+1)) 
+              .setTitle(rad_reply)
 
             if(imageName) {
+                // get the direct image file path via Special:FilePath
                 radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
             }
             msg.channel.send(radEmbed);
