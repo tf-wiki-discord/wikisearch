@@ -41,7 +41,7 @@ client.on('message', msg => {
             }
             const radEmbed = new Discord.MessageEmbed()
                 .setColor('#0099ff')
-                .setThumbnail(imageName)
+                .setThumbnail("https://tfwiki.net/wiki/" +imageName)
                 .setDescription(editpage.slice(boldStart, boldEnd+1))
 
             msg.channel.send(radEmbed);
