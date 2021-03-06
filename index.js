@@ -76,7 +76,7 @@ client.on('message', msg => {
       console.log(err);
       });
     }
-    else if (msg.content.toLowerCase() == "wicked sweet" ) {
+    else if (msg.content.search(/wicked sweet/i)) {
        const sweetRide = "https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg"
        msg.react(':aboutTheTransformers:') 
        msg.channel.send("Wicked sweet! " + sweetRide)
