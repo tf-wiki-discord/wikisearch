@@ -18,6 +18,8 @@ client.on('message', msg => {
       var pageName = msg.content.match(/\[\[(.*?)\]\]/)[1];
       var pageNameSlug = pageName.split(" ").join("_");
 
+      console.log("FULL PAGE CONTENT: " +msg.content) //don't leave this on unless debugging!
+
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
 
       // here's a trick: Pull the wiki-text by pulling an "edit" page.
