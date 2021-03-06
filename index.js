@@ -20,7 +20,7 @@ client.on('message', msg => {
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
       const rad_reply = "Hi, I'm Rad, and I want to tell you about " + pageURL;
-      msg.channel.send(rad_reply);
+      //msg.channel.send(rad_reply);
 
       // here's a trick: Pull the wiki-text by pulling an "edit" page.
       // this prevents unnecessary downloading of the whole main page.
@@ -60,41 +60,16 @@ client.on('message', msg => {
               console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
               imageName = matches[0].split(" ").join("_");
             }
-            if(imageName) {
-              const imagePageURL = "https://tfwiki.net/wiki/" +imageName
-
-              // yes, a SECOND call to the server to get the actual image.
-              // I don't like it. Probably is easier with MediaWiki API.
-              axios.get(imagePageURL, {
-                headers:{
-                  Accept: 'accept',
-                  Authorization: 'authorize'
-                },
-              }).then(r => {
-                if(r.status===200) {
-                  // extract image file name, put into embed
-                  var img = r.data
-                  let imRE = /<a href="\/mediawiki\/images.*?">/
-                  var imMatch = img.match(imRE);
-                  if(imMatch) {
-                    const startCut = '<a href="'.length
-                    const imLength = imMatch[0].length
-                    console.log(imMatch[0].slice(startCut, imLength-2))
-                    const radEmbed = new Discord.MessageEmbed()
-                      .setColor('#0099ff')
-                      .setImage("https://tfwiki.net" + imMatch[0].slice(startCut, imLength-2))
-                      .setDescription(editpage.slice(boldStart, boldEnd+1))
-                    msg.channel.send(radEmbed);
-                  }
-                }
-              })
-            }
-            else {
-              const radEmbed = new Discord.MessageEmbed()
+            const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
-              .setDescription(editpage.slice(boldStart, boldEnd+1))
-              msg.channel.send(radEmbed);
+              .setDescription(editpage.slice(boldStart, boldEnd+1)) 
+              .setTitle(rad_reply)
+
+            if(imageName) {
+                // get the direct image file path via Special:FilePath
+                radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
             }
+            msg.channel.send(radEmbed);
         }
       return response;
       }).catch(err => {
