@@ -19,7 +19,7 @@ client.on('message', msg => {
       var pageNameSlug = pageName.split(" ").join("_");
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
-      const rad_reply = "Hi, I'm Rad, and I want to tell you about " + pageURL;
+      const rad_reply = "Hi, my name's Rad, and I wanna tell you about " + pageURL;
       //msg.channel.send(rad_reply);
 
       // here's a trick: Pull the wiki-text by pulling an "edit" page.
