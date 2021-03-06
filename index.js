@@ -34,7 +34,7 @@ client.on('message', msg => {
 
             let templateImageRE = /image=.*(jpg|png)/
             const templateMatches = editpage.match(templateImageRE)
-            let imageRE = /(Image:|File:).*jpg/;
+            let imageRE = /(Image:|File:).*(png|jpg)/;
             const matches = editpage.match(imageRE)
             var imageName;
             if(templateMatches) {
