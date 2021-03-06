@@ -19,8 +19,6 @@ client.on('message', msg => {
       var pageNameSlug = pageName.split(" ").join("_");
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
-      const rad_reply = "Hi, my name's Rad, and I wanna tell you about " + pageURL;
-      //msg.channel.send(rad_reply);
 
       // here's a trick: Pull the wiki-text by pulling an "edit" page.
       // this prevents unnecessary downloading of the whole main page.
@@ -63,7 +61,8 @@ client.on('message', msg => {
             const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
               .setDescription(editpage.slice(boldStart, boldEnd+1)) 
-              .setTitle(rad_reply)
+              .setTitle("Hi, my name's Rad, and I wanna tell you about " + pageName;)
+              .setURL(pageURL;)
 
             if(imageName) {
                 // get the direct image file path via Special:FilePath
@@ -77,8 +76,7 @@ client.on('message', msg => {
       });
     }
     else if (/wicked sweet/i.test(msg.content)) {
-       const sweetEmbed = new Discord.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg');
-       msg.channel.send(sweetEmbed)
+       msg.channel.send(new Discord.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg'))
     }
   }
 });
