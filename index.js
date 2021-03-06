@@ -39,12 +39,31 @@ client.on('message', msg => {
                 console.log(matches[0])
                 imageName = matches[0].split(" ").join("_");
             }
+            if(imageName) {
+            const imagePageURL = "https://tfwiki.net/wiki/" +imageName
+
+            axios.get(imagePageURL, {
+                headers:{
+                    Accept: 'accept',
+                    Authorization: 'authorize'
+                },
+            }).then(r => {
+                if(r.status===200) {
+                    console.log(r.data)
+                }
+            })
             const radEmbed = new Discord.MessageEmbed()
                 .setColor('#0099ff')
                 .setImage("https://tfwiki.net/wiki/" +imageName)
                 .setDescription(editpage.slice(boldStart, boldEnd+1))
-
-            msg.channel.send(radEmbed);
+                msg.channel.send(radEmbed);
+            }
+            else {
+                const radEmbed = new Discord.MessageEmbed()
+                .setColor('#0099ff')
+                .setDescription(editpage.slice(boldStart, boldEnd+1))
+                msg.channel.send(radEmbed);
+            }
         }
       return response;
     }).catch(err => {
