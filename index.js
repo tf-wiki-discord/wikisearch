@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+var tfwiki = require('nodemw');
 require('dotenv').config()
 
 client.on('ready', () => {
@@ -15,6 +16,20 @@ client.on('message', msg => {
      article = article.split(" ").join("_");
      const rad_reply = "Hi, I'm Rad, and I want to tell you about https://tfwiki.net/wiki/" + article;
      msg.channel.send(rad_reply);
+
+     var bot = tfwiki({
+         server: 'http://tfwiki.net',
+         path: '/mediawiki/api.php',
+         "username": process.env.WIKIUSERNAME,
+         "password": process.env.WIKIUSERPASSWORD
+     });
+     var params = {
+         title: article,
+         action: 'edit'
+     };
+     bot.api.call(params, function(err, info, next, data) {
+        console.log(data);
+     });
  }
 });
 
