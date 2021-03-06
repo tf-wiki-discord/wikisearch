@@ -40,7 +40,7 @@ client.on('message', msg => {
             // needs to be improved as sometimes it returns nonsense or fragments.
             let re = /'''/;
             let boldStart = editpage.search(re);
-            let boldEnd = editpage.indexOf(".", boldStart);
+            let boldEnd = editpage.indexOf(".\n", boldStart);
             // text to embed
             var description = editpage.slice(boldStart, boldEnd+1)
             description = description.replace(/'''/g, "");
