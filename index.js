@@ -11,7 +11,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   // [[ ]] activates the bot
-  if (!message.author.bot) {
+  if (!msg.author.bot) {
     if (/\[\[(.*)\]\]/.test(msg.content)) {
     
       //strip off the [[ ]]s
