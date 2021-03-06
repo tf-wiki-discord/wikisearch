@@ -15,7 +15,7 @@ client.on('message', msg => {
     if (/\[\[(.*)\]\]/.test(msg.content)) {
     
       //strip off the [[ ]]s
-      var pageName = msg.content.match(/\[\[(.*)\]\]/)[0];
+      var pageName = msg.content.match(/\[\[(.*)\]\]/)[1];
       var pageNameSlug = pageName.split(" ").join("_");
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
