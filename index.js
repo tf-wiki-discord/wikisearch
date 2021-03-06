@@ -39,7 +39,7 @@ client.on('message', msg => {
                 console.log(matches[0])
                 imageName = matches[0];
             }
-            const radEmbed = Discord.MessageEmbed()
+            const radEmbed = new Discord.MessageEmbed()
                 .setColor('#0099ff')
                 .setThumbnail(imageName)
                 .setDescription(editpage.slice(boldStart, boldEnd+1))
