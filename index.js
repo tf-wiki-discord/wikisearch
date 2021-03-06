@@ -54,7 +54,7 @@ client.on('message', msg => {
                     var imMatch = img.match(imRE);
                     if(imMatch) {
                         const startCut = '<a href="'.length
-                        const imLength = inMatch[0].length
+                        const imLength = imMatch[0].length
                         console.log(imMatch[0].slice(startCut, imLength-2))
                     }
                 }
