@@ -47,7 +47,7 @@ client.on('message', msg => {
             // I prefer the template ones if I find them first. Otherwise find the first File/Image.
             let templateImageRE = /image=.*(jpg|png)/
             const templateMatches = editpage.match(templateImageRE)
-            let imageRE = /(Image:|File:).*(png|jpg)/;
+            let imageRE = /(Image:|File:).*(png|jpg|gif)/;
             const matches = editpage.match(imageRE)
             var imageName;
             if(templateMatches) {
