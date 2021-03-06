@@ -42,7 +42,11 @@ client.on('message', msg => {
             let boldStart = editpage.search(re);
             let boldEnd = editpage.indexOf(".", boldStart);
             // text to embed
-            console.log(editpage.slice(boldStart, boldEnd+1));
+            var description = editpage.slice(boldStart, boldEnd+1)
+            description = description.replace("'''", "");
+            description = description.replace("[[", "");
+            description = description.replace("]]", "");
+            console.log(description)
 
             // oh boy. so the wiki-text may have File:blahblah.jpg or Image:blahblah.jpg.
             // it also may have images in templates, like image=blahblah.png.
@@ -66,7 +70,7 @@ client.on('message', msg => {
             }
             const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
-              .setDescription(editpage.slice(boldStart, boldEnd+1)) 
+              .setDescription(description)
               .setTitle(embedTitle)
               .setURL(pageURL)
 
