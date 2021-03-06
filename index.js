@@ -57,13 +57,13 @@ client.on('message', msg => {
                         const imLength = imMatch[0].length
                         console.log(imMatch[0].slice(startCut, imLength-2))
                     }
-                }
-            })
-            const radEmbed = new Discord.MessageEmbed()
-                .setColor('#0099ff')
-                .setImage("https://tfwiki.net/wiki/" +imageName)
-                .setDescription(editpage.slice(boldStart, boldEnd+1))
-                msg.channel.send(radEmbed);
+                    const radEmbed = new Discord.MessageEmbed()
+                        .setColor('#0099ff')
+                        .setImage("https://tfwiki.net" + imMatch[0].slice(startCut, imLength-2))
+                        .setDescription(editpage.slice(boldStart, boldEnd+1))
+                        msg.channel.send(radEmbed);
+                    }
+                })
             }
             else {
                 const radEmbed = new Discord.MessageEmbed()
