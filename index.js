@@ -44,6 +44,7 @@ client.on('message', msg => {
                 .setThumbnail(imageName)
                 .setDescription(editpage.slice(boldStart, boldEnd+1))
 
+            msg.channel.send(radEmbed);
         }
       return response;
     }).catch(err => {
