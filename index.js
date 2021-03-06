@@ -77,6 +77,11 @@ client.on('message', msg => {
       console.log(err);
       });
     }
+    else if (msg.content.toLowerCase() == "wicked sweet" ) {
+       const sweetRide = "https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg"
+       msg.react(':aboutTheTransformers:') 
+       msg.channel.send("Wicked sweet! " + sweetRide)
+    }
   }
 });
 
