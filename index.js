@@ -37,8 +37,9 @@ client.on('message', msg => {
             let imageRE = /(Image:|File:).*jpg/;
             const matches = editpage.match(imageRE)
             var imageName;
-            if(templateImageRE) {
+            if(templateMatches) {
                 console.log("TEMPLATE FOUND: " + templateMatches[0])
+            }
             if(matches) {
                 console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
                 imageName = matches[0].split(" ").join("_");
