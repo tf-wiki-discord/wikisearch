@@ -18,8 +18,6 @@ client.on('message', msg => {
       var pageName = msg.content.match(/\[\[(.*?)\]\]/)[1];
       var pageNameSlug = pageName.split(" ").join("_");
 
-      console.log("FULL PAGE CONTENT: " +msg.content) //don't leave this on unless debugging!
-
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
 
       // here's a trick: Pull the wiki-text by pulling an "edit" page.
@@ -34,6 +32,7 @@ client.on('message', msg => {
         }).then(response => {
           if(response.status === 200) {
             let editpage = response.data;
+              console.log("FULL CONTENT: " + editpage) // don't leave this on unless debugging!
 
             // guess where the first paragraph is because it probably has '''bold text'''.
             // find the first instance.
