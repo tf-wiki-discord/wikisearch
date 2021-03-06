@@ -63,7 +63,6 @@ client.on('message', msg => {
             const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
               .setDescription(editpage.slice(boldStart, boldEnd+1)) 
-              .setThumbnail("https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg")
               .setTitle(rad_reply)
 
             if(imageName) {
