@@ -36,7 +36,7 @@ client.on('message', msg => {
             const matches = editpage.match(imageRE)
             var imageName;
             if(matches) {
-                console.log(matches[0])
+                //console.log(matches[0])
                 imageName = matches[0].split(" ").join("_");
             }
             if(imageName) {
@@ -51,7 +51,12 @@ client.on('message', msg => {
                 if(r.status===200) {
                     var img = r.data
                     let imRE = /<a href="\/mediawiki\/images.*?">/
-                    console.log(img.match(imRE))
+                    var imMatch = img.match(imRE);
+                    if(imMatch) {
+                        const startCut = '<a href="'.length
+                        const imLength = inMatch[0].length
+                        console.log(imMatch[0].slice(startCut, imLength-2))
+                    }
                 }
             })
             const radEmbed = new Discord.MessageEmbed()
