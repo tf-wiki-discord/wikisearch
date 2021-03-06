@@ -39,8 +39,9 @@ client.on('message', msg => {
             var imageName;
             if(templateMatches) {
                 console.log("TEMPLATE FOUND: " + templateMatches[0].split(" ").join("_").slice(6))
+                imageName = templateMatches[0].split(" ").join("_").slice(6)
             }
-            if(matches) {
+            else if(matches) {
                 console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
                 imageName = matches[0].split(" ").join("_");
             }
