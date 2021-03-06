@@ -12,10 +12,10 @@ client.on('ready', () => {
 client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
-    if (/\[\[(.*)\]\]/.test(msg.content)) {
+    if (/\[\[(.*?)\]\]/.test(msg.content)) {
     
       //strip off the [[ ]]s
-      var pageName = msg.content.match(/\[\[(.*)\]\]/)[1];
+      var pageName = msg.content.match(/\[\[(.*?)\]\]/)[1];
       var pageNameSlug = pageName.split(" ").join("_");
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
