@@ -11,21 +11,20 @@ client.on('ready', () => {
 
 client.on('message', msg => {
  // [[ ]] activates the bot
- if (msg.content.startsWith('[[') && msg.content.endsWith(']]')) {
+ if (/\[\[(.*)\]\]/.test(msg.content)) && msg.content.endsWith(']]')) {
     
      //strip off the [[ ]]s
-     var l = msg.content.length;
-     var article = msg.content.slice(2, l-2);
-     article = article.split(" ").join("_");
+     var pageName = msg.content.match(/\[\[(.*)\]\]/)[0];
+     var pageNameSlug = pageName.split(" ").join("_");
 
-     const fullWikiArticle = "https://tfwiki.net/wiki/" + article;
-     const rad_reply = "Hi, I'm Rad, and I want to tell you about " + fullWikiArticle;
+     const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
+     const rad_reply = "Hi, I'm Rad, and I want to tell you about " + pageURL;
      msg.channel.send(rad_reply);
 
      // here's a trick: Pull the wiki-text by pulling an "edit" page.
      // this prevents unnecessary downloading of the whole main page.
      // really should replaced with a call to MediaWiki's API.
-     const editURL = "https://tfwiki.net/mediawiki/index.php?title=" + article + "&action=edit"
+     const editURL = "https://tfwiki.net/mediawiki/index.php?title=" + pageNameSlug + "&action=edit"
      axios.get(editURL, {
        headers:{
          Accept: 'accept',
