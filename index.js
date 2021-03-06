@@ -10,44 +10,61 @@ client.on('ready', () => {
  });
 
 client.on('message', msg => {
+ // [[ ]] activates the bot
  if (msg.content.startsWith('[[') && msg.content.endsWith(']]')) {
+    
+     //strip off the [[ ]]s
      var l = msg.content.length;
      var article = msg.content.slice(2, l-2);
      article = article.split(" ").join("_");
+
      const fullWikiArticle = "https://tfwiki.net/wiki/" + article;
      const rad_reply = "Hi, I'm Rad, and I want to tell you about " + fullWikiArticle;
      msg.channel.send(rad_reply);
 
+     // here's a trick: Pull the wiki-text by pulling an "edit" page.
+     // this prevents unnecessary downloading of the whole main page.
+     // really should replaced with a call to MediaWiki's API.
      const editURL = "https://tfwiki.net/mediawiki/index.php?title=" + article + "&action=edit"
-    axios.get(editURL, {
-      headers:{
-        Accept: 'accept',
-        Authorization: 'authorize'
-      },
-    }).then(response => {
-        if(response.status === 200) {
-            let editpage = response.data;
-            let re = /'''/;
-            let boldStart = editpage.search(re);
-            let boldEnd = editpage.indexOf(".", boldStart);
-            console.log(editpage.slice(boldStart, boldEnd+1));
+     axios.get(editURL, {
+       headers:{
+         Accept: 'accept',
+         Authorization: 'authorize'
+       },
+       }).then(response => {
+           if(response.status === 200) {
+               let editpage = response.data;
 
-            let templateImageRE = /image=.*(jpg|png)/
-            const templateMatches = editpage.match(templateImageRE)
-            let imageRE = /(Image:|File:).*(png|jpg)/;
-            const matches = editpage.match(imageRE)
-            var imageName;
-            if(templateMatches) {
-                console.log("TEMPLATE FOUND: " + templateMatches[0].split(" ").join("_").slice(6))
-                imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
-            }
-            else if(matches) {
-                console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
-                imageName = matches[0].split(" ").join("_");
-            }
-            if(imageName) {
+               // guess where the first paragraph is because it probably has '''bold text'''.
+               // find the first instance.
+               // needs to be improved as sometimes it returns nonsense or fragments.
+               let re = /'''/;
+               let boldStart = editpage.search(re);
+               let boldEnd = editpage.indexOf(".", boldStart);
+               // text to embed
+               console.log(editpage.slice(boldStart, boldEnd+1));
+
+               // oh boy. so the wiki-text may have File:blahblah.jpg or Image:blahblah.jpg.
+               // it also may have images in templates, like image=blahblah.png.
+               // I prefer the template ones if I find them first. Otherwise find the first File/Image.
+               let templateImageRE = /image=.*(jpg|png)/
+               const templateMatches = editpage.match(templateImageRE)
+               let imageRE = /(Image:|File:).*(png|jpg)/;
+               const matches = editpage.match(imageRE)
+               var imageName;
+               if(templateMatches) {
+                   console.log("TEMPLATE FOUND: " + templateMatches[0].split(" ").join("_").slice(6))
+                   imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
+               }
+               else if(matches) {
+                   console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
+                   imageName = matches[0].split(" ").join("_");
+              }
+              if(imageName) {
                 const imagePageURL = "https://tfwiki.net/wiki/" +imageName
 
+                // yes, a SECOND call to the server to get the actual image.
+                // I don't like it. Probably is easier with MediaWiki API.
                 axios.get(imagePageURL, {
                     headers:{
                         Accept: 'accept',
@@ -55,6 +72,7 @@ client.on('message', msg => {
                     },
                 }).then(r => {
                 if(r.status===200) {
+                    // extract image file name, put into embed
                     var img = r.data
                     let imRE = /<a href="\/mediawiki\/images.*?">/
                     var imMatch = img.match(imRE);
