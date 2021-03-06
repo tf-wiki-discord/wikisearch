@@ -78,7 +78,7 @@ client.on('message', msg => {
     }
     else if (/wicked sweet/i.test(msg.content)) {
        const reactionEmoji = msg.guild.emojis.cache.find(emoji => emoji.name === 'aboutTheTransformers');
-       message.react(reactionEmoji);
+       msg.react(reactionEmoji);
        const sweetEmbed = new Discord.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg');
        msg.channel.send(sweetEmbed)
     }
