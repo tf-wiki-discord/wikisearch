@@ -37,11 +37,11 @@ client.on('message', msg => {
             var imageName;
             if(matches) {
                 console.log(matches[0])
-                imageName = matches[0];
+                imageName = matches[0].split(" ").join("_");
             }
             const radEmbed = new Discord.MessageEmbed()
                 .setColor('#0099ff')
-                .setThumbnail("https://tfwiki.net/wiki/" +imageName)
+                .setImage("https://tfwiki.net/wiki/" +imageName)
                 .setDescription(editpage.slice(boldStart, boldEnd+1))
 
             msg.channel.send(radEmbed);
