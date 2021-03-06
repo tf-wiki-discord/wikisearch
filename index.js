@@ -61,8 +61,8 @@ client.on('message', msg => {
             const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
               .setDescription(editpage.slice(boldStart, boldEnd+1)) 
-              .setTitle("Hi, my name's Rad, and I wanna tell you about " + pageName;)
-              .setURL(pageURL;)
+              .setTitle("Hi, my name's Rad, and I wanna tell you about " + pageName)
+              .setURL(pageURL)
 
             if(imageName) {
                 // get the direct image file path via Special:FilePath
