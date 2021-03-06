@@ -32,8 +32,9 @@ client.on('message', msg => {
         }).then(response => {
           if(response.status === 200) {
             let editpage = response.data;
-              console.log("FULL CONTENT: " + editpage) // don't leave this on unless debugging!
+              //console.log("FULL CONTENT: " + editpage) // don't leave this on unless debugging!
 
+            var noCreate = /You do not have permission to create pages/.test(editpage)
             // guess where the first paragraph is because it probably has '''bold text'''.
             // find the first instance.
             // needs to be improved as sometimes it returns nonsense or fragments.
@@ -59,10 +60,14 @@ client.on('message', msg => {
               console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
               imageName = matches[0].split(" ").join("_");
             }
+            var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
+            if(noCreate) {
+                embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
+            }
             const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
               .setDescription(editpage.slice(boldStart, boldEnd+1)) 
-              .setTitle("Hi, my name's Rad, and I wanna tell you about " + pageName + "!")
+              .setTitle(embedTitle)
               .setURL(pageURL)
 
             if(imageName) {
