@@ -14,7 +14,7 @@
     "axios": "^0.21.1",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
-    "nodemw": "^0.14.0"
+    "mwbot": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
