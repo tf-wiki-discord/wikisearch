@@ -23,8 +23,8 @@ client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
     var bot = new TFWiki({
-      protocol: 'https',           // Wikipedia now enforces HTTPS
-      server: 'tfwiki.net'  // host name of MediaWiki-powered site
+      protocol: 'https',           // HTTPS is good
+      server: 'tfwiki.net',  // host name of MediaWiki-powered site
       path: 'mediawiki',                  // path to api.php script
       debug: false                 // is more verbose when set to true
     });
