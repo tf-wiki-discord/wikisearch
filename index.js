@@ -1,6 +1,7 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const client = new Discord.Client()
 const axios = require('axios')
+const MWBot = required('mwbot')
 require('dotenv').config()
 
 const templateImageRE = /image=.*(jpg|png)/i
@@ -12,19 +13,6 @@ function regexIndexOf(string, regex, startpos) {
     return (i >= 0) ? (i + (startpos || 0)) : i;
 }
 
-function goodFirst(s) {
-    console.log(s)
-    for (const block of s.split("\n")) {
-        if(
-            block
-            && !imageRE.test(block)
-            && !templateImageRE.test(block)
-            && !bracketRE.test(block)) {
-            return block
-        }
-    }
-}
-
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setUsername('GO!-Bot')
@@ -34,6 +22,13 @@ client.on('ready', () => {
 client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
+    let bot = new MWBot()
+    bot.loginGetEditToken({
+        apiUrl: process.env.TFWIKI_API_PATH,
+        username: process.env.TFWIKISEARCH_USERNAME,
+        password: process.env.TFWIKISEARCH_PASSWORD
+    })
+
     if (/\[\[(.*?)\]\]/.test(msg.content)) {
     
       //strip off the [[ ]]s
