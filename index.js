@@ -3,6 +3,11 @@ const client = new Discord.Client();
 const axios = require('axios')
 require('dotenv').config()
 
+function regexIndexOf(string, regex, startpos) {
+    var i = string.substring(startpos || 0).search(regex);
+    return (i >= 0) ? (i + (startpos || 0)) : i;
+}
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setUsername('GO!-Bot')
@@ -40,7 +45,7 @@ client.on('message', msg => {
             // needs to be improved as sometimes it returns nonsense or fragments.
             let re = /'''/;
             let boldStart = editpage.search(re);
-            let boldEnd = editpage.indexOf(".\n", boldStart);
+            let boldEnd = regexIndexOf(editpage, /\.\s*?\n/, boldStart);
             // text to embed
             var description = editpage.slice(boldStart, boldEnd+1)
             description = description.replace(/'''/g, "");
