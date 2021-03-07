@@ -56,9 +56,9 @@ client.on('message', msg => {
             // oh boy. so the wiki-text may have File:blahblah.jpg or Image:blahblah.jpg.
             // it also may have images in templates, like image=blahblah.png.
             // I prefer the template ones if I find them first. Otherwise find the first File/Image.
-            let templateImageRE = /image=.*(jpg|png)/
+            let templateImageRE = /image=.*(jpg|png)/i
             const templateMatches = editpage.match(templateImageRE)
-            let imageRE = /(Image:|File:).*(png|jpg|gif)/;
+            let imageRE = /(Image:|File:).*(png|jpg|gif)/i;
             const matches = editpage.match(imageRE)
             var imageName;
             if(templateMatches) {
