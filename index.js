@@ -10,6 +10,7 @@ const bracketRE = /\{\{/
 function regexIndexOf(string, regex, startpos) {
     var i = string.substring(startpos || 0).search(regex);
     return (i >= 0) ? (i + (startpos || 0)) : i;
+}
 
 function goodFirst(s) {
     for (const block of s.split("\n")) {
