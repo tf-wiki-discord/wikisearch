@@ -13,6 +13,7 @@ function regexIndexOf(string, regex, startpos) {
 }
 
 function goodFirst(s) {
+    console.log(s)
     for (const block of s.split("\n")) {
         if(
             block
