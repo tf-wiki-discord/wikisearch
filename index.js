@@ -64,9 +64,9 @@ client.on('message', msg => {
             let boldStart = editpage.search(re);
             let boldEnd = regexIndexOf(editpage, /(\.'''|!'''|\?'''|\.|\?|!)\s*?\n/, boldStart);
             // text to embed
-            //var description = editpage.slice(boldStart, boldEnd+1)
+            var description = editpage.slice(boldStart, boldEnd+1)
 
-            var description = goodFirst(editpage)
+            //var description = goodFirst(editpage)
             description = description.replace(/'''/g, "");
             description = description.replace(/\[\[/g, "");
             description = description.replace(/\]\]/g, "");
