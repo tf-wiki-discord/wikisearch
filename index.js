@@ -3,9 +3,24 @@ const client = new Discord.Client();
 const axios = require('axios')
 require('dotenv').config()
 
+const templateImageRE = /image=.*(jpg|png)/i
+const imageRE = /(Image:|File:).*?(png|jpg|gif)/i
+const bracketRE = /\{\{/
+
 function regexIndexOf(string, regex, startpos) {
     var i = string.substring(startpos || 0).search(regex);
     return (i >= 0) ? (i + (startpos || 0)) : i;
+
+function goodFirst(s) {
+    for (const block of s.split("\n")) {
+        if(
+            block
+            && !imageRE.test(block)
+            && !templateImageRE.test(block)
+            && !bracketRE.test(block)) {
+            return block
+        }
+    }
 }
 
 client.on('ready', () => {
@@ -47,7 +62,9 @@ client.on('message', msg => {
             let boldStart = editpage.search(re);
             let boldEnd = regexIndexOf(editpage, /(\.'''|!'''|\?'''|\.|\?|!)\s*?\n/, boldStart);
             // text to embed
-            var description = editpage.slice(boldStart, boldEnd+1)
+            //var description = editpage.slice(boldStart, boldEnd+1)
+
+            var description = goodFirst(editpage)
             description = description.replace(/'''/g, "");
             description = description.replace(/\[\[/g, "");
             description = description.replace(/\]\]/g, "");
@@ -56,9 +73,7 @@ client.on('message', msg => {
             // oh boy. so the wiki-text may have File:blahblah.jpg or Image:blahblah.jpg.
             // it also may have images in templates, like image=blahblah.png.
             // I prefer the template ones if I find them first. Otherwise find the first File/Image.
-            let templateImageRE = /image=.*(jpg|png)/i
             const templateMatches = editpage.match(templateImageRE)
-            let imageRE = /(Image:|File:).*?(png|jpg|gif)/i;
             const matches = editpage.match(imageRE)
             var imageName;
             if(templateMatches) {
