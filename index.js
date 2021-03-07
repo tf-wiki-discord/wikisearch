@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const axios = require('axios')
-const MWBot = require('mwbot')
+const TFWiki = require('nodemw');
 require('dotenv').config()
 
 const templateImageRE = /image=.*(jpg|png)/i
@@ -22,13 +22,12 @@ client.on('ready', () => {
 client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
-    let bot = new MWBot()
-    bot.loginGetEditToken({
-        apiUrl: process.env.TFWIKI_API_PATH,
-        username: process.env.TFWIKISEARCH_USERNAME,
-        password: process.env.TFWIKISEARCH_PASSWORD
-    })
-
+    var bot = new TFWiki({
+      protocol: 'https',           // Wikipedia now enforces HTTPS
+      server: 'tfwiki.net'  // host name of MediaWiki-powered site
+      path: 'mediawiki',                  // path to api.php script
+      debug: false                 // is more verbose when set to true
+    });
     if (/\[\[(.*?)\]\]/.test(msg.content)) {
     
       //strip off the [[ ]]s
