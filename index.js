@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const axios = require('axios')
-const MWBot = required('mwbot')
+const MWBot = require('mwbot')
 require('dotenv').config()
 
 const templateImageRE = /image=.*(jpg|png)/i
