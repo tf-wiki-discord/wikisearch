@@ -44,29 +44,16 @@ client.on('message', msg => {
       var pageNameSlug = pageName.split(" ").join("_");
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
-      bot.getArticle(pageNameSlug, true, function(err, data) { 
-        if (err) {
-            console.error("ERROR: " +err);
-            return;
-          }
-        var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
-        const radEmbed = new Discord.MessageEmbed()
+      const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
               .setURL(pageURL)
 
-        if(data) {
-           var description = bestFirst(data.split(/\n/)) 
-           description = description.replace(/'''/g, "");
-           description = description.replace(/\[\[/g, "");
-           description = description.replace(/\]\]/g, "");
-           console.log(description)
-            radEmbed.description = description
-            const templateMatches = data.match(templateImageRE)
-            const matches = data.match(imageRE)
-            var imageName;
-            if(templateMatches) {
-              console.log("TEMPLATE FOUND: " + templateMatches[0].split(" ").join("_").slice(6))
-              imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
+      const templateMatches = data.match(templateImageRE)
+      const matches = data.match(imageRE)
+      var imageName;
+      if(templateMatches) {
+        console.log("TEMPLATE FOUND: " + templateMatches[0].split(" ").join("_").slice(6))
+        imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
             }
             else if(matches) {
               console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
@@ -76,6 +63,21 @@ client.on('message', msg => {
                 // get the direct image file path via Special:FilePath
                 radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
             }
+      bot.getArticle(pageNameSlug, true, function(err, data) { 
+        if (err) {
+            console.error("ERROR: " +err);
+            return;
+          }
+        var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
+        
+        if(data) {
+           var description = bestFirst(data.split(/\n/)) 
+           description = description.replace(/'''/g, "");
+           description = description.replace(/\[\[/g, "");
+           description = description.replace(/\]\]/g, "");
+           console.log(description)
+            radEmbed.description = description
+            
         }
         else {
             embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
