@@ -8,6 +8,15 @@ const templateImageRE = /image=.*(jpg|png)/i
 const imageRE = /(Image:|File:).*?(png|jpg|gif)/i
 const bracketRE = /\{\{/
 
+function bestFirst(list) {
+    for (const line of list) {
+        if(line.startsWith("'''") || line.startsWith("\"") || /^\w/.test(line)) {
+            return line
+        }
+    }
+    return ''
+}
+
 function regexIndexOf(string, regex, startpos) {
     var i = string.substring(startpos || 0).search(regex);
     return (i >= 0) ? (i + (startpos || 0)) : i;
@@ -35,42 +44,25 @@ client.on('message', msg => {
       var pageNameSlug = pageName.split(" ").join("_");
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
+      bot.getArticle(pageNameSlug, true, function(err, data) {( // true = handle redirects
+        if (err) {
+            console.error("ERROR: " +err);
+            return;
+          }
+        var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
+        const radEmbed = new Discord.MessageEmbed()
+              .setColor('#0099ff')
+              .setURL(pageURL)
 
-      // here's a trick: Pull the wiki-text by pulling an "edit" page.
-      // this prevents unnecessary downloading of the whole main page.
-      // really should replaced with a call to MediaWiki's API.
-      const editURL = "https://tfwiki.net/mediawiki/index.php?title=" + pageNameSlug + "&action=edit"
-      axios.get(editURL, {
-          headers:{
-            Accept: 'accept',
-            Authorization: 'authorize'
-          },
-        }).then(response => {
-          if(response.status === 200) {
-            let editpage = response.data;
-              //console.log("FULL CONTENT: " + editpage) // don't leave this on unless debugging!
-
-            var noCreate = /You do not have permission to create pages/.test(editpage)
-            // guess where the first paragraph is because it probably has '''bold text'''.
-            // find the first instance.
-            // needs to be improved as sometimes it returns nonsense or fragments.
-            let re = /'''/;
-            let boldStart = editpage.search(re);
-            let boldEnd = regexIndexOf(editpage, /(\.'''|!'''|\?'''|\.|\?|!|ref>)\s*?\n/, boldStart);
-            // text to embed
-            var description = editpage.slice(boldStart, boldEnd+1)
-
-            //var description = goodFirst(editpage)
-            description = description.replace(/'''/g, "");
-            description = description.replace(/\[\[/g, "");
-            description = description.replace(/\]\]/g, "");
-            console.log(description)
-
-            // oh boy. so the wiki-text may have File:blahblah.jpg or Image:blahblah.jpg.
-            // it also may have images in templates, like image=blahblah.png.
-            // I prefer the template ones if I find them first. Otherwise find the first File/Image.
-            const templateMatches = editpage.match(templateImageRE)
-            const matches = editpage.match(imageRE)
+        if(data) {
+           var description = bestFirst(data.split(/\n/)) 
+           description = description.replace(/'''/g, "");
+           description = description.replace(/\[\[/g, "");
+           description = description.replace(/\]\]/g, "");
+           console.log(description)
+            radEmbed.description = description
+            const templateMatches = data.match(templateImageRE)
+            const matches = data.match(imageRE)
             var imageName;
             if(templateMatches) {
               console.log("TEMPLATE FOUND: " + templateMatches[0].split(" ").join("_").slice(6))
@@ -80,26 +72,82 @@ client.on('message', msg => {
               console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
               imageName = matches[0].split(" ").join("_");
             }
-            var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
-            if(noCreate) {
-                embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
-            }
-            const radEmbed = new Discord.MessageEmbed()
-              .setColor('#0099ff')
-              .setDescription(description)
-              .setTitle(embedTitle)
-              .setURL(pageURL)
-
             if(imageName) {
                 // get the direct image file path via Special:FilePath
                 radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
             }
-            msg.channel.send(radEmbed);
         }
-      return response;
-      }).catch(err => {
-      console.log(err);
-      });
+        else {
+            embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
+        }
+        radEmbed.title = embedTitle
+        msg.channel.send(radEmbed);
+      )}
+    )
+
+// here's a trick: Pull the wiki-text by pulling an "edit" page.
+      // this prevents unnecessary downloading of the whole main page.
+      // really should replaced with a call to MediaWiki's API.
+//      const editURL = "https://tfwiki.net/mediawiki/index.php?title=" + pageNameSlug + "&action=edit"
+//      axios.get(editURL, {
+//          headers:{
+//            Accept: 'accept',
+//            Authorization: 'authorize'
+//          },
+//        }).then(response => {
+//          if(response.status === 200) {
+//            let editpage = response.data;
+//              //console.log("FULL CONTENT: " + editpage) // don't leave this on unless debugging!
+//
+//            var noCreate = /You do not have permission to create pages/.test(editpage)
+//            // guess where the first paragraph is because it probably has '''bold text'''.
+//            // find the first instance.
+//            // needs to be improved as sometimes it returns nonsense or fragments.
+//            let re = /'''/;
+//            let boldStart = editpage.search(re);
+//            let boldEnd = regexIndexOf(editpage, /(\.'''|!'''|\?'''|\.|\?|!|ref>)\s*?\n/, boldStart);
+//            // text to embed
+//            var description = editpage.slice(boldStart, boldEnd+1)
+//
+//            description = description.replace(/'''/g, "");
+//            description = description.replace(/\[\[/g, "");
+//            description = description.replace(/\]\]/g, "");
+//            console.log(description)
+//
+//            // oh boy. so the wiki-text may have File:blahblah.jpg or Image:blahblah.jpg.
+//            // it also may have images in templates, like image=blahblah.png.
+//            // I prefer the template ones if I find them first. Otherwise find the first File/Image.
+//            const templateMatches = editpage.match(templateImageRE)
+//            const matches = editpage.match(imageRE)
+//            var imageName;
+//            if(templateMatches) {
+//              console.log("TEMPLATE FOUND: " + templateMatches[0].split(" ").join("_").slice(6))
+//              imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
+//            }
+//            else if(matches) {
+//              console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
+//              imageName = matches[0].split(" ").join("_");
+//            }
+//            var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
+//            if(noCreate) {
+//                embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
+//            }
+//            const radEmbed = new Discord.MessageEmbed()
+//              .setColor('#0099ff')
+//              .setDescription(description)
+//              .setTitle(embedTitle)
+//              .setURL(pageURL)
+//
+//            if(imageName) {
+//                // get the direct image file path via Special:FilePath
+//                radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
+//            }
+//            msg.channel.send(radEmbed);
+//        }
+//      return response;
+//      }).catch(err => {
+//      console.log(err);
+//      });
     }
     else if (/wicked sweet/i.test(msg.content)) {
        msg.channel.send(new Discord.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg'))
