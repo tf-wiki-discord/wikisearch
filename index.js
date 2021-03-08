@@ -1,8 +1,8 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const axios = require('axios')
-const TFWiki = require('nodemw');
-import { RateLimiter } from 'discord.js-rate-limiter';
+const TFWiki = require('nodemw')
+const RateLimiter = require('discord.js-rate-limiter')
 require('dotenv').config()
 
 const numCommands = 1
