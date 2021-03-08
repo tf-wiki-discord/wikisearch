@@ -2,7 +2,13 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 const axios = require('axios')
 const TFWiki = require('nodemw');
+import { RateLimiter } from 'discord.js-rate-limiter';
 require('dotenv').config()
+
+const numCommands = 1
+const interval = 2
+const intervalSec = interval * 1000
+let rateLimiter = new RateLimiter(numCommands, intervalSec)
 
 const templateImageRE = /image=.*(jpg|png)/i
 const imageRE = /(Image:|File:).*?(png|jpg|gif)/i
@@ -33,6 +39,14 @@ client.on('ready', () => {
 client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
+
+    // prevent / reduce spamming
+    let limited = rateLimiter.take(msg.author.id)
+    if(limited) {
+       msg.channel.send("Whoa, whoa, calm down!") 
+       return;
+    }
+
     var bot = new TFWiki({
       protocol: 'https',           // HTTPS is good
       server: 'tfwiki.net',  // host name of MediaWiki-powered site
