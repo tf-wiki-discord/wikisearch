@@ -48,8 +48,8 @@ client.on('message', msg => {
               .setColor('#0099ff')
               .setURL(pageURL)
 
-      const templateMatches = data.match(templateImageRE)
-      const matches = data.match(imageRE)
+      const templateMatches = pageURL.match(templateImageRE)
+      const matches = pageURL.match(imageRE)
       var imageName;
       if(templateMatches) {
         console.log("TEMPLATE FOUND: " + templateMatches[0].split(" ").join("_").slice(6))
