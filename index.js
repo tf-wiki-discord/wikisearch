@@ -44,7 +44,7 @@ client.on('message', msg => {
       var pageNameSlug = pageName.split(" ").join("_");
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
-      bot.getArticle(pageNameSlug, true, function(err, data) {( // true = handle redirects
+      bot.getArticle(pageNameSlug, true, function(err, data) { 
         if (err) {
             console.error("ERROR: " +err);
             return;
@@ -82,8 +82,7 @@ client.on('message', msg => {
         }
         radEmbed.title = embedTitle
         msg.channel.send(radEmbed);
-      )}
-    )
+      })
 
 // here's a trick: Pull the wiki-text by pulling an "edit" page.
       // this prevents unnecessary downloading of the whole main page.
