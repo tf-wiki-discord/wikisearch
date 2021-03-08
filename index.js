@@ -6,7 +6,7 @@ const RateLimiter = require('discord.js-rate-limiter')
 require('dotenv').config()
 
 const numCommands = 1
-const interval = 2
+const interval = 4
 const intervalSec = interval * 1000
 let rateLimiter = new RateLimiter.RateLimiter(numCommands, intervalSec)
 
