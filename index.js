@@ -8,7 +8,7 @@ require('dotenv').config()
 const numCommands = 1
 const interval = 2
 const intervalSec = interval * 1000
-let rateLimiter = new RateLimiter(numCommands, intervalSec)
+let rateLimiter = new RateLimiter.RateLimiter(numCommands, intervalSec)
 
 const templateImageRE = /image=.*(jpg|png)/i
 const imageRE = /(Image:|File:).*?(png|jpg|gif)/i
