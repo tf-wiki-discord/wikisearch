@@ -48,15 +48,15 @@ client.on('message', msg => {
               .setColor('#0099ff')
               .setURL(pageURL)
 
+      var imageName;
       const templateMatches = pageURL.match(templateImageRE)
       const matches = pageURL.match(imageRE)
-      var imageName;
       if(templateMatches) {
-        console.log("TEMPLATE FOUND: " + templateMatches[0].split(" ").join("_").slice(6))
+        console.log("TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
         imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
             }
             else if(matches) {
-              console.log("WIKI FILE or IMAGE FOUND: "+matches[0])
+              console.log("WIKI FILE or IMAGE FOUND (URL): "+matches[0])
               imageName = matches[0].split(" ").join("_");
             }
             if(imageName) {
@@ -76,8 +76,24 @@ client.on('message', msg => {
            description = description.replace(/\[\[/g, "");
            description = description.replace(/\]\]/g, "");
            console.log(description)
-            radEmbed.description = description
-            
+           radEmbed.description = description
+
+           if(!imageName) {
+               const templateMatches = data.match(templateImageRE)
+               const matches = data.match(imageRE)
+               if(templateMatches) {
+                    console.log("TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
+                    imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
+                }
+                else if(matches) {
+                  console.log("WIKI FILE or IMAGE FOUND (URL): "+matches[0])
+                  imageName = matches[0].split(" ").join("_");
+                }
+                if(imageName) {
+                    // get the direct image file path via Special:FilePath
+                    radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
+                }
+            }
         }
         else {
             embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
