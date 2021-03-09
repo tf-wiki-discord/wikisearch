@@ -21,11 +21,31 @@ function bestFirst(list) {
     //wiki markup, which starts with tags like : or [[, etc.
     for (const line of list) {
         if(
-            line.startsWith("'''")
-            || line.startsWith("\"")
-            || /^\[\[[^(File:|Image:)]/.test(line)
+            /^'''/.test(line)
+            || /^\"/.test(line)
+            || /^:/.test(line)
+            || /^\[\[[^(File:|Image:|file:)]/.test(line)
             || /^\w/.test(line)) {
             return line
+        }
+    }
+    return ''
+}
+
+function findHashedText(articleList, articleName) {
+    if(/#/.test(articleName)) {
+        var baseAndHash = articleName.split('#')
+        var hashtext = baseAndHash[1]
+        if(hashtext) {
+            console.log("HASH TEXT: " + hashtext)
+            let hashRE = new RegExp(`(=+)(\\s*?)('*?)${hashtext}(\\s*?)('*?)(=+)`)
+            var blurbIdx = articleList.findIndex(x => hashRE.test(x))
+            if(blurbIdx != -1) {
+                const blurbList = articleList.slice(blurbIdx)
+                const blurb = bestFirst(blurbList)
+                console.log("HASH BLURB: "+blurb)
+                return blurb
+            }
         }
     }
     return ''
@@ -40,8 +60,6 @@ client.on('ready', () => {
 client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
-
-    
 
     var bot = new TFWiki({
       protocol: 'https',           // HTTPS is good
@@ -89,7 +107,8 @@ client.on('message', msg => {
         var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
         
         if(data) {
-           var description = bestFirst(data.split(/\n/)) 
+           const articleAsList = data.split(/\n/)
+           var description = findHashedText(articleAsList, pageNameSlug) || bestFirst(articleAsList)
            description = description.replace(/'''/g, "");
            description = description.replace(/\[\[/g, "");
            description = description.replace(/\]\]/g, "");
