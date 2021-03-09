@@ -41,12 +41,7 @@ client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
 
-    // prevent / reduce spamming
-    let limited = rateLimiter.take(msg.author.id)
-    if(limited) {
-       msg.channel.send("Whoa, whoa, calm down!") 
-       return;
-    }
+    
 
     var bot = new TFWiki({
       protocol: 'https',           // HTTPS is good
@@ -55,7 +50,13 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     if (/\[\[(.*?)\]\]/.test(msg.content)) {
-    
+
+        // prevent / reduce spamming
+        let limited = rateLimiter.take(msg.author.id)
+        if(limited) {
+           msg.channel.send("Whoa, whoa, calm down!") 
+           return;
+        }
       //strip off the [[ ]]s
       var pageName = msg.content.match(/\[\[(.*?)\]\]/)[1];
       var pageNameSlug = pageName.split(" ").join("_");
