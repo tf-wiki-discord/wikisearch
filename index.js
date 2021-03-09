@@ -35,7 +35,7 @@ function bestFirst(list) {
 function findHashedText(articleList, articleName) {
     if(/#/.test(articleName)) {
         var baseAndHash = articleName.split('#')
-        var hashtext = baseAndHash[1].replace("_", " ")
+        var hashtext = baseAndHash[1].replace(/_/g, " ")
         if(hashtext) {
             console.log("HASH TEXT: " + hashtext)
             let hashRE = new RegExp(`(=+)(\\s*?)('*?)${hashtext}(\\s*?)('*?)(=+)`)
