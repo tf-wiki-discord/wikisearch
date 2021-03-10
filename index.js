@@ -23,7 +23,7 @@ function bestFirst(list) {
         if(
             /^'''/.test(line)
             || /^\"/.test(line)
-            || /^*/.test(line)
+            || /^\*/.test(line)
             || /^:/.test(line)
             || /^\[\[[^(File:|Image:|file:)]/.test(line)
             || /^\w/.test(line)) {
