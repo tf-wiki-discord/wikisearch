@@ -111,10 +111,11 @@ client.on('message', msg => {
            const articleAsList = data.split(/\n/)
            var description = findHashedText(articleAsList, pageNameSlug) || bestFirst(articleAsList)
            description = description.replace(/'''/g, "");
-           description = description.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2")
-           description = description.replace(/\[\[/g, "");
-           description = description.replace(/\]\]/g, "");
-           description = description.replace(/^:/g, "");
+           description = description.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2") // change [[abc|123]] to 123
+           description = description.replace(/\{\{([^\}\}]*?)\|(.*?)\}\}/g, "$2") // change {{abc|123}} to 123
+           description = description.replace(/\[\[/g, ""); // remove opening tags
+           description = description.replace(/\]\]/g, ""); // remove closing tags
+           description = description.replace(/^:/g, ""); 
            description = description.replace(/''/g, "")
            console.log(description)
            radEmbed.description = description
