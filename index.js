@@ -86,20 +86,20 @@ client.on('message', msg => {
               .setURL(pageURL)
 
       var imageName;
-      const templateMatches = pageURL.match(templateImageRE)
-      const matches = pageURL.match(imageRE)
-      if(templateMatches) {
-        console.log("TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
-        imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
-            }
-            else if(matches) {
-              console.log("WIKI FILE or IMAGE FOUND (URL): "+matches[0])
-              imageName = matches[0].split(" ").join("_");
-            }
-            if(imageName) {
-                // get the direct image file path via Special:FilePath
-                radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
-            }
+//      const templateMatches = pageURL.match(templateImageRE)
+//      const matches = pageURL.match(imageRE)
+//      if(templateMatches) {
+//        console.log("TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
+//        imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
+//            }
+//            else if(matches) {
+//              console.log("WIKI FILE or IMAGE FOUND (URL): "+matches[0])
+//              imageName = matches[0].split(" ").join("_");
+//            }
+//            if(imageName) {
+//                // get the direct image file path via Special:FilePath
+//                radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
+//            }
       bot.getArticle(pageNameSlug, true, function(err, data) { 
         if (err) {
             console.error("ERROR: " +err);
@@ -115,8 +115,7 @@ client.on('message', msg => {
            description = description.replace(/\[\[/g, "");
            description = description.replace(/\]\]/g, "");
            description = description.replace(/^:/g, "");
-           description = description.replace(/^''/g, "");
-           description = description.replace(/''$/g, "")
+           description = description.replace(/''/g, "")
            console.log(description)
            radEmbed.description = description
 
