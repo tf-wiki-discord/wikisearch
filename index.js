@@ -112,6 +112,7 @@ client.on('message', msg => {
            var description = findHashedText(articleAsList, pageNameSlug) || bestFirst(articleAsList)
            description = description.replace(/'''/g, "");
            description = description.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2") // change [[abc|123]] to 123
+           description = description.replace(/\{\{storylink\|([^\}\}]*?)\|(.*?)\}\}/g, "(From: $2)")  // prettify storylinks
            description = description.replace(/\{\{([^\}\}]*?)\|(.*?)\}\}/g, "$2") // change {{abc|123}} to 123
            description = description.replace(/\[\[/g, ""); // remove opening tags
            description = description.replace(/\]\]/g, ""); // remove closing tags
