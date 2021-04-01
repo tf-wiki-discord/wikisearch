@@ -123,15 +123,16 @@ client.on('message', msg => {
                 // get the direct image file path via Special:FilePath
                 radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
             }
+      console.log("PAGE NAME SLUG: " + pageNameSlug)
+      if(hasToyPage && slashToySlug) {
+        pageNameSlug = slashToySlug;
+      }
       bot.getArticle(pageNameSlug, true, function(err, data) { 
         if (err) {
             console.error("ERROR: " +err);
             return;
           }
-        console.log("PAGE NAME SLUG: " + pageNameSlug)
-        if(hasToyPage && slashToySlug) {
-            pageNameSlug = slashToySlug;
-        }
+        
         var embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageNameSlug + "!"
         //var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
         
