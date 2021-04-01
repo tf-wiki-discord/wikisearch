@@ -92,13 +92,10 @@ client.on('message', msg => {
         pageNameSlug = pageNameSlug.replace(toysChannelRE, "#Toys")
         console.log("Page name sanitized (#toys)")
         // test to see if a dedicated toy page exists
-        var slashToySlug = pageNameSlug.replace(/#Toys/, "/Toys")
+        var slashToySlug = pageNameSlug.replace(/#Toys/, "/toys")
         slashToySlug = slashToySlug.replace("_", " ")
         console.log("TESTING TOY SLUG: " + slashToySlug)
         bot.getArticle(slashToySlug, false, function(err, data) {
-            console.log("TOY SLUG CALLBACK")
-            console.log(err)
-            console.log(data)
             if(data) {
                 hasToyPage = true;
                 console.log("DEDICATED TOY PAGE EXISTS")
