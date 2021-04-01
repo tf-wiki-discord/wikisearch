@@ -107,6 +107,7 @@ client.on('message', msg => {
             console.error("ERROR: " +err);
             return;
           }
+        console.log("PAGE NAME SLUG: " + pageNameSlug)
         var embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageName + "!"
         //var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
         
