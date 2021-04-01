@@ -93,7 +93,7 @@ client.on('message', msg => {
         console.log("Page name sanitized (#toys)")
         // test to see if a dedicated toy page exists
         var slashToySlug = pageNameSlug.replace(/#Toys/, "/Toys")
-        //slashToySlug = slashToySlug.replace("_", " ")
+        slashToySlug = slashToySlug.replace("_", " ")
         console.log("TESTING TOY SLUG: " + slashToySlug)
         bot.getArticle(slashToySlug, false, function(err, data) {
             console.log("TOY SLUG CALLBACK")
