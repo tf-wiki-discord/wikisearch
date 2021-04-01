@@ -82,6 +82,16 @@ client.on('message', msg => {
       var pageName = msg.content.match(/\[\[(.*?)\]\]/)[1];
       var pageNameSlug = pageName.split(" ").join("_");
 
+      // #toys in Discord expands to a channel ID, which confuses the bot if searching for #Toys in the wiki article
+      // this will sanitize the input
+      const toysChannelRE = /(<#674063451877933091>)/
+      const toyMatch = pagenameSlug.match(toysChannelRE)
+      if(toyMatch) {
+        pageNameSlug.replace(toysChannelRE, "#toys")
+      }
+      console.log("SANITIZED SLUG: " + pageNameSlug)
+      
+
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
       const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
