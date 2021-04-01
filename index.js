@@ -118,8 +118,8 @@ client.on('message', msg => {
         return;
       }
         
-      var embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageNameSlug + "!"
-      //var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
+      var embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageName + "!"
+      //var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
         
       if(data) {
         const articleAsList = data.split(/\n/)
@@ -155,8 +155,8 @@ client.on('message', msg => {
             }
       }
       else {
-        embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageNameSlug + "...UH I DUNNO HOW"
-        //embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageNameSlug + ", but I can't!"
+        embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageName + "...UH I DUNNO HOW"
+        //embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
       }
         radEmbed.title = embedTitle
         msg.channel.send(radEmbed);
