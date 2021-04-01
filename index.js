@@ -85,7 +85,7 @@ client.on('message', msg => {
       // #toys in Discord expands to a channel ID, which confuses the bot if searching for #Toys in the wiki article
       // this will sanitize the input
       const toysChannelRE = /(<#674063451877933091>)/
-      const toyMatch = pagenameSlug.match(toysChannelRE)
+      const toyMatch = pageNameSlug.match(toysChannelRE)
       if(toyMatch) {
         pageNameSlug.replace(toysChannelRE, "#toys")
       }
