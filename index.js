@@ -95,9 +95,10 @@ client.on('message', msg => {
         var slashToySlug = pageNameSlug.replace(/#Toys/, "/Toys")
         //slashToySlug = slashToySlug.replace("_", " ")
         console.log("TESTING TOY SLUG: " + slashToySlug)
-        bot.getArticle(slashToySlug, true, function(err, data) {
+        bot.getArticle(slashToySlug, false, function(err, data) {
             console.log("TOY SLUG CALLBACK")
             console.log(err)
+            console.log(data)
             if(data) {
                 hasToyPage = true;
                 console.log("DEDICATED TOY PAGE EXISTS")
