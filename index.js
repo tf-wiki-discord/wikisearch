@@ -54,8 +54,10 @@ function findHashedText(articleList, articleName) {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setUsername('Rad, the GO!-Bot')
-  client.user.setActivity('with Carlos and Alexis')
+  client.user.setUsername('Fred!')
+  //client.user.setUsername('Rad, the GO!-Bot')
+  client.user.setActivity('with Billy')
+  //client.user.setActivity('with Carlos and Alexis')
 });
 
 client.on('message', msg => {
@@ -105,7 +107,8 @@ client.on('message', msg => {
             console.error("ERROR: " +err);
             return;
           }
-        var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
+        var embedTitle = "HI IM BILLY LOOK HERES STUFF ABOUT " + pageName + "!"
+        //var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
         
         if(data) {
            const articleAsList = data.split(/\n/)
@@ -141,14 +144,16 @@ client.on('message', msg => {
             }
         }
         else {
-            embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
+            embedTitle = "HI IM BILLY LOOK HERES STUFF ABOUT " + pageName + "...UH I DUNNO HOW"
+            //embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
         }
         radEmbed.title = embedTitle
         msg.channel.send(radEmbed);
       })
     }
     else if (/wicked sweet/i.test(msg.content)) {
-       msg.channel.send(new Discord.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg'))
+       msg.channel.send(new Discord.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/Fred_Spiral01.jpg'))
+       //msg.channel.send(new Discord.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg'))
     }
   }
 });
