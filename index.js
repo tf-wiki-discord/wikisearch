@@ -96,7 +96,7 @@ client.on('message', msg => {
         slashToySlug = slashToySlug.replace("_", " ")
         console.log("TESTING TOY SLUG: " + slashToySlug)
         bot.getArticle(slashToySlug, true, function(err, data) {
-            if(!err && data) {
+            if(data) {
                 hasToyPage = true;
                 console.log("DEDICATED TOY PAGE EXISTS")
             }
