@@ -107,7 +107,7 @@ client.on('message', msg => {
             console.error("ERROR: " +err);
             return;
           }
-        var embedTitle = "HI IM BILLY LOOK HERES STUFF ABOUT " + pageName + "!"
+        var embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageName + "!"
         //var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
         
         if(data) {
@@ -144,7 +144,7 @@ client.on('message', msg => {
             }
         }
         else {
-            embedTitle = "HI IM BILLY LOOK HERES STUFF ABOUT " + pageName + "...UH I DUNNO HOW"
+            embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageName + "...UH I DUNNO HOW"
             //embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
         }
         radEmbed.title = embedTitle
