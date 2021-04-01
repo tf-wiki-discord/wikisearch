@@ -87,9 +87,9 @@ client.on('message', msg => {
       const toysChannelRE = /(<#674063451877933091>)/
       const toyMatch = pageNameSlug.match(toysChannelRE)
       if(toyMatch) {
-        pageNameSlug = pageNameSlug.replace(toysChannelRE, "#toys")
+        pageNameSlug = pageNameSlug.replace(toysChannelRE, "#Toys")
+        console.log("Page name sanitized (#toys)")
       }
-      console.log("SANITIZED SLUG: " + pageNameSlug)
       
 
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
