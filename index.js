@@ -94,11 +94,9 @@ client.on('message', msg => {
         // test to see if a dedicated toy page exists
         var slashToySlug = pageNameSlug.replace(/#Toys/, "/toys")
         slashToySlug = slashToySlug.replace("_", " ")
-        console.log("TESTING TOY SLUG: " + slashToySlug)
         bot.getArticle(slashToySlug, false, function(err, data) {
             if(data) {
                 hasToyPage = true;
-                console.log("DEDICATED TOY PAGE EXISTS")
             }
         })
       }
@@ -126,6 +124,8 @@ client.on('message', msg => {
             }
       console.log("PAGE NAME SLUG: " + pageNameSlug)
       if(hasToyPage && slashToySlug) {
+        slashToySlug = slashToySlug.replace(" ", "_")
+        console.log("DEDICATED TOY PAGE EXISTS")
         pageNameSlug = slashToySlug;
       }
       bot.getArticle(pageNameSlug, true, function(err, data) { 
