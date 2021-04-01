@@ -87,7 +87,7 @@ client.on('message', msg => {
       const toysChannelRE = /(<#674063451877933091>)/
       const toyMatch = pageNameSlug.match(toysChannelRE)
       if(toyMatch) {
-        pageNameSlug.replace(toysChannelRE, "#toys")
+        pageNameSlug = pageNameSlug.replace(toysChannelRE, "#toys")
       }
       console.log("SANITIZED SLUG: " + pageNameSlug)
       
