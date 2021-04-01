@@ -97,6 +97,7 @@ client.on('message', msg => {
         bot.getArticle(slashToySlug, false, function(err, data) {
             if(data) {
                 hasToyPage = true;
+                console.log("Has toy page")
             }
         })
       }
