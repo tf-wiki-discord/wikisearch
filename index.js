@@ -86,23 +86,11 @@ client.on('message', msg => {
       // this will sanitize the input
       const toysChannelRE = /(<#674063451877933091>)/
       const toyMatch = pageNameSlug.match(toysChannelRE)
-      var hasToyPage = false;
-      var slashToySlug;
       if(toyMatch) {
         pageNameSlug = pageNameSlug.replace(toysChannelRE, "#Toys")
         console.log("Page name sanitized (#toys)")
-        // test to see if a dedicated toy page exists
-        var slashToySlug = pageNameSlug.replace(/#Toys/, "/toys")
-        slashToySlug = slashToySlug.replace("_", " ")
-        bot.getArticle(slashToySlug, false, function(err, data) {
-            if(data) {
-                hasToyPage = true;
-                console.log("Has toy page")
-            }
-        })
       }
       
-
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
       const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
@@ -114,67 +102,62 @@ client.on('message', msg => {
       if(templateMatches) {
         console.log("TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
         imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
+      }
+      else if(matches) {
+        console.log("WIKI FILE or IMAGE FOUND (URL): "+matches[0])
+        imageName = matches[0].split(" ").join("_");
+      }
+      if(imageName) {
+        // get the direct image file path via Special:FilePath
+        radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
+      }
+      console.log("PAGE NAME SLUG: " + pageNameSlug)
+      bot.getArticle(pageNameSlug, true, function(err, data) { 
+      if (err) {
+        console.error("ERROR: " +err);
+        return;
+      }
+        
+      var embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageNameSlug + "!"
+      //var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
+        
+      if(data) {
+        const articleAsList = data.split(/\n/)
+        var description = findHashedText(articleAsList, pageNameSlug) || bestFirst(articleAsList)
+        description = description.replace(/'''/g, "");
+        description = description.replace( /(<ref>.*?<\/ref>)/g, ""); // remove ref tags, assuming they aren't nested
+        description = description.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2") // change [[abc|123]] to 123
+        description = description.replace(/\{\{w\|([^\}\}]*?)\|(.*?)\}\}/g, "$2") // remove wikipedia links
+        description = description.replace(/\{\{storylink\|([^\}\}]*?)\|(.*?)\}\}/g, "(From: $2)")  // prettify storylinks
+        description = description.replace(/\{\{([^\}\}]*?)\|(.*?)\}\}/g, "$2") // change {{abc|123}} to 123
+        description = description.replace(/\[\[/g, ""); // remove opening tags
+        description = description.replace(/\]\]/g, ""); // remove closing tags
+        description = description.replace(/^:/g, ""); 
+        description = description.replace(/''/g, "")
+        console.log(description)
+        radEmbed.description = description
+
+        if(!imageName) {
+            const templateMatches = data.match(templateImageRE)
+            const matches = data.match(imageRE)
+            if(templateMatches) {
+                console.log("TEMPLATE FOUND (ARTICLE): " + templateMatches[0].split(" ").join("_").slice(6))
+                mageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
             }
             else if(matches) {
-              console.log("WIKI FILE or IMAGE FOUND (URL): "+matches[0])
-              imageName = matches[0].split(" ").join("_");
+                console.log("WIKI FILE or IMAGE FOUND (ARTICLE): "+matches[0])
+                imageName = matches[0].split(" ").join("_");
             }
             if(imageName) {
-                // get the direct image file path via Special:FilePath
-                radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
+                 // get the direct image file path via Special:FilePath
+                 radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
             }
-      console.log("PAGE NAME SLUG: " + pageNameSlug)
-      if(hasToyPage && slashToySlug) {
-        slashToySlug = slashToySlug.replace(" ", "_")
-        console.log("DEDICATED TOY PAGE EXISTS")
-        pageNameSlug = slashToySlug;
+            }
       }
-      bot.getArticle(pageNameSlug, true, function(err, data) { 
-        if (err) {
-            console.error("ERROR: " +err);
-            return;
-          }
-        
-        var embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageNameSlug + "!"
-        //var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
-        
-        if(data) {
-           const articleAsList = data.split(/\n/)
-           var description = findHashedText(articleAsList, pageNameSlug) || bestFirst(articleAsList)
-           description = description.replace(/'''/g, "");
-           description = description.replace( /(<ref>.*?<\/ref>)/g, ""); // remove ref tags, assuming they aren't nested
-           description = description.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2") // change [[abc|123]] to 123
-           description = description.replace(/\{\{w\|([^\}\}]*?)\|(.*?)\}\}/g, "$2") // remove wikipedia links
-           description = description.replace(/\{\{storylink\|([^\}\}]*?)\|(.*?)\}\}/g, "(From: $2)")  // prettify storylinks
-           description = description.replace(/\{\{([^\}\}]*?)\|(.*?)\}\}/g, "$2") // change {{abc|123}} to 123
-           description = description.replace(/\[\[/g, ""); // remove opening tags
-           description = description.replace(/\]\]/g, ""); // remove closing tags
-           description = description.replace(/^:/g, ""); 
-           description = description.replace(/''/g, "")
-           console.log(description)
-           radEmbed.description = description
-
-           if(!imageName) {
-               const templateMatches = data.match(templateImageRE)
-               const matches = data.match(imageRE)
-               if(templateMatches) {
-                    console.log("TEMPLATE FOUND (ARTICLE): " + templateMatches[0].split(" ").join("_").slice(6))
-                    imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
-                }
-                else if(matches) {
-                  console.log("WIKI FILE or IMAGE FOUND (ARTICLE): "+matches[0])
-                  imageName = matches[0].split(" ").join("_");
-                }
-                if(imageName) {
-                    // get the direct image file path via Special:FilePath
-                    radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
-                }
-            }
-        }
-        else {
-            embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageNameSlug + "...UH I DUNNO HOW"
-            //embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageNameSlug + ", but I can't!"
-        }
+      else {
+        embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageNameSlug + "...UH I DUNNO HOW"
+        //embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageNameSlug + ", but I can't!"
+      }
         radEmbed.title = embedTitle
         msg.channel.send(radEmbed);
       })
