@@ -99,7 +99,7 @@ client.on('message', msg => {
                 hasToyPage = true;
                 console.log("DEDICATED TOY PAGE EXISTS")
             }
-        }
+        })
       }
       
 
