@@ -86,9 +86,20 @@ client.on('message', msg => {
       // this will sanitize the input
       const toysChannelRE = /(<#674063451877933091>)/
       const toyMatch = pageNameSlug.match(toysChannelRE)
+      var hasToyPage = false;
+      var slashToySlug;
       if(toyMatch) {
         pageNameSlug = pageNameSlug.replace(toysChannelRE, "#Toys")
         console.log("Page name sanitized (#toys)")
+        // test to see if a dedicated toy page exists
+        var slashToySlug = pageNameSlug.replace(/#Toys/, "/Toys")
+        console.log("TESTING TOY SLUG: " + slashToySlug)
+        bot.getArticle(slashToySlug, true, function(err, data) {
+            if(!err && data) {
+                hasToyPage = true;
+                console.log("DEDICATED TOY PAGE EXISTS")
+            }
+        }
       }
       
 
@@ -118,6 +129,9 @@ client.on('message', msg => {
             return;
           }
         console.log("PAGE NAME SLUG: " + pageNameSlug)
+        if(hasToyPage && slashToySlug) {
+            pageNameSlug = slashToySlug;
+        }
         var embedTitle = "HI IM FRED LOOK HERES STUFF ABOUT " + pageNameSlug + "!"
         //var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
         
