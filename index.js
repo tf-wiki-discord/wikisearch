@@ -139,7 +139,7 @@ client.on('message', msg => {
             const matches = data.match(imageRE)
             if(templateMatches) {
                 console.log("TEMPLATE FOUND (ARTICLE): " + templateMatches[0].split(" ").join("_").slice(6))
-                mageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
+                imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
             }
             else if(matches) {
                 console.log("WIKI FILE or IMAGE FOUND (ARTICLE): "+matches[0])
