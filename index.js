@@ -119,8 +119,14 @@ client.on('message', msg => {
         // get the direct image file path via Special:FilePath
         radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
       }
-      console.log("PAGE NAME SLUG: " + pageNameSlug)
-      bot.getArticle(hasToyPage ? toyNameSlug : pageNameSlug, true, function(err, data) { 
+      var slug;
+      if(hasToyPage) {
+          slug = toyNameSlug
+      } else {
+          slug = pageNameSlug
+      }
+      console.log("SLUG: " + slug)
+      bot.getArticle(slug, true, function(err, data) { 
       if (err) {
         console.error("ERROR: " +err);
         return;
