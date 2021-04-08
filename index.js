@@ -117,6 +117,10 @@ client.on('message', msg => {
       }
         
       var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
+      if(toyMatch) {
+        embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
+      }
+
         
       if(data) {
         const articleAsList = data.split(/\n/)
