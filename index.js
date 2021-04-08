@@ -86,6 +86,7 @@ client.on('message', msg => {
       const toyMatch = pageNameSlug.match(toysChannelRE)
       var hasToyPage = false;
       var toyNameSlug;
+      var slug;
       if(toyMatch) {
         pageNameSlug = pageNameSlug.replace(toysChannelRE, "#Toys")
         console.log("Page name sanitized (#toys)")
@@ -94,14 +95,9 @@ client.on('message', msg => {
             if(data) {
                 console.log("Has toy page!")
                 hasToyPage = true
+                slug = toyNameSlug
             }
         })
-      }
-      var slug;
-      if(hasToyPage) {
-          slug = toyNameSlug
-      } else {
-          slug = pageNameSlug
       }
       console.log("SLUG: " + slug)
 
