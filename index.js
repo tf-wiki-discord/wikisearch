@@ -84,25 +84,13 @@ client.on('message', msg => {
       // this will sanitize the input
       const toysChannelRE = /(<#674063451877933091>)/
       const toyMatch = pageNameSlug.match(toysChannelRE)
-      var hasToyPage = false;
-      var toyNameSlug;
-      var slug;
       if(toyMatch) {
         pageNameSlug = pageNameSlug.replace(toysChannelRE, "#Toys")
         console.log("Page name sanitized (#toys)")
-        toyNameSlug = pageNameSlug.replace("#Toys", "/toys")
-        bot.getArticle(toyNameSlug, true, function(err, data) {
-            if(data) {
-                console.log("Has toy page!")
-                hasToyPage = true
-                slug = toyNameSlug
-            }
-        })
       }
-      console.log("SLUG: " + slug)
 
       // handle https://tfwiki.net/wiki/Special:Random separately
-      const pageURL = "https://tfwiki.net/wiki/" + slug;
+      const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
       const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
               .setURL(pageURL)
@@ -123,7 +111,7 @@ client.on('message', msg => {
         radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
       }
 
-      bot.getArticle(slug, true, function(err, data) { 
+      bot.getArticle(pageNameSlug, true, function(err, data) { 
       if (err) {
         console.error("ERROR: " +err);
         return;
