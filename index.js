@@ -97,9 +97,16 @@ client.on('message', msg => {
             }
         })
       }
-      
-      // https://tfwiki.net/wiki/Special:Random
-      const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
+      var slug;
+      if(hasToyPage) {
+          slug = toyNameSlug
+      } else {
+          slug = pageNameSlug
+      }
+      console.log("SLUG: " + slug)
+
+      // handle https://tfwiki.net/wiki/Special:Random separately
+      const pageURL = "https://tfwiki.net/wiki/" + slug;
       const radEmbed = new Discord.MessageEmbed()
               .setColor('#0099ff')
               .setURL(pageURL)
@@ -119,13 +126,7 @@ client.on('message', msg => {
         // get the direct image file path via Special:FilePath
         radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
       }
-      var slug;
-      if(hasToyPage) {
-          slug = toyNameSlug
-      } else {
-          slug = pageNameSlug
-      }
-      console.log("SLUG: " + slug)
+
       bot.getArticle(slug, true, function(err, data) { 
       if (err) {
         console.error("ERROR: " +err);
@@ -134,10 +135,8 @@ client.on('message', msg => {
         
       var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
       if(toyMatch) {
-        
         embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
       }
-
         
       if(data) {
         const articleAsList = data.split(/\n/)
