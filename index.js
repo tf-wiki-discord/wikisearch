@@ -120,7 +120,7 @@ client.on('message', msg => {
         radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
       }
       console.log("PAGE NAME SLUG: " + pageNameSlug)
-      bot.getArticle(pageNameSlug, true, function(err, data) { 
+      bot.getArticle(hasToyPage ? toyNameSlug : pageNameSlug, true, function(err, data) { 
       if (err) {
         console.error("ERROR: " +err);
         return;
@@ -128,6 +128,7 @@ client.on('message', msg => {
         
       var embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
       if(toyMatch) {
+        
         embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
       }
 
