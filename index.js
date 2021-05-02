@@ -136,7 +136,6 @@ client.on('message', msg => {
         description = description.replace(/^:/g, ""); 
         description = description.replace(/''/g, "")
         console.log(description)
-        console.log("wiki search bot")
         radEmbed.description = description
 
         if(!imageName) {
