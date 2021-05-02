@@ -147,6 +147,7 @@ client.on('message', msg => {
                 imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
             }
             else if(matches) {
+                console.log("wikisearch bot")
                 console.log("WIKI FILE or IMAGE FOUND (ARTICLE): "+matches[0])
                 imageName = matches[0].split(" ").join("_");
             }
