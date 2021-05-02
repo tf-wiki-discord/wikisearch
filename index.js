@@ -58,6 +58,14 @@ client.on('ready', () => {
   client.user.setActivity('with Carlos and Alexis')
 });
 
+client.on("message", message => {
+    if (message.content.toLowerCase() == "radstopnow") { // Note that this is an example and anyone can use this command.
+        message.channel.send("Shutting down...").then(() => {
+            client.destroy();
+        })
+    }
+})
+
 client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
