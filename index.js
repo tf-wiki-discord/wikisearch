@@ -59,7 +59,7 @@ client.on('ready', () => {
 });
 
 client.on("message", message => {
-    if (message.content.toLowerCase() == "radstopnow") { // Note that this is an example and anyone can use this command.
+    if (message.content.toLowerCase() == "!!ourradbotisindanger!!") { 
         message.channel.send("Shutting down...").then(() => {
             client.destroy();
         })
