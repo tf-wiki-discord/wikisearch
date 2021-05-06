@@ -68,6 +68,7 @@ client.on("message", message => {
 
 client.on('message', msg => {
   // [[ ]] activates the bot
+  console.log("msg from: ${message.author.username}\n")
   if (!msg.author.bot) {
 
     var bot = new TFWiki({
