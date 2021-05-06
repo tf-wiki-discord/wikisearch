@@ -68,8 +68,10 @@ client.on("message", message => {
 
 client.on('message', msg => {
   // [[ ]] activates the bot
-  console.log("msg from: ${msg.author.username}\n")
   if (!msg.author.bot) {
+    var author = msg.author.username
+    console.log("msg from: ")
+    console.log(author)
 
     var bot = new TFWiki({
       protocol: 'https',           // HTTPS is good
