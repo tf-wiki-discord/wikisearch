@@ -69,17 +69,16 @@ client.on("message", message => {
 client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
-    var author = msg.author.username
-    console.log("msg from: ")
-    console.log(author)
-
-    var bot = new TFWiki({
+        var bot = new TFWiki({
       protocol: 'https',           // HTTPS is good
       server: 'tfwiki.net',  // host name of MediaWiki-powered site
       path: 'mediawiki',                  // path to api.php script
       debug: false                 // is more verbose when set to true
     });
     if (/\[\[(.*?)\]\]/.test(msg.content)) {
+
+        var author = msg.author.username
+        console.log("msg from: " + author)
 
         // prevent / reduce spamming
         let limited = rateLimiter.take(msg.author.id)
