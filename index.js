@@ -76,9 +76,7 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     if (/\[\[(.*?)\]\]/.test(msg.content)) {
-
         var author = msg.author.username
-        console.log("msg from: " + author)
 
         // prevent / reduce spamming
         let limited = rateLimiter.take(msg.author.id)
@@ -109,11 +107,11 @@ client.on('message', msg => {
       const templateMatches = pageURL.match(templateImageRE)
       const matches = pageURL.match(imageRE)
       if(templateMatches) {
-        console.log("TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
+        console.log("(msg from " + author + "): TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
         imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
       }
       else if(matches) {
-        console.log("WIKI FILE or IMAGE FOUND (URL): "+matches[0])
+        console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL): "+matches[0])
         imageName = matches[0].split(" ").join("_");
       }
       if(imageName) {
@@ -167,6 +165,7 @@ client.on('message', msg => {
       }
       else {
         embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
+        console.log(author + " sent " + pageName)
       }
         radEmbed.title = embedTitle
         msg.channel.send(radEmbed);
