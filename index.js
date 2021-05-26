@@ -87,7 +87,11 @@ client.on('message', msg => {
         fs.createReadStream('techspec.csv')
         .pipe(csv())
         .on('data', (row) => {
-            if (searchStr == row.name) {
+            var searchTest = searchStr == row.name
+            if(matchYear) {
+                searchTest = searchStr == row.name && matchYear == row.year
+            }
+            if (searchTest) {
                 results.push(row)
                 console.log(row)
             }
