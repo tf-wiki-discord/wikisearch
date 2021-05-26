@@ -110,11 +110,11 @@ client.on('message', msg => {
                 // name,faction,year,Strength,Intelligence,Speed,Endurance,Rank,Courage,Firepower,Skill,Teamwork,Cooperation
                 var result = results[0]
                 var radmsg = `Name: ${charName}\n`
-                radmsg += `Faction: ${result.faction}           Year: ${result.year}\n`
-                radmsg += `Strength: ${result.Strength}         Intelligence: ${result.Intelligence}\n`
+                radmsg += `Faction: ${result.faction} (${result.year})\n`
+                radmsg += `Strength: ${result.Strength}          Intelligence: ${result.Intelligence}\n`
                 radmsg += `Speed: ${result.Speed}               Endurance: ${result.Endurance}\n`
                 radmsg += `Rank: ${result.Rank}                 Courage: ${result.Courage}\n`
-                radmsg += `Firepower: ${result.Firepower}       Skill: ${result.Skill}\n`
+                radmsg += `Firepower: ${result.Firepower}        Skill: ${result.Skill}\n`
                 if(result.Teamwork && result.Cooperation) {
                     radmsg += `Teamwork: ${result.Teamwork}         Cooperation: ${result.Cooperation}\n`
                 }
