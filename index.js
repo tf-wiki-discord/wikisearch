@@ -78,8 +78,10 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     if (/!!techspec (.*?)/.test(msg.content)) {
-        var charName = msg.content.match(/!!techspec (.*)/)[1]
-        console.log("TECH SPEC: " + charName)
+        var matchData = msg.content.match(/!!techspec (.*)\/((.*)/)[1]
+        var charName = matchData[1]
+        var matchYear = matchData[2]
+        console.log("TECH SPEC: " + charName + " at year: " + matchYear)
         var searchStr = charName.replace(/\s/g,'')
         var results = []
         fs.createReadStream('techspec.csv')
