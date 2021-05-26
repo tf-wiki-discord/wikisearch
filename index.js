@@ -78,7 +78,7 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     if (/!!techspec (.*?)/.test(msg.content)) {
-        var charName = msg.content.match(/!!techspec (.*?)/)[0]
+        var charName = msg.content.match(/!!techspec (.*)/)[1]
         console.log("TECH SPEC: " + charName)
     }
     else if (/\[\[(.*?)\]\]/.test(msg.content)) {
