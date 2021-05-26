@@ -94,12 +94,13 @@ client.on('message', msg => {
         });
         if(Object.keys(results).length > 0) {
             // name,faction,year,Strength,Intelligence,Speed,Endurance,Rank,Courage,Firepower,Skill,Teamwork,Cooperation
+            var result = results[0]
             var radmsg = "Name: ${charName}\n"
-            radmsg += "Strength: ${results.Strength}         Intelligence: ${results.Intelligence}\n"
-            radmsg += "Speed: ${results.Speed}               Endurance: ${results.Endurance}\n"
-            radmsg += "Rank: ${results.Rank}                 Courage: ${results.Courage}\n"
-            radmsg += "Firepower: ${results.Firepower}       Skill: ${results.Skill}\n"
-            radmsg += "Teamwork: ${results.Teamwork}         Cooperation: ${results.Cooperation}\n"
+            radmsg += "Strength: ${result.Strength}         Intelligence: ${result.Intelligence}\n"
+            radmsg += "Speed: ${result.Speed}               Endurance: ${result.Endurance}\n"
+            radmsg += "Rank: ${result.Rank}                 Courage: ${result.Courage}\n"
+            radmsg += "Firepower: ${result.Firepower}       Skill: ${result.Skill}\n"
+            radmsg += "Teamwork: ${result.Teamwork}         Cooperation: ${result.Cooperation}\n"
             msg.channel.send(radmsg)
         }
     }
