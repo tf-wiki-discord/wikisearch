@@ -92,7 +92,8 @@ client.on('message', msg => {
         .on('end', () => {
             console.log("done.")
         });
-        if(Object.keys(results).length > 0) {
+        console.log(results.length)
+        if(results.length > 0) {
             // name,faction,year,Strength,Intelligence,Speed,Endurance,Rank,Courage,Firepower,Skill,Teamwork,Cooperation
             var result = results[0]
             var radmsg = "Name: ${charName}\n"
