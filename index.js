@@ -80,6 +80,19 @@ client.on('message', msg => {
     if (/!!techspec (.*?)/.test(msg.content)) {
         var charName = msg.content.match(/!!techspec (.*)/)[1]
         console.log("TECH SPEC: " + charName)
+        fs.createReadStream('techspec.csv')
+        .pipe(csv())
+        .on('data', (row) => {
+            if (charName == row.name) {
+                console.log(row)
+            }
+            else {
+                console.log("NOT FOUND")
+            }
+        })
+        .on('end', () => {
+            console.log("done.")
+        });
     }
     else if (/\[\[(.*?)\]\]/.test(msg.content)) {
         var author = msg.author.username
