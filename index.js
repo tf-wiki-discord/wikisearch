@@ -83,8 +83,8 @@ client.on('message', msg => {
         var charName = undefined
         if(/\//.test(matchData)) {
             var matchStuff = matchData.split(/\//)
-            charName = matchStuff[1]
-            matchYear = matchStuff[2]
+            charName = matchStuff[0]
+            matchYear = matchStuff[1]
         }
         else {
             charName = matchData
