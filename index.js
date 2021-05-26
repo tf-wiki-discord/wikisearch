@@ -3,6 +3,8 @@ const client = new Discord.Client()
 const axios = require('axios')
 const TFWiki = require('nodemw')
 const RateLimiter = require('discord.js-rate-limiter')
+const fs = require('fs')
+const csv = require('csv-parser')
 require('dotenv').config()
 
 const numCommands = 1
@@ -75,7 +77,11 @@ client.on('message', msg => {
       path: 'mediawiki',                  // path to api.php script
       debug: false                 // is more verbose when set to true
     });
-    if (/\[\[(.*?)\]\]/.test(msg.content)) {
+    if (/!!techspec (.*?)/.test(msg.content)) {
+        var charName = msg.content.match(/!!techspec (.*?)/)[1]
+        console.log("TECH SPEC: " + charName)
+    }
+    else if (/\[\[(.*?)\]\]/.test(msg.content)) {
         var author = msg.author.username
 
         // prevent / reduce spamming
