@@ -80,11 +80,12 @@ client.on('message', msg => {
     if (/!!techspec (.*?)/.test(msg.content)) {
         var charName = msg.content.match(/!!techspec (.*)/)[1]
         console.log("TECH SPEC: " + charName)
+        var searchStr = charName.replace(/\s/g,'')
         var results = []
         fs.createReadStream('techspec.csv')
         .pipe(csv())
         .on('data', (row) => {
-            if (charName == row.name) {
+            if (searchStr == row.name) {
                 results.push(row)
                 console.log(row)
             }
