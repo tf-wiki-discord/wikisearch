@@ -78,11 +78,16 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     if (/!!techspec (.*?)/.test(msg.content)) {
-        var matchData = msg.content.match(/!!techspec (.*)\/(.*)/)
-        var charName = matchData[1]
+        var matchData = msg.content.match(/!!techspec (.*)/)[1]
         var matchYear = undefined
-        if(matchData.length > 2) {
-            matchYear = matchData[2]
+        var charName = undefined
+        if(/\//.test(matchData)) {
+            var matchStuff = matchData.split(/\//)
+            charName = matchStuff[1]
+            matchYear = matchStuff[2]
+        }
+        else {
+            charName = matchStuff
         }
         console.log("TECH SPEC: " + charName + " at year: " + matchYear)
         var searchStr = charName.replace(/\s/g,'')
