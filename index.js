@@ -87,7 +87,7 @@ client.on('message', msg => {
             matchYear = matchStuff[2]
         }
         else {
-            charName = matchStuff
+            charName = matchData
         }
         console.log("TECH SPEC: " + charName + " at year: " + matchYear)
         var searchStr = charName.replace(/\s/g,'')
