@@ -80,7 +80,10 @@ client.on('message', msg => {
     if (/!!techspec (.*?)/.test(msg.content)) {
         var matchData = msg.content.match(/!!techspec (.*)\/(.*)/)
         var charName = matchData[1]
-        var matchYear = matchData[2]
+        var matchYear = undefined
+        if(matchData.length > 2) {
+            matchYear = matchData[2]
+        }
         console.log("TECH SPEC: " + charName + " at year: " + matchYear)
         var searchStr = charName.replace(/\s/g,'')
         var results = []
