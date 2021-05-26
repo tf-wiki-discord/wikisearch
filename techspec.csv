@@ -1,5 +1,6 @@
 name,faction,year,Strength,Intelligence,Speed,Endurance,Rank,Courage,Firepower,Skill,Teamwork,Cooperation
-Gigawatt,Autobot,2019,8,7,7,,,7,,,
+Arcee,Autobot,5,7,7,7,6,9,5,7,,
+Ectotron,Autobot,2019,8,7,7,,,7,,,
 Flamewar,Decepticon,2005,7,9,9,8,8,9,7,10,,
 Abominus,Decepticon,1987,10,1,3,10,5,10,8,4,,
 Afterburner,Autobot,1987,7,6,6,6,5,9,7,7,,
