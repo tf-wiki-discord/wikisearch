@@ -109,7 +109,8 @@ client.on('message', msg => {
             if(results.length > 0) {
                 // name,faction,year,Strength,Intelligence,Speed,Endurance,Rank,Courage,Firepower,Skill,Teamwork,Cooperation
                 var result = results[0]
-                var radmsg = `Name: ${charName}                 Faction: ${result.faction}\n`
+                var radmsg = `Name: ${charName}\n`
+                radmsg += `Faction: ${result.faction}\n`
                 radmsg += `Strength: ${result.Strength}         Intelligence: ${result.Intelligence}\n`
                 radmsg += `Speed: ${result.Speed}               Endurance: ${result.Endurance}\n`
                 radmsg += `Rank: ${result.Rank}                 Courage: ${result.Courage}\n`
