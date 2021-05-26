@@ -80,19 +80,28 @@ client.on('message', msg => {
     if (/!!techspec (.*?)/.test(msg.content)) {
         var charName = msg.content.match(/!!techspec (.*)/)[1]
         console.log("TECH SPEC: " + charName)
+        var results = []
         fs.createReadStream('techspec.csv')
         .pipe(csv())
         .on('data', (row) => {
             if (charName == row.name) {
+                results.push(row)
                 console.log(row)
-            }
-            else {
-                console.log("NOT FOUND")
             }
         })
         .on('end', () => {
             console.log("done.")
         });
+        if(Object.keys(results).length > 0) {
+            // name,faction,year,Strength,Intelligence,Speed,Endurance,Rank,Courage,Firepower,Skill,Teamwork,Cooperation
+            var radmsg = "Name: ${charName}\n"
+            radmsg += "Strength: ${results.Strength}         Intelligence: ${results.Intelligence}\n"
+            radmsg += "Speed: ${results.Speed}               Endurance: ${results.Endurance}\n"
+            radmsg += "Rank: ${results.Rank}                 Courage: ${results.Courage}\n"
+            radmsg += "Firepower: ${results.Firepower}       Skill: ${results.Skill}\n"
+            radmsg += "Teamwork: ${results.Teamwork}         Cooperation: ${results.Cooperation}\n"
+            msg.channel.send(radmsg)
+        }
     }
     else if (/\[\[(.*?)\]\]/.test(msg.content)) {
         var author = msg.author.username
