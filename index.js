@@ -78,7 +78,7 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     if (/!!techspec (.*?)/.test(msg.content)) {
-        var matchData = msg.content.match(/!!techspec (.*)\/(.*)/)[1]
+        var matchData = msg.content.match(/!!techspec (.*)\/(.*)/)
         var charName = matchData[1]
         var matchYear = matchData[2]
         console.log("TECH SPEC: " + charName + " at year: " + matchYear)
