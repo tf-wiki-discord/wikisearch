@@ -84,8 +84,6 @@ client.on('message', msg => {
         fs.createReadStream('techspec.csv')
         .pipe(csv())
         .on('data', (row) => {
-            console.log(charName)
-            console.log(row.name)
             if (charName == row.name) {
                 results.push(row)
                 console.log(row)
@@ -93,8 +91,8 @@ client.on('message', msg => {
         })
         .on('end', () => {
             console.log("done.")
+            console.log(results)
         });
-        console.log(results.length)
         if(results.length > 0) {
             // name,faction,year,Strength,Intelligence,Speed,Endurance,Rank,Courage,Firepower,Skill,Teamwork,Cooperation
             var result = results[0]
