@@ -84,6 +84,8 @@ client.on('message', msg => {
         fs.createReadStream('techspec.csv')
         .pipe(csv())
         .on('data', (row) => {
+            console.log(charName)
+            console.log(row.name)
             if (charName == row.name) {
                 results.push(row)
                 console.log(row)
