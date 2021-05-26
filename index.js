@@ -115,7 +115,9 @@ client.on('message', msg => {
                 radmsg += `Speed: ${result.Speed}               Endurance: ${result.Endurance}\n`
                 radmsg += `Rank: ${result.Rank}                 Courage: ${result.Courage}\n`
                 radmsg += `Firepower: ${result.Firepower}       Skill: ${result.Skill}\n`
-                radmsg += `Teamwork: ${result.Teamwork}         Cooperation: ${result.Cooperation}\n`
+                if(result.Teamwork && result.Cooperation) {
+                    radmsg += `Teamwork: ${result.Teamwork}         Cooperation: ${result.Cooperation}\n`
+                }
                 msg.channel.send(radmsg)
             }
         });
