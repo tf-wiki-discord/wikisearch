@@ -212,11 +212,16 @@ client.on('message', msg => {
         }
       }
       else {
-        embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
+        embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
         console.log(author + " sent " + pageName)
       }
-        if(/among us/i.test(pageName) || /amogus/i.test(pageName)) {
-            msg.channel.send("Hi, my name's Rad, and I'd like to tell you about the Transformers instead of Among Us!")
+        if(/among us/i.test(pageName)
+            || /amongus/i.test(pageName)
+            || /amogus/i.test(pageName)
+            || /amon gus/i.test(pageName)
+            || /a mong us/i.test(pageName)
+        ) {
+            msg.channel.send(`Hi ${author}, my name's Rad, and I'd like to tell you about the Transformers instead of Among Us!`)
         }
         else {
             radEmbed.title = embedTitle
