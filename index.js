@@ -122,6 +122,12 @@ client.on('message', msg => {
             }
         });
     }
+    else if (/among us/i.test(msg.content)) {
+      const badEmbed = new Discord.MessageEmbed().setColor('#0099ff')
+      var badTitle = "Hi, my name's Rad, and I'd like to tell you about the Transformers instead of Among Us!"
+      badEmbed.title = badTitle
+      msg.channel.send(badEmbed)
+    }
     else if (/\[\[(.*?)\]\]/.test(msg.content)) {
         var author = msg.author.username
 
