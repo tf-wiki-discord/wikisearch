@@ -128,6 +128,9 @@ client.on('message', msg => {
       badEmbed.title = badTitle
       msg.channel.send(badEmbed)
     }
+    else if (/jiai jo/i.test(msg.content)) {
+       msg.channel.send("JIAI JO!")
+    }
     else if (/\[\[(.*?)\]\]/.test(msg.content)) {
         var author = msg.author.username
 
