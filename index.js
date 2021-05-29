@@ -122,9 +122,7 @@ client.on('message', msg => {
             }
         });
     }
-    else if (/jiai jo/i.test(msg.content)) {
-       msg.channel.send("JIAI JO!")
-    }
+    
     else if (/\[\[(.*?)\]\]/.test(msg.content)) {
         var author = msg.author.username
 
@@ -211,19 +209,23 @@ client.on('message', msg => {
                  // get the direct image file path via Special:FilePath
                  radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
             }
-            }
+        }
       }
       else {
         embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
         console.log(author + " sent " + pageName)
-
-        if(/among us/i.test(pageName) || /amogus/i.test(pageName)) {
-            embedTitle = "Hi, my name's Rad, and I'd like to tell you about the Transformers instead of Among Us!"
-        }
       }
-        radEmbed.title = embedTitle
-        msg.channel.send(radEmbed);
+        if(/among us/i.test(pageName) || /amogus/i.test(pageName)) {
+            msg.channel.send("Hi, my name's Rad, and I'd like to tell you about the Transformers instead of Among Us!")
+        }
+        else {
+            radEmbed.title = embedTitle
+            msg.channel.send(radEmbed);
+        }
       })
+    }
+    else if (/jiai jo/i.test(msg.content)) {
+       msg.channel.send("JIAI JO!")
     }
     else if (/wicked sweet/i.test(msg.content)) {
        msg.channel.send(new Discord.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg'))
