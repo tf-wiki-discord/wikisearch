@@ -122,12 +122,6 @@ client.on('message', msg => {
             }
         });
     }
-    else if (/\[\[among us\]\]/i.test(msg.content) || /\[\[amogus\]\]/i.test(msg.content)) {
-      const badEmbed = new Discord.MessageEmbed().setColor('#0099ff')
-      var badTitle = "Hi, my name's Rad, and I'd like to tell you about the Transformers instead of Among Us!"
-      badEmbed.title = badTitle
-      msg.channel.send(badEmbed)
-    }
     else if (/jiai jo/i.test(msg.content)) {
        msg.channel.send("JIAI JO!")
     }
@@ -222,6 +216,10 @@ client.on('message', msg => {
       else {
         embedTitle = "Hi, my name's Rad, and I'd like to tell you about " + pageName + ", but I can't!"
         console.log(author + " sent " + pageName)
+
+        if(/among us/i.test(pageName) || /amogus/i.test(pageName)) {
+            embedTitle = "Hi, my name's Rad, and I'd like to tell you about the Transformers instead of Among Us!"
+        }
       }
         radEmbed.title = embedTitle
         msg.channel.send(radEmbed);
