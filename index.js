@@ -12,8 +12,8 @@ const interval = 1
 const intervalSec = interval * 1000
 let rateLimiter = new RateLimiter.RateLimiter(numCommands, intervalSec)
 
-const templateImageRE = /image=.*(jpg|png)/i
-const imageRE = /(Image:|File:).*?(png|jpg|gif)/i
+const templateImageRE = /image=.*(jpg|jpeg|png)/i
+const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
 
 function bestFirst(list) {
