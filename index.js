@@ -232,13 +232,13 @@ client.on('message', msg => {
     else if (/jiai jo/i.test(msg.content)) {
        msg.channel.send("JIAI JO!")
     }
-    else if (/!iru/i.test(msg.content)) {
-        function randomChoice(arr) {
-            return arr[Math.floor(arr.length * Math.random())];
-        }
-        var sayings = Array("noncomb", "Bah!", "[BWU Bisk quote]", "Why it is X, it's not even a Y!", ":O");
-        msg.channel.send(randomChoice(sayings))
-    }
+    //else if (/!iru/i.test(msg.content)) {
+    //    function randomChoice(arr) {
+    //        return arr[Math.floor(arr.length * Math.random())];
+    //    }
+    //    var sayings = Array("noncomb", "Bah!", "[BWU Bisk quote]", "Why it is X, it's not even a Y!", ":O");
+    //    msg.channel.send(randomChoice(sayings))
+    //}
     else if (/wicked sweet/i.test(msg.content)) {
        msg.channel.send(new Discord.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg'))
     }
