@@ -229,7 +229,7 @@ client.on('message', msg => {
         }
       })
     }
-    else if (/jiai jo/i.test(msg.content)) {
+    else if (/jiai jo/i.test(msg.content) && Math.random() >= 0.8 ) { // 20% success rate
        //msg.channel.send("JIAI JO!")
        const jiaijoEmbed = new Discord.MessageEmbed()
         .setTitle("JIAI JO!")
