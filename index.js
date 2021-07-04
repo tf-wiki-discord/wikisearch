@@ -230,7 +230,12 @@ client.on('message', msg => {
       })
     }
     else if (/jiai jo/i.test(msg.content)) {
-       msg.channel.send("JIAI JO!")
+       //msg.channel.send("JIAI JO!")
+       const jiaijoEmbed = new Discord.MessageEmbed()
+        .setTitle("JIAI JO!")
+        .attachFiles(['./jiaijo.png'])
+        .setImage('attachment://jiaijo.png')
+       msg.channel.send(jiaijoEmbed)
     }
     //else if (/!iru/i.test(msg.content)) {
     //    function randomChoice(arr) {
