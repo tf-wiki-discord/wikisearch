@@ -274,8 +274,9 @@ client.on('message', msg => {
                             const code = jsQR(pixels, width, height)
                             if (code) {
                                 console.log("Found QR code", code)
-                                console.log("URL: ", code.data)
-                                msg.channel.send("Looks like a QR code. It's trying to take you here: ", code.data)
+                                qrEmbed.image = {url: code.data}
+                                qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
+                                msg.channel.send(qrEmbed)
                             }
                         })
                     })
