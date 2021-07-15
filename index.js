@@ -243,16 +243,22 @@ client.on('message', msg => {
         console.log("MSG ID INPUT: " + msgid)
         msg.channel.messages.fetch(msgid)
         .then(m => {
-            console.log(m.attachments)
-            let height = m.attachments.height
-            let width = m.attachments.width
-            let filename = m.attachments.name
-            if(/jpg$/.test(filename) || /jpeg$/.test(filename)) {
-                console.log("JPG found")
-                const inkjet = require('inkjet');
-            }
-            else if (/png$/.test(filename)) {
-                console.log("PNG found")
+            //console.log(m.attachments)
+            for(const [key, attach] of m.attachments.entries()) {
+                let height = attach.height
+                let width = attach.width
+                let filename = attach.name
+                console.log(filename)
+                console.log(height)
+                console.log(width)
+                console.log(attach.attachment)
+                if(/jpg$/.test(filename) || /jpeg$/.test(filename)) {
+                    console.log("JPG found")
+                    const inkjet = require('inkjet');
+                }
+                else if (/png$/.test(filename)) {
+                    console.log("PNG found")
+                }
             }
         })
         .catch(console.error)
