@@ -71,7 +71,7 @@ client.on("message", message => {
 client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
-        var bot = new TFWiki({
+    var bot = new TFWiki({
       protocol: 'https',           // HTTPS is good
       server: 'tfwiki.net',  // host name of MediaWiki-powered site
       path: 'mediawiki',                  // path to api.php script
@@ -236,6 +236,13 @@ client.on('message', msg => {
         .attachFiles(['./jiaijo.png'])
         .setImage('attachment://jiaijo.png')
        msg.channel.send(jiaijoEmbed)
+    }
+    else if (/!!qrcode (.*?)/.test(msg.content)) {
+        var msgid = msg.content.match(/!!qrcode (.*)/)[1]
+        console.log("MSG ID INPUT: " + msgid)
+        //msg.channel.messages.fetch(msgid)
+        //.then(m => console.log(m.attachments))
+        //.catch(console.error)
     }
     //else if (/!iru/i.test(msg.content)) {
     //    function randomChoice(arr) {
