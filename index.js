@@ -251,13 +251,17 @@ client.on('message', msg => {
                 if(/jpg$/.test(filename) || /jpeg$/.test(filename)) {
                     console.log("JPG found")
                     const inkjet = require('inkjet');
+                    
+                    const qrEmbed = new Discord.MessageEmbed()
                     request({uri: filename, encoding: null }, (err, resp, buffer) => {
                         inkjet.decode(buffer, (err, decoded) => {
                             const code = jsQR(decoded.data, decoded.width, decoded.height)
                             if (code) {
                                 console.log("Found QR code", code)
                                 console.log("URL: ", code.data)
-                                msg.channel.send("Looks like a QR code. It's trying to take you here: ", code.data)
+                                qrEmbed.image = {url: code.data}
+                                qrEmbed.title = "Looks like a QR code. It's trying to take you here: "
+                                msg.channel.send(qrEmbed)
                             }
                         })
                     })
