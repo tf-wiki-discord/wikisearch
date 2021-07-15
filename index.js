@@ -260,7 +260,7 @@ client.on('message', msg => {
                                 console.log("Found QR code", code)
                                 console.log("URL: ", code.data)
                                 qrEmbed.image = {url: code.data}
-                                qrEmbed.title = "Looks like a QR code. It's trying to take you here: "
+                                qrEmbed.title = "Looks like a QR code. It's trying to take you to ${code.data}."
                                 msg.channel.send(qrEmbed)
                             }
                         })
