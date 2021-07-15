@@ -243,6 +243,7 @@ client.on('message', msg => {
         console.log("MSG ID INPUT: " + msgid)
         msg.channel.messages.fetch(msgid)
         .then(m => {
+            console.log(m.attachments)
             let height = m.attachments.height
             let width = m.attachments.width
             let filename = m.attachments.name
