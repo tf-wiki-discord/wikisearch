@@ -246,17 +246,16 @@ client.on('message', msg => {
             for(const [key, attach] of m.attachments.entries()) {
                 let height = attach.height
                 let width = attach.width
-                let filename = attach.name
+                let filename = attach.attachment
                 console.log(filename)
                 console.log(height)
                 console.log(width)
-                console.log(attach.attachment)
                 if(/jpg$/.test(filename) || /jpeg$/.test(filename)) {
                     console.log("JPG found")
                     const inkjet = require('inkjet');
                     const jsQR = require("jsqr");
                     const request = require('request');
-                    request({ attach.attachment, encoding: null }, (err, resp, buffer) => {
+                    request({ filename, encoding: null }, (err, resp, buffer) => {
                         inkjet.decode(buffer, (err, decoded) => {
                             const code = jsQR(decoded.data, decoded.width, decoded.height)
                             if (code) {
