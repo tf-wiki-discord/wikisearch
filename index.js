@@ -240,9 +240,9 @@ client.on('message', msg => {
     else if (/!!qrcode (.*?)/.test(msg.content)) {
         var msgid = msg.content.match(/!!qrcode (.*)/)[1]
         console.log("MSG ID INPUT: " + msgid)
-        //msg.channel.messages.fetch(msgid)
-        //.then(m => console.log(m.attachments))
-        //.catch(console.error)
+        msg.channel.messages.fetch(msgid)
+        .then(m => console.log(m.attachments))
+        .catch(console.error)
     }
     //else if (/!iru/i.test(msg.content)) {
     //    function randomChoice(arr) {
