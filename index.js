@@ -242,31 +242,39 @@ client.on('message', msg => {
         console.log("MSG ID INPUT: " + msgid)
         msg.channel.messages.fetch(msgid)
         .then(m => {
-            //console.log(m.attachments)
             for(const [key, attach] of m.attachments.entries()) {
                 let height = attach.height
                 let width = attach.width
                 let filename = attach.attachment
-                console.log(filename)
-                console.log(height)
-                console.log(width)
+                const jsQR = require("jsqr");
+                const request = require('request');
                 if(/jpg$/.test(filename) || /jpeg$/.test(filename)) {
                     console.log("JPG found")
                     const inkjet = require('inkjet');
-                    const jsQR = require("jsqr");
-                    const request = require('request');
                     request({uri: filename, encoding: null }, (err, resp, buffer) => {
-                        //console.log(buffer)
                         inkjet.decode(buffer, (err, decoded) => {
                             const code = jsQR(decoded.data, decoded.width, decoded.height)
                             if (code) {
-                                console.log("Found QR code", code);
+                                console.log("Found QR code", code)
+                                console.log("URL: ", code.data)
+                                msg.channel.send("Looks like a QR code. It's trying to take you here: ", code.data)
                             }
                         })
                     })
                 }
                 else if (/png$/.test(filename)) {
                     console.log("PNG found")
+                    const PNG = require('png-js');
+                    request({uri: filename, encoding: null }, (err, resp, buffer) => {
+                        PNG.decode(buffer, function(pixels) {
+                            const code = jsQR(pixels, width, height)
+                            if (code) {
+                                console.log("Found QR code", code)
+                                console.log("URL: ", code.data)
+                                msg.channel.send("Looks like a QR code. It's trying to take you here: ", code.data)
+                            }
+                        })
+                    })
                 }
             }
         })
