@@ -241,7 +241,11 @@ client.on('message', msg => {
         var msgid = msg.content.match(/!!qrcode (.*)/)[1]
         console.log("MSG ID INPUT: " + msgid)
         msg.channel.messages.fetch(msgid)
-        .then(m => console.log(m.attachments))
+        .then(m => {
+            console.log(m.attachments)
+            console.log(m.content)
+            
+        })
         .catch(console.error)
     }
     //else if (/!iru/i.test(msg.content)) {
