@@ -255,12 +255,15 @@ client.on('message', msg => {
                     console.log("JPG found")
                     const inkjet = require('inkjet');
                     const jsQR = require("jsqr");
-                    inkjet.decode(attach.attachment, (err, decoded) => {
-                        const code = jsQR(decoded.data, decoded.width, decoded.height)
-                        if (code) {
-                            console.log("Found QR code", code);
-                        }
-                    })
+                    const request = require('request');
+                    request({ attach.attachment, encoding: null }, (err, resp, buffer) => {
+                        inkjet.decode(buffer, (err, decoded) => {
+                            const code = jsQR(decoded.data, decoded.width, decoded.height)
+                            if (code) {
+                                console.log("Found QR code", code);
+                            }
+                        })
+                    }
                 }
                 else if (/png$/.test(filename)) {
                     console.log("PNG found")
