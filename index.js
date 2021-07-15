@@ -5,6 +5,7 @@ const TFWiki = require('nodemw')
 const RateLimiter = require('discord.js-rate-limiter')
 const fs = require('fs')
 const csv = require('csv-parser')
+const jsQR = require("jsqr");
 require('dotenv').config()
 
 const numCommands = 1
@@ -242,9 +243,16 @@ client.on('message', msg => {
         console.log("MSG ID INPUT: " + msgid)
         msg.channel.messages.fetch(msgid)
         .then(m => {
-            console.log(m.attachments)
-            console.log(m.content)
-            
+            let height = m.attachments.height
+            let width = m.attachments.width
+            let filename = m.attachments.name
+            if(/jpg$/.test(filename) || /jpeg$/.test(filename)) {
+                console.log("JPG found")
+                const inkjet = require('inkjet');
+            }
+            else if (/png$/.test(filename)) {
+                console.log("PNG found")
+            }
         })
         .catch(console.error)
     }
