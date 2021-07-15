@@ -16,6 +16,8 @@
     "discord.js": "^12.5.1",
     "discord.js-rate-limiter": "^1.0.5",
     "dotenv": "^8.2.0",
+    "inkjet": "^3.0.0",
+    "jsqr": "^1.4.0",
     "nodemw": "^0.14.0"
   },
   "devDependencies": {
