@@ -5,7 +5,6 @@ const TFWiki = require('nodemw')
 const RateLimiter = require('discord.js-rate-limiter')
 const fs = require('fs')
 const csv = require('csv-parser')
-const jsQR = require("jsqr");
 require('dotenv').config()
 
 const numCommands = 1
@@ -255,6 +254,13 @@ client.on('message', msg => {
                 if(/jpg$/.test(filename) || /jpeg$/.test(filename)) {
                     console.log("JPG found")
                     const inkjet = require('inkjet');
+                    const jsQR = require("jsqr");
+                    inkjet.decode(attach.attachment, (err, decoded) => {
+                        const code = jsQR(decoded.data, decoded.width, decoded.height)
+                        if (code) {
+                            console.log("Found QR code", code);
+                        }
+                    })
                 }
                 else if (/png$/.test(filename)) {
                     console.log("PNG found")
