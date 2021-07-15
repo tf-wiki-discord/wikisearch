@@ -263,7 +263,7 @@ client.on('message', msg => {
                                 console.log("Found QR code", code);
                             }
                         })
-                    }
+                    })
                 }
                 else if (/png$/.test(filename)) {
                     console.log("PNG found")
