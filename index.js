@@ -255,8 +255,8 @@ client.on('message', msg => {
                     const inkjet = require('inkjet');
                     const jsQR = require("jsqr");
                     const request = require('request');
-                    request({ filename, encoding: null }, (err, resp, buffer) => {
-                        console.log(buffer)
+                    request({uri: filename, encoding: null }, (err, resp, buffer) => {
+                        //console.log(buffer)
                         inkjet.decode(buffer, (err, decoded) => {
                             const code = jsQR(decoded.data, decoded.width, decoded.height)
                             if (code) {
