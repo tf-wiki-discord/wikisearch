@@ -238,7 +238,7 @@ client.on('message', msg => {
        msg.channel.send(jiaijoEmbed)
     }
     else if (/!!qrcode (.*?)/.test(msg.content)) {
-        let ch = msg.guild.channels.cache.find(channel => channel.name === "#other");
+        let ch = msg.guild.channels.cache.find(channel => channel.name === "other");
         var msgid = msg.content.match(/!!qrcode (.*)/)[1]
         console.log("MSG ID INPUT: " + msgid)
         msg.channel.messages.fetch(ch.id+"/"+msgid)
