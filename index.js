@@ -281,7 +281,7 @@ client.on('message', msg => {
                                 msg.channel.send(qrEmbed)
                             }
                         })
-                    //})
+                    })
                 }
             }
         })
