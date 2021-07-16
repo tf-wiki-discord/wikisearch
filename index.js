@@ -270,15 +270,16 @@ client.on('message', msg => {
                     console.log("PNG found")
                     const PNG = require('png-js');
                     request({uri: filename, encoding: null }, (err, resp, buffer) => {
-                        PNG.decode(buffer, function(pixels) {
-                            const code = jsQR(pixels, width, height)
+                        //PNG.decode(buffer, function(pixels) {
+                            const code = jsQR(buffer, width, height)
+                            //const code = jsQR(pixels, width, height)
                             if (code) {
                                 console.log("Found QR code", code)
                                 qrEmbed.image = {url: code.data}
                                 qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
                                 msg.channel.send(qrEmbed)
                             }
-                        })
+                        //})
                     })
                 }
             }
