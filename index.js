@@ -4,6 +4,7 @@ const axios = require('axios')
 const TFWiki = require('nodemw')
 const RateLimiter = require('discord.js-rate-limiter')
 const fs = require('fs')
+const https = require('https')
 const csv = require('csv-parser')
 require('dotenv').config()
 
@@ -269,19 +270,22 @@ client.on('message', msg => {
                 else if (/png$/.test(filename)) {
                     console.log("PNG found")
                     const PNG = require("png-js")
-                    request({uri: filename, encoding: null }, (err, resp, buffer) => {
-                        var png = new PNG(buffer);
-                        png.decode(function(data) {
-                            const code = jsQR(data, width, height)
+                    //request({uri: filename, encoding: null }, (err, resp, buffer) => {
+                    var f = fs.createWriteStream("./test.png");
+                    var req = https.get(filename, function(response) {
+                        response.pipe(f);
+                    });
+                    PNG.decode("./test.png", function(data) {
+                         const code = jsQR(data, width, height)
                             //const code = jsQR(pixels, width, height)
-                            if (code) {
-                                console.log("Found QR code", code)
-                                qrEmbed.image = {url: code.data}
-                                qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
-                                msg.channel.send(qrEmbed)
-                            }
-                        })
+                         if (code) {
+                             console.log("Found QR code", code)
+                             qrEmbed.image = {url: code.data}
+                             qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
+                             msg.channel.send(qrEmbed)
+                         }
                     })
+                    //})
                 }
             }
         })
