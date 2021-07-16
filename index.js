@@ -271,7 +271,7 @@ client.on('message', msg => {
                     const PNG = require("png-js")
                     request({uri: filename, encoding: null }, (err, resp, buffer) => {
                         var png = new PNG(buffer);
-                        PNG.decode(png, function(data) {
+                        png.decode(function(data) {
                             const code = jsQR(data, width, height)
                             //const code = jsQR(pixels, width, height)
                             if (code) {
