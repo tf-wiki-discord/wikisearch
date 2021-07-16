@@ -270,7 +270,6 @@ client.on('message', msg => {
                 else if (/png$/.test(filename)) {
                     console.log("PNG found")
                     const PNG = require("png-js")
-                    //request({uri: filename, encoding: null }, (err, resp, buffer) => {
                     var f = fs.createWriteStream("./test.png");
                     var req = https.get(filename, function(response) {
                         response.pipe(f);
@@ -278,16 +277,15 @@ client.on('message', msg => {
                     f.on('finish', function() {
                         PNG.decode("./test.png", function(data) {
                              const code = jsQR(data, width, height)
-                                //const code = jsQR(pixels, width, height)
                              if (code) {
                                  console.log("Found QR code", code)
+                                 const qrEmbed = new Discord.MessageEmbed()
                                  qrEmbed.image = {url: code.data}
                                  qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
                                  msg.channel.send(qrEmbed)
                              }
                         })
                     })
-                    //})
                 }
             }
         })
