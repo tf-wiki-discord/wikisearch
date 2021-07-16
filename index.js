@@ -275,15 +275,17 @@ client.on('message', msg => {
                     var req = https.get(filename, function(response) {
                         response.pipe(f);
                     });
-                    PNG.decode("./test.png", function(data) {
-                         const code = jsQR(data, width, height)
-                            //const code = jsQR(pixels, width, height)
-                         if (code) {
-                             console.log("Found QR code", code)
-                             qrEmbed.image = {url: code.data}
-                             qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
-                             msg.channel.send(qrEmbed)
-                         }
+                    f.on('finish', function() {
+                        PNG.decode("./test.png", function(data) {
+                             const code = jsQR(data, width, height)
+                                //const code = jsQR(pixels, width, height)
+                             if (code) {
+                                 console.log("Found QR code", code)
+                                 qrEmbed.image = {url: code.data}
+                                 qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
+                                 msg.channel.send(qrEmbed)
+                             }
+                        })
                     })
                     //})
                 }
