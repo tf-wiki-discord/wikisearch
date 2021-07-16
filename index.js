@@ -269,8 +269,9 @@ client.on('message', msg => {
                 else if (/png$/.test(filename)) {
                     console.log("PNG found")
                     const PNG = require("png-js")
-                    //request({uri: filename, encoding: null }, (err, resp, buffer) => {
-                        PNG.decode(filename, function(data) {
+                    request({uri: filename, encoding: null }, (err, resp, buffer) => {
+                        var png = new PNG(buffer);
+                        PNG.decode(png, function(data) {
                             const code = jsQR(data, width, height)
                             //const code = jsQR(pixels, width, height)
                             if (code) {
