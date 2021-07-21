@@ -137,13 +137,19 @@ client.on('message', msg => {
       var pageName = msg.content.match(/\[\[(.*?)\]\]/)[1];
       var pageNameSlug = pageName.split(" ").join("_");
 
-      // #toys in Discord expands to a channel ID, which confuses the bot if searching for #Toys in the wiki article
+      // various channel in Discord expand to a channel ID, which confuses the bot if searching for #Toys in the wiki article
       // this will sanitize the input
       const toysChannelRE = /(<#674063451877933091>)/
       const toyMatch = pageNameSlug.match(toysChannelRE)
       if(toyMatch) {
         pageNameSlug = pageNameSlug.replace(toysChannelRE, "#Toys")
         console.log("Page name sanitized (#toys)")
+      }
+      const writingChannelRE = /(<#674702407774502922>)/
+      const writeMatch = pageNameSlug.match(writingChannelRE)
+      if(writeMatch) {
+        pageNameSlug = pageNameSlug.replace(toysChannelRE, "#Other")
+        console.log("Page name sanitized (#other)")
       }
 
       // handle https://tfwiki.net/wiki/Special:Random separately
