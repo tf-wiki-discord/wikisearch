@@ -148,7 +148,7 @@ client.on('message', msg => {
       const writingChannelRE = /(<#674702407774502922>)/
       const writeMatch = pageNameSlug.match(writingChannelRE)
       if(writeMatch) {
-        pageNameSlug = pageNameSlug.replace(toysChannelRE, "#Other")
+        pageNameSlug = pageNameSlug.replace(writingChannelRE, "#Other")
         console.log("Page name sanitized (#other)")
       }
 
