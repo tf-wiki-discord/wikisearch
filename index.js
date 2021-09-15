@@ -61,14 +61,6 @@ client.on('ready', () => {
   client.user.setActivity('with Carlos and Alexis')
 });
 
-client.on("message", message => {
-    if (message.content.toLowerCase() == "!!ourradbotisindanger!!") { 
-        message.channel.send("Shutting down...").then(() => {
-            client.destroy();
-        })
-    }
-})
-
 client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
