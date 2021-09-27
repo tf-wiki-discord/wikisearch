@@ -116,7 +116,7 @@ client.on('message', msg => {
         });
     }
     
-    else if (/\[\[(.*?)\]\]/.test(msg.content) || /^rad look up (.*?) on the wiki$/.test(msg.content) {
+    else if (/\[\[(.*?)\]\]/.test(msg.content) || /^rad look up (.*?) on the wiki$/.test(msg.content)) {
         var author = msg.author.username
 
         // prevent / reduce spamming
