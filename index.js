@@ -292,7 +292,7 @@ client.on('message', msg => {
         .catch(console.error)
     }
     else if ( /flamewar/i.test(msg.content) ) {
-        msg.react("\:flamewar:");
+        msg.react("<:flamewar:691696266400235590>");
     }
     //else if (/!iru/i.test(msg.content)) {
     //    function randomChoice(arr) {
