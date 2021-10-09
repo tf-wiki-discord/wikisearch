@@ -117,6 +117,8 @@ client.on('message', msg => {
     }
     
     else if (/\[\[(.*?)\]\]/.test(msg.content)) {
+       //     else if (/\[\[(.*?)\]\]/.test(msg.content) || /^rad look up (.*?) on the wiki$/.test(msg.content)) {
+
         var author = msg.author.username
 
         // prevent / reduce spamming
@@ -288,6 +290,9 @@ client.on('message', msg => {
             }
         })
         .catch(console.error)
+    }
+    else if ( /flamewar/i.test(msg.content) ) {
+        msg.react("<:flamewar:691696266400235590>");
     }
     //else if (/!iru/i.test(msg.content)) {
     //    function randomChoice(arr) {
