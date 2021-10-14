@@ -70,6 +70,12 @@ client.on('message', msg => {
       path: 'mediawiki',                  // path to api.php script
       debug: false                 // is more verbose when set to true
     });
+    if ( /flamewar/i.test(msg.content) ) {
+        msg.react("<:flamewar:691696266400235590>");
+    }
+    if ( /^bah!*$/i.test(msg.content) ) {
+        msg.channel.send("Bah!");
+    }
     if (/!!techspec (.*?)/.test(msg.content)) {
         var matchData = msg.content.match(/!!techspec (.*)/)[1]
         var matchYear = undefined
@@ -127,6 +133,8 @@ client.on('message', msg => {
            msg.channel.send("Whoa, whoa, calm down!") 
            return;
         }
+        
+       
       //strip off the [[ ]]s
       var pageName = msg.content.match(/\[\[(.*?)\]\]/)[1];
       var pageNameSlug = pageName.split(" ").join("_");
@@ -291,9 +299,7 @@ client.on('message', msg => {
         })
         .catch(console.error)
     }
-    else if ( /flamewar/i.test(msg.content) ) {
-        msg.react("<:flamewar:691696266400235590>");
-    }
+    
     //else if (/!iru/i.test(msg.content)) {
     //    function randomChoice(arr) {
     //        return arr[Math.floor(arr.length * Math.random())];
