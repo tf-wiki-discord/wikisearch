@@ -75,7 +75,7 @@ client.on('message', msg => {
     if ( /^bah!*$/i.test(msg.content) ) {
         msg.channel.send("Bah!");
     }
-    if (/!!gobox)/.test(msg.content)) {
+    if (/!!gobox/.test(msg.content)) {
         const options = {
             hostname: 'tfwiki.net',
             port: 443,
