@@ -90,8 +90,9 @@ client.on('message', msg => {
                 //process.stdout.write(d)
                 var randLinkRegex = /href='(.*?)'/
                 var randImageRegex = /img src='(.*?)'/
-                const randImage = d.match(randImageRegex)[1]
-                const randLink = d.match(randLinkRegex)[1]
+                console.log(d.toString())
+                const randImage = d.toString().match(randImageRegex)[1]
+                const randLink = d.toString().match(randLinkRegex)[1]
                 console.log("LINK: ", randLink)
                 console.log("IMG: ", randImage)
             })
