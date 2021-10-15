@@ -79,7 +79,7 @@ client.on('message', msg => {
         const options = {
             hostname: 'tfwiki.net',
             port: 443,
-            path: '/generate.js.php',
+            path: '/generate_js.php',
             method: 'GET'
         }
 
