@@ -87,7 +87,13 @@ client.on('message', msg => {
             console.log(`GEN JS: statusCode: ${res.statusCode}`)
 
             res.on('data', d => {
-                process.stdout.write(d)
+                //process.stdout.write(d)
+                var randLinkRegex = /href='(.*?)'/
+                var randImageRegex = /img src='(.*?)'/
+                const randImage = d.match(randImageRegex)[1]
+                const randLink = d.match(randLinkRegex)[1]
+                console.log("LINK: ", randLink)
+                console.log("IMG: ", randImage)
             })
         })
 
