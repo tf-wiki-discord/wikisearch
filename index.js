@@ -1,6 +1,5 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
-const axios = require('axios')
 const TFWiki = require('nodemw')
 const RateLimiter = require('discord.js-rate-limiter')
 const fs = require('fs')
@@ -75,6 +74,28 @@ client.on('message', msg => {
     }
     if ( /^bah!*$/i.test(msg.content) ) {
         msg.channel.send("Bah!");
+    }
+    if (/!!gobox)/.test(msg.content)) {
+        const options = {
+            hostname: 'tfwiki.net',
+            port: 443,
+            path: '/generate.js.php',
+            method: 'GET'
+        }
+
+        const req = https.request(options, res => {
+            console.log(`GEN JS: statusCode: ${res.statusCode}`)
+
+            res.on('data', d => {
+                process.stdout.write(d)
+            })
+        })
+
+        req.on('error', error => {
+            console.error(error)
+        })
+
+        req.end()    
     }
     if (/!!techspec (.*?)/.test(msg.content)) {
         var matchData = msg.content.match(/!!techspec (.*)/)[1]
