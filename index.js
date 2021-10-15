@@ -84,17 +84,23 @@ client.on('message', msg => {
         }
 
         const req = https.request(options, res => {
-            console.log(`GEN JS: statusCode: ${res.statusCode}`)
+            //console.log(`GEN JS: statusCode: ${res.statusCode}`)
 
             res.on('data', d => {
                 //process.stdout.write(d)
                 var randLinkRegex = /href='(.*?)'/
                 var randImageRegex = /img src='(.*?)'/
-                console.log(d.toString())
                 const randImage = d.toString().match(randImageRegex)[1]
                 const randLink = d.toString().match(randLinkRegex)[1]
-                console.log("LINK: ", randLink)
-                console.log("IMG: ", randImage)
+                console.log("GOBOX LINK: ", randLink)
+                console.log("GOBOX IMG: ", randImage)
+                const randEmbed = new Discord.MessageEmbed()
+                    .setColor('#0099ff')
+                    .setURL(randLink)
+                    .setImage(randImage)
+                    .setTitle("Hi, my name's Rad. Here's a random Gobox!")
+                
+                msg.channel.send(randEmbed)
             })
         })
 
