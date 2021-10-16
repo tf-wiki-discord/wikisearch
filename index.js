@@ -175,6 +175,8 @@ client.on('message', msg => {
 
 	userstop5 = users.slice(0,5)
 	usersbottom5 = users.slice(Math.max(users.length - 5,0)) 
+	console.log(userstop5)
+	console.log(usersbottom5)
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
 
