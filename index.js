@@ -179,15 +179,15 @@ client.on('message', msg => {
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
 
-	console.log('Pages statistcs:');
-	console.log(pages);
+	//console.log('Pages statistcs:');
+	//console.log(pages);
 
 	var radmsg = "Top 5 by added diffs:\n"
-	for ( e in JSON.stringify(userstop5) ) {
+	for ( e in JSON.stringify(userstop5)[0] ) {
 		radmsg += `user: ${e.user}, edits: ${e.edits}, created: ${e.created}, diff: ${e.diff}\n`
 	}
 	radmsg += "Top 5 by removed diffs:\n"
-	for ( e in JSON.stringify(usersbottom5) ) {
+	for ( e in JSON.stringify(usersbottom5)[0] ) {
 		radmsg += `user: ${e.user}, edits: ${e.edits}, created: ${e.created}, diff: ${e.diff}\n`
 	}
 	msg.channel.send( radmsg );
