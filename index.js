@@ -183,13 +183,17 @@ client.on('message', msg => {
 	//console.log(pages);
 
 	var radmsg = "Top 5 by added diffs:\n"
-	for (let key in userstop5[0]) {
-		radmsg += `${key}\t${userstop5[0][key]}\n`
+	for (let e in userstop5) {
+		for (let key in e) {
+			radmsg += `${key}\t${e[key]}\n`
+		}
 	}
 	//radmsg += JSON.stringify(userstop5, null, 1) + "\n";
 	radmsg += "Top 5 by removed diffs:\n"
-	    for (let key in usersbottom5[0]) {
-		radmsg += `${key}\t${userstop5[0][key]}\n`
+	    for (let e in usersbottom5) {
+		for (let key in e) {
+			radmsg += `${key}\t${e[key]}\n`
+		}
 	}
 	//radmsg += JSON.stringify(usersbottom5, null, 1) + "\n";
 	msg.channel.send( radmsg );
