@@ -183,9 +183,15 @@ client.on('message', msg => {
 	//console.log(pages);
 
 	var radmsg = "Top 5 by added diffs:\n"
-	radmsg += JSON.stringify(userstop5, null, 1) + "\n";
+	for (let key in userstop5[0]) {
+		radmsg += `key\tuserstop5[0][key]\n`
+	}
+	//radmsg += JSON.stringify(userstop5, null, 1) + "\n";
 	radmsg += "Top 5 by removed diffs:\n"
-	radmsg += JSON.stringify(usersbottom5, null, 1) + "\n";
+	    for (let key in usersbottom5[0]) {
+		radmsg += `key\tuserstop5[0][key]\n`
+	}
+	//radmsg += JSON.stringify(usersbottom5, null, 1) + "\n";
 	msg.channel.send( radmsg );
     } );
     }
