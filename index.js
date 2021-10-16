@@ -107,8 +107,7 @@ client.on('message', msg => {
 		to = entry.timestamp;
 
 		// console.log(JSON.stringify(entry));
-		console.log("ENTRY: ")
-		console.log(entry)
+
 		// register pages stats
 		if ( !pagesStats[ entry.title ] ) {
 			pagesStats[ entry.title ] = {
