@@ -183,17 +183,13 @@ client.on('message', msg => {
 	//console.log(pages);
 
 	var radmsg = "Top 3 by added diffs:\n"
-	for (let e in userstop3) {
-		radmsg += e
-		for (var prop in e) {
-			radmsg += `${prop}: ${e[prop]}\n`
+
+		for (var prop in userstop3[0]) {
+			radmsg += `${prop}: ${userstop3[0][prop]}\n`
 		}
-	}
 	radmsg += "Top 3 by removed diffs:\n"
-	for (let e in usersbottom3) {
-		radmsg += e
-		for (var prop in e) {
-			radmsg += `${prop}: ${e[prop]}\n`
+		for (var prop in usersbottom3[0]) {
+			radmsg += `${prop}: ${usersbottom3[0][prop]}\n`
 		}
 	}
 	//radmsg += JSON.stringify(usersbottom3, null, 1) + "\n";
