@@ -173,8 +173,8 @@ client.on('message', msg => {
 
 	users.sort( ( a, b ) => b.diff - a.diff );
 
-	userstop5 = users.slice(0,5)
-	usersbottom5 = users.slice(Math.max(users.length - 5,0)) 
+	userstop3 = users.slice(0,3)
+	usersbottom3 = users.slice(Math.max(users.length - 3,0)) 
 
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
@@ -182,20 +182,11 @@ client.on('message', msg => {
 	//console.log('Pages statistcs:');
 	//console.log(pages);
 
-	var radmsg = "Top 5 by added diffs:\n"
-	for (let e in userstop5) {
-		for (let key in e) {
-			radmsg += `${key}\t${e[key]}\n`
-		}
-	}
-	//radmsg += JSON.stringify(userstop5, null, 1) + "\n";
-	radmsg += "Top 5 by removed diffs:\n"
-	    for (let e in usersbottom5) {
-		for (let key in e) {
-			radmsg += `${key}\t${e[key]}\n`
-		}
-	}
-	//radmsg += JSON.stringify(usersbottom5, null, 1) + "\n";
+	var radmsg = "Top 3 by added diffs:\n"
+
+	radmsg += JSON.stringify(userstop3, null, 1) + "\n";
+	radmsg += "Top 3 by removed diffs:\n"
+	radmsg += JSON.stringify(usersbottom3, null, 1) + "\n";
 	msg.channel.send( radmsg );
     } );
     }
