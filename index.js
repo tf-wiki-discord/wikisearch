@@ -191,7 +191,7 @@ client.on('message', msg => {
 		for (var prop in usersbottom3[0]) {
 			radmsg += `${prop}: ${usersbottom3[0][prop]}\n`
 		}
-	}
+	
 	//radmsg += JSON.stringify(usersbottom3, null, 1) + "\n";
 	msg.channel.send( radmsg );
     } );
