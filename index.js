@@ -183,13 +183,9 @@ client.on('message', msg => {
 	//console.log(pages);
 
 	var radmsg = "Top 5 by added diffs:\n"
-	for ( e in JSON.stringify(userstop5)[0] ) {
-		radmsg += `user: ${e.user}, edits: ${e.edits}, created: ${e.created}, diff: ${e.diff}\n`
-	}
+	radmsg += JSON.stringify(userstop5);
 	radmsg += "Top 5 by removed diffs:\n"
-	for ( e in JSON.stringify(usersbottom5)[0] ) {
-		radmsg += `user: ${e.user}, edits: ${e.edits}, created: ${e.created}, diff: ${e.diff}\n`
-	}
+	radmsg += JSON.stringify(usersbottom5);
 	msg.channel.send( radmsg );
     } );
     }
