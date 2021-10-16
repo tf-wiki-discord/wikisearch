@@ -179,7 +179,7 @@ client.on('message', msg => {
 	console.log(usersbottom5)
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
-
+	msg.channel.send(users);
 	// console.log('Pages statistcs:');
 	// console.log(pages);
 
