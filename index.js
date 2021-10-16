@@ -173,9 +173,6 @@ client.on('message', msg => {
 
 	users.sort( ( a, b ) => Math.abs(b.diff - a.diff) );
 
-	//userstop3 = users.slice(0,3)
-	//usersbottom3 = users.slice(Math.max(users.length - 3,0)) 
-
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
 
@@ -186,12 +183,11 @@ client.on('message', msg => {
 	for (var i = 0; i < 5; i++) {
 
 		for (var prop in users[i]) {
-			radmsg += `${prop}: ${users[i][prop]}`
+			radmsg += `${prop}: ${users[i][prop]}\n`
 		}
 	}
 
 	radmsg += "\n"
-	//radmsg += JSON.stringify(usersbottom3, null, 1) + "\n";
 	msg.channel.send( radmsg );
     } );
     }
