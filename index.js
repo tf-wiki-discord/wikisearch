@@ -183,10 +183,18 @@ client.on('message', msg => {
 	//console.log(pages);
 
 	var radmsg = "Top 3 by added diffs:\n"
-
-	radmsg += JSON.stringify(userstop3, null, 1) + "\n";
+	for (let e in userstop3) {
+		for (var prop in e) {
+			radmsg += prop + ": " + e[prop] + "\n"
+		}
+	}
 	radmsg += "Top 3 by removed diffs:\n"
-	radmsg += JSON.stringify(usersbottom3, null, 1) + "\n";
+	for (let e in usersbottom3) {
+		for (var prop in e) {
+			radmsg += prop + ": " + e[prop] + "\n"
+		}
+	}
+	//radmsg += JSON.stringify(usersbottom3, null, 1) + "\n";
 	msg.channel.send( radmsg );
     } );
     }
