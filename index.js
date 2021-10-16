@@ -175,22 +175,19 @@ client.on('message', msg => {
 
 	userstop5 = users.slice(0,5)
 	usersbottom5 = users.slice(Math.max(users.length - 5,0)) 
-	console.log(userstop5)
-	console.log(usersbottom5)
+
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
-	msg.channel.send(JSON.stringify(userstop5));
-	msg.channel.send(JSON.stringify(usersbottom5));
 
-	// console.log('Pages statistcs:');
-	// console.log(pages);
+	console.log('Pages statistcs:');
+	console.log(pages);
 
 	var radmsg = "Top 5 by added diffs:\n"
-	for ( e in userstop5 ) {
+	for ( e in JSON.stringify(userstop5) ) {
 		radmsg += `user: ${e.user}, edits: ${e.edits}, created: ${e.created}, diff: ${e.diff}\n`
 	}
 	radmsg += "Top 5 by removed diffs:\n"
-	for ( e in usersbottom5 ) {
+	for ( e in JSON.stringify(usersbottom5) ) {
 		radmsg += `user: ${e.user}, edits: ${e.edits}, created: ${e.created}, diff: ${e.diff}\n`
 	}
 	msg.channel.send( radmsg );
