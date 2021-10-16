@@ -120,7 +120,6 @@ client.on('message', msg => {
 		}
 
 		const pagesItem = pagesStats[ entry.title ],
-			usersItem = usersStats[ entry.user ],
 			diff = entry.newlen - entry.oldlen;
 
 		pagesItem.edits++;
@@ -143,6 +142,8 @@ client.on('message', msg => {
 				usersStats[ entry.user ].bot = true;
 			}
 		}
+
+		const usersItem = usersStats[ entry.user ]
 
 		switch ( entry.type ) {
 			case 'new':
