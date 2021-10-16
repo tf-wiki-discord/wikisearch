@@ -173,14 +173,18 @@ client.on('message', msg => {
 
 	users.sort( ( a, b ) => b.diff - a.diff );
 
+	userstop5 = users.slice(0,5)
+	usersbottom5 = users.slice(Math.max(users.length - 5,0)) 
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
 
 	// console.log('Pages statistcs:');
 	// console.log(pages);
 
-	console.log( 'Users statistcs:' );
-	console.log( users );
+	message.channel.send( 'Top 5 by added diffs:' );
+	message.channel.send( userstop5 );
+	message.channel.send( 'Top 5 by removed diffs:' );
+	message.channel.send( usersbottom5 );
     } );
     }
       
