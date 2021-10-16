@@ -184,12 +184,12 @@ client.on('message', msg => {
 
 	var radmsg = "Top 5 by added diffs:\n"
 	for (let key in userstop5[0]) {
-		radmsg += `key\tuserstop5[0][key]\n`
+		radmsg += `${key}\t${userstop5[0][key]}\n`
 	}
 	//radmsg += JSON.stringify(userstop5, null, 1) + "\n";
 	radmsg += "Top 5 by removed diffs:\n"
 	    for (let key in usersbottom5[0]) {
-		radmsg += `key\tuserstop5[0][key]\n`
+		radmsg += `${key}\t${userstop5[0][key]}\n`
 	}
 	//radmsg += JSON.stringify(usersbottom5, null, 1) + "\n";
 	msg.channel.send( radmsg );
