@@ -181,10 +181,10 @@ client.on('message', msg => {
 	// console.log('Pages statistcs:');
 	// console.log(pages);
 
-	message.channel.send( 'Top 5 by added diffs:' );
-	message.channel.send( userstop5 );
-	message.channel.send( 'Top 5 by removed diffs:' );
-	message.channel.send( usersbottom5 );
+	msg.channel.send( 'Top 5 by added diffs:' );
+	msg.channel.send( userstop5 );
+	msg.channel.send( 'Top 5 by removed diffs:' );
+	msg.channel.send( usersbottom5 );
     } );
     }
       
