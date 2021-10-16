@@ -182,7 +182,7 @@ client.on('message', msg => {
 	var radmsg = "Top 5 by diffs:\n"
 	for (var i = 0; i < 5; i++) {
 		for (var prop in users[i]) {
-			radmsg += `${prop}: ${users[i][prop]}`
+			radmsg += `${prop}: ${users[i][prop]}\t`
 		}
 		radmsg += "\n"
 	}
