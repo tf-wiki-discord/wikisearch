@@ -77,6 +77,7 @@ client.on('message', msg => {
     }
       
     if( /^!!summary$/.test(msg.content)) {  
+    LIMIT=500
     bot.getRecentChanges( false, function ( err, data ) {
 	let usersStats = {},
 		pagesStats = {},
