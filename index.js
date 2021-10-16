@@ -183,9 +183,9 @@ client.on('message', msg => {
 	//console.log(pages);
 
 	var radmsg = "Top 5 by added diffs:\n"
-	radmsg += JSON.stringify(userstop5);
+	radmsg += JSON.stringify(userstop5)[0] + "\n";
 	radmsg += "Top 5 by removed diffs:\n"
-	radmsg += JSON.stringify(usersbottom5);
+	radmsg += JSON.stringify(usersbottom5)[0] + "\n";
 	msg.channel.send( radmsg );
     } );
     }
