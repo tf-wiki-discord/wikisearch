@@ -183,10 +183,15 @@ client.on('message', msg => {
 	// console.log('Pages statistcs:');
 	// console.log(pages);
 
-	msg.channel.send( 'Top 5 by added diffs:' );
-	msg.channel.send( userstop5 );
-	msg.channel.send( 'Top 5 by removed diffs:' );
-	msg.channel.send( usersbottom5 );
+	var radmsg = "Top 5 by added diffs:\n"
+	for ( e in userstop5 ) {
+		radmsg += `user: ${e.user}, edits: ${e.edits}, created: ${e.created}, diff: ${e.diff}\n`
+	}
+	radmsg += "Top 5 by removed diffs:\n"
+	for ( e in usersbottom5 ) {
+		radmsg += `user: ${e.user}, edits: ${e.edits}, created: ${e.created}, diff: ${e.diff}\n`
+	}
+	msg.channel.send( radmsg );
     } );
     }
       
