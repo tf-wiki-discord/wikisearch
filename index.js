@@ -179,7 +179,9 @@ client.on('message', msg => {
 	console.log(usersbottom5)
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
-	msg.channel.send(users);
+	msg.channel.send(JSON.stringify(userstop5));
+	msg.channel.send(JSON.stringify(usersbottom5));
+
 	// console.log('Pages statistcs:');
 	// console.log(pages);
 
