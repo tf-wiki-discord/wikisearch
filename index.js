@@ -170,7 +170,7 @@ client.on('message', msg => {
 	//pages.sort( ( a, b ) => b.edits - a.edits );
 
 	usersE = users
-	users.filter(x => (x.diff > 2000) || (x.diff < -2000)).sort( ( a, b ) => b.diff - a.diff );
+	users.filter(x => x.diff > 2000).sort( ( a, b ) => b.diff - a.diff );
 	usersE.sort( ( a, b ) => b.edits - a.edits );
 
 	    
