@@ -170,7 +170,7 @@ client.on('message', msg => {
 	//pages.sort( ( a, b ) => b.edits - a.edits );
 
 	usersE = users
-	users.filter(x => x.diff > 2000).sort( ( a, b ) => b.diff - a.diff );
+	users.sort( ( a, b ) => b.diff - a.diff );
 	usersE.sort( ( a, b ) => b.edits - a.edits );
 
 	    
@@ -181,9 +181,15 @@ client.on('message', msg => {
 	//console.log(pages);
 
 	var radmsg = "Top 10 by diffs:\n"
-	for (var i = 0; i < 10; i++) {
+	for (var i = 0; i < 5; i++) {
 		for (var prop in users[i]) {
 			radmsg += `${prop}: ${users[i][prop]}\t`
+		}
+		radmsg += "\n"
+	}
+	for (var j = users.length-5; i < users.length; i++) {
+		for (var prop in users[j]) {
+			radmsg += `${prop}: ${users[j][prop]}\t`
 		}
 		radmsg += "\n"
 	}
