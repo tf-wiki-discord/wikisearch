@@ -169,8 +169,11 @@ client.on('message', msg => {
 	// sort them
 	//pages.sort( ( a, b ) => b.edits - a.edits );
 
-	users.sort( ( a, b ) => b.diff - a.diff );
+	usersE = users
+	users.filter(x => (x.diff > 2000) || (x.diff < -2000)).sort( ( a, b ) => b.diff - a.diff );
+	usersE.sort( ( a, b ) => b.edits - a.edits );
 
+	    
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
 
@@ -181,6 +184,13 @@ client.on('message', msg => {
 	for (var i = 0; i < 10; i++) {
 		for (var prop in users[i]) {
 			radmsg += `${prop}: ${users[i][prop]}\t`
+		}
+		radmsg += "\n"
+	}
+	radmsg += "\nTop 5 by edits:\n"
+	for (var i = 0; i < 5; i++) {
+		for (var prop in usersE[i]) {
+			radmsg += `${prop}: ${usersE[i][prop]}\t`
 		}
 		radmsg += "\n"
 	}
