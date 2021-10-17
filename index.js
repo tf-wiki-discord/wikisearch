@@ -80,7 +80,7 @@ client.on('message', msg => {
     LIMIT=500
     bot.getRecentChanges( false, function ( err, data ) {
 	let usersStats = {},
-		pagesStats = {},
+		//pagesStats = {},
 		count = 0,
 		from,
 		to,
@@ -106,26 +106,24 @@ client.on('message', msg => {
 		}
 		to = entry.timestamp;
 
-		// console.log(JSON.stringify(entry));
-
 		// register pages stats
-		if ( !pagesStats[ entry.title ] ) {
-			pagesStats[ entry.title ] = {
-				title: entry.title,
-				edits: 0,
-				editors: [],
-				diff: 0
-			};
-		}
+		//if ( !pagesStats[ entry.title ] ) {
+		//	pagesStats[ entry.title ] = {
+		//		title: entry.title,
+		//		edits: 0,
+		//		editors: [],
+		//		diff: 0
+		//	};
+		//}
 
-		const pagesItem = pagesStats[ entry.title ],
-			diff = entry.newlen - entry.oldlen;
+		//const pagesItem = pagesStats[ entry.title ],
+		const diff = entry.newlen - entry.oldlen;
 
-		pagesItem.edits++;
+		//pagesItem.edits++;
 
-		if ( pagesItem.editors.indexOf( entry.user ) === -1 ) {
-			pagesItem.editors.push( entry.user );
-		}
+		//if ( pagesItem.editors.indexOf( entry.user ) === -1 ) {
+		//	pagesItem.editors.push( entry.user );
+		//}
 
 		// register users stats
 		if ( !usersStats[ entry.user ] ) {
@@ -155,21 +153,21 @@ client.on('message', msg => {
 		}
 
 		// edit size difference
-		pagesItem.diff += diff;
+		//pagesItem.diff += diff;
 		usersItem.diff += diff;
 	} );
 
 	// generate an array of results
-	for ( key in pagesStats ) {
-		pages.push( pagesStats[ key ] );
-	}
+	//for ( key in pagesStats ) {
+	//	pages.push( pagesStats[ key ] );
+	//}
 
 	for ( key in usersStats ) {
 		users.push( usersStats[ key ] );
 	}
 
 	// sort them
-	pages.sort( ( a, b ) => b.edits - a.edits );
+	//pages.sort( ( a, b ) => b.edits - a.edits );
 
 	users.sort( ( a, b ) => Math.abs(b.diff - a.diff) );
 
@@ -179,8 +177,8 @@ client.on('message', msg => {
 	//console.log('Pages statistcs:');
 	//console.log(pages);
 
-	var radmsg = "Top 5 by diffs:\n"
-	for (var i = 0; i < 5; i++) {
+	var radmsg = "Top 10 by diffs:\n"
+	for (var i = 0; i < 10; i++) {
 		for (var prop in users[i]) {
 			radmsg += `${prop}: ${users[i][prop]}\t`
 		}
