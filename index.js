@@ -169,7 +169,7 @@ client.on('message', msg => {
 	// sort them
 	//pages.sort( ( a, b ) => b.edits - a.edits );
 
-	users.sort( ( a, b ) => Math.abs(b.diff - a.diff) );
+	users.sort( ( a, b ) => b.diff - a.diff );
 
 	// emit results
 	msg.channel.send( `Stats for the last ${count} recent changes (from ${from} back to ${to})...` );
