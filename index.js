@@ -170,7 +170,7 @@ client.on('message', msg => {
 	//pages.sort( ( a, b ) => b.edits - a.edits );
 
 	usersE = users
-	users.sort( ( a, b ) => Math.abs(b.diff) - Math.abs(a.diff) );
+	users.sort( ( a, b ) => b.diff - a.diff );
 	usersE.sort( ( a, b ) => b.edits - a.edits );
 
 	    
@@ -180,19 +180,19 @@ client.on('message', msg => {
 	//console.log('Pages statistcs:');
 	//console.log(pages);
 
-	var radmsg = "Top 10 by diffs:\n"
+	var radmsg = "Top 5 by diffs:\n"
 	for (var i = 0; i < 5; i++) {
 		for (var prop in users[i]) {
 			radmsg += `${prop}: ${users[i][prop]}\t`
 		}
 		radmsg += "\n"
 	}
-	for (var j = users.length-5; j < users.length; j++) {
-		for (var prop in users[j]) {
-			radmsg += `${prop}: ${users[j][prop]}\t`
-		}
-		radmsg += "\n"
-	}
+	//for (var j = users.length-5; j < users.length; j++) {
+	//	for (var prop in users[j]) {
+	//		radmsg += `${prop}: ${users[j][prop]}\t`
+	//	}
+	//	radmsg += "\n"
+	//}
 	radmsg += "\nTop 5 by edits:\n"
 	for (var i = 0; i < 5; i++) {
 		for (var prop in usersE[i]) {
