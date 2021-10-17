@@ -187,7 +187,7 @@ client.on('message', msg => {
 		}
 		radmsg += "\n"
 	}
-	for (var j = users.length-5; i < users.length; i++) {
+	for (var j = users.length-5; j < users.length; j++) {
 		for (var prop in users[j]) {
 			radmsg += `${prop}: ${users[j][prop]}\t`
 		}
