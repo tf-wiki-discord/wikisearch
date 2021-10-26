@@ -69,6 +69,30 @@ client.on('message', msg => {
       path: 'mediawiki',                  // path to api.php script
       debug: false                 // is more verbose when set to true
     });
+    
+    if(msg.content === "$loop") {
+	var interval = setInterval (function () {
+		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+		console.log("Member count: ", mc);
+		client.channels.fetch('817814828222775346') // coding
+ 		 .then(channel => { 
+			fs.readFile("count.txt", "utf-8", (e, d) => {
+				if(e) {throw e;}
+				console.log("FILE vs NEW DATA: ", d, mc);
+				if(mc - d > 10) {
+					channel.send(`Old and new count: ${mc} vs ${d}`);
+				}
+		
+		
+				fs.writeFile("count.txt", mc.toString(), (err) => {
+					if(err) {throw err;}
+				});
+			}}
+			
+		})
+	}, 1.5 * 1000)
+    }
+	  
     if ( /flamewar/i.test(msg.content) ) {
         msg.react("<:flamewar:691696266400235590>");
     }
