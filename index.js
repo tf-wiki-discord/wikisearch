@@ -83,7 +83,7 @@ client.on('message', msg => {
 				if(err) {
 					throw err;
 				}
-			}
+			});
 			
 			
 		})
