@@ -82,12 +82,10 @@ client.on('message', msg => {
 				if(mc - d > 10) {
 					channel.send(`Old and new count: ${mc} vs ${d}`);
 				}
-		
-		
 				fs.writeFile("count.txt", mc.toString(), (err) => {
 					if(err) {throw err;}
 				});
-			}}
+			})
 			
 		})
 	}, 1.5 * 1000)
