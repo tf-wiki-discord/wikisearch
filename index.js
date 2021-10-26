@@ -70,7 +70,7 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     
-    if(msg.content === "$loop") {
+    if(msg.content === "$boop") {
 	var interval = setInterval (function () {
 		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
 		console.log("Member count: ", mc);
