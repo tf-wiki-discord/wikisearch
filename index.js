@@ -76,7 +76,10 @@ client.on('message', msg => {
         msg.channel.send("Bah!");
     }
     if( /^!!count$/.test(msg.content)) {
+	const gs = client.guilds.cache.map(guild => guild.id);
+	console.log(gs);
 	const memberCount = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+	console.log("Member count: ", memberCount);
 	msg.channel.send("Member count: ", memberCount);
     }
     if( /^!!summary$/.test(msg.content)) {  
