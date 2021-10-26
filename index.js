@@ -80,6 +80,8 @@ client.on('message', msg => {
     
     if(msg.content === "$loop" && msg.member.roles.cache.has('656250893678936077')) {
         console.log("User: ", msg.author.username, " just activated loop defense");
+        const lst = client.guilds.cache.get('656241088826441729')
+        lst.members.cache.forEach(member => console.log(member.user.username));
 	var interval = setInterval (function () {
 		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
                 memClient.get("memberCount", (err, val) => {
