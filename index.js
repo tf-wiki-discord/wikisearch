@@ -70,13 +70,23 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     
-    if(msg.content === "$boop") {
+    if(msg.content === "$loop") {
 	var interval = setInterval (function () {
 		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
 		console.log("Member count: ", mc);
-		client.channels.fetch('674281602200633348')
- 		 .then(channel => {console.log("CHANNEL NAME: ", channel.name); channel.send(`Member count: ${mc}`)} )
-		//client.channels.cache.get('817814828222775346').send(`Member count: ${mc}`).catch(console.error);
+		client.channels.fetch('817814828222775346') // coding
+ 		 .then(channel => { 
+			channel.send(`Member count: ${mc}`);
+			const countData = fs.readFile("count.txt");
+			console.log("FILE vs NEW DATA: ", countData, mc);
+			fs.writeFile("count.txt", mc, (err) => {
+				if(err) {
+					throw err;
+				}
+			}
+			
+			
+		})
 	}, 1000)
     }
 	  
