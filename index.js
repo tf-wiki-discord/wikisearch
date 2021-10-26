@@ -95,7 +95,7 @@ client.on('message', msg => {
                 });
                 memClient.set("memberCount", mc.toString(), {expires:60}, (err, val) => {
                     console.log("NEW VALUE LOGGED: ", val);
-                }
+                });
 	}, sampleInterval * 1000)
     }
 	  
