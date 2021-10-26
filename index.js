@@ -69,6 +69,15 @@ client.on('message', msg => {
       path: 'mediawiki',                  // path to api.php script
       debug: false                 // is more verbose when set to true
     });
+    
+    if(msg.content === "$loop") {
+	var interval = setInterval (function () {
+		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+		console.log("Member count: ", mc);
+		client.channels.get('#coding').send(`Member count: ${mc}`);
+	}, 1000)
+    }
+	  
     if ( /flamewar/i.test(msg.content) ) {
         msg.react("<:flamewar:691696266400235590>");
     }
