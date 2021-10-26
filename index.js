@@ -77,7 +77,7 @@ client.on('message', msg => {
     }
     if( /^!!count$/.test(msg.content)) {
 	const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
-	msg.channel.send("Member count: ${mc}");
+	msg.channel.send(`Member count: ${mc}`);
 	console.log("Member count: ", mc);
 
     }
