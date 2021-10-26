@@ -76,19 +76,21 @@ client.on('message', msg => {
 		console.log("Member count: ", mc);
 		client.channels.fetch('817814828222775346') // coding
  		 .then(channel => { 
-			const countData = fs.readFile("count.txt");
-			console.log("FILE vs NEW DATA: ", countData, mc);
+			fs.readFile("count.txt", "utf-8", (e, d) => {
+				if(e) {throw e;}
+				console.log("FILE vs NEW DATA: ", d, mc);
+				if(mc - d > 10) {
+					channel.send(`Old and new count: ${mc} vs ${d}`);
+				}
+			}
+		)
 			fs.writeFile("count.txt", mc, (err) => {
 				if(err) {throw err;}
-				if(mc - countData > 10) {
-					channel.send(`Old and new count: ${mc} vs ${countData}`);
-				}
-
 			});
 			
 			
 		})
-	}, 1000)
+	}, 1.5 * 1000)
     }
 	  
     if ( /flamewar/i.test(msg.content) ) {
