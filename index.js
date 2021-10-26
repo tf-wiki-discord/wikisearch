@@ -7,6 +7,18 @@ const https = require('https')
 const csv = require('csv-parser')
 require('dotenv').config()
 
+var memClient = memjs.Client.create(process.env.MEMCACHEDCLOUD_SERVERS, {
+  username: process.env.MEMCACHEDCLOUD_USERNAME,
+  password: process.env.MEMCACHEDCLOUD_PASSWORD
+});
+
+memClient.set("foo", "bar");
+memClient.get("foo", function (err, value, key) {
+  if (value != null) {
+    console.log(value.toString()); // Will print "bar"
+  }
+});
+
 const numCommands = 1
 const interval = 1
 const intervalSec = interval * 1000
