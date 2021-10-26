@@ -86,7 +86,7 @@ client.on('message', msg => {
                         const storedCount = Number(val);
                         //console.log("OLD VS NEW: ", storedCount, mc);
                         if(storedCount - mc >= raidWarnDiff) {
-                            client.channels.fetch('817814828222775346') // coding
+                            client.channels.fetch('674281602200633348') 
                             .then(channel => { 
                                 channel.send(`POTENTAL RAID WARNING: new member count (${mc}) differs from old (${storedCount}) by ${raidWarnDiff} in past ${sampleInterval} seconds!`)
                             })
