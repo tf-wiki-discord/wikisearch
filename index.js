@@ -76,16 +76,7 @@ client.on('message', msg => {
 		console.log("Member count: ", mc);
 		client.channels.fetch('817814828222775346') // coding
  		 .then(channel => { 
-			fs.readFile("count.txt", "utf-8", (e, d) => {
-				if(e) {throw e;}
-				console.log("FILE vs NEW DATA: ", d, mc);
-				if(mc - d > 10) {
-					channel.send(`Old and new count: ${mc} vs ${d}`);
-				}
-				fs.writeFile("count.txt", mc.toString(), (err) => {
-					if(err) {throw err;}
-				});
-			})
+			channel.send(`new count: ${mc}`)
 			
 		})
 	}, 1.5 * 1000)
