@@ -84,7 +84,7 @@ client.on('message', msg => {
 				}
 			}
 		)
-			fs.writeFile("count.txt", mc, (err) => {
+			fs.writeFile("count.txt", mc.toString(), (err) => {
 				if(err) {throw err;}
 			});
 			
