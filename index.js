@@ -78,7 +78,7 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     
-    if(msg.content === "$loop") {
+    if(msg.content === "$loop" && msg.member.roles.cache.has('656250893678936077')) {
 	var interval = setInterval (function () {
 		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
                 memClient.get("memberCount", (err, val) => {
@@ -88,7 +88,7 @@ client.on('message', msg => {
                         if(mc - storedCount >= raidWarnDiff) {
                             client.channels.fetch('674281602200633348') 
                             .then(channel => { 
-                                channel.send(`POTENTAL RAID WARNING: new member count (${mc}) differs from old (${storedCount}) by ${raidWarnDiff} in past ${sampleInterval} seconds!`)
+                                channel.send(`POTENTAL RAID WARNING: new member count (${mc}) differs from old (${storedCount}) by ${raidWarnDiff} or more in the past ${sampleInterval} seconds!`)
                             })
                         }
                     }
