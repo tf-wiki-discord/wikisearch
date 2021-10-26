@@ -74,7 +74,7 @@ client.on('message', msg => {
 	var interval = setInterval (function () {
 		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
 		console.log("Member count: ", mc);
-		client.channels.get('#coding').send(`Member count: ${mc}`);
+		client.channels.get('#coding').send(`Member count: ${mc}`).catch(console.error);
 	}, 1000)
     }
 	  
