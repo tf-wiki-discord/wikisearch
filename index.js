@@ -12,13 +12,8 @@ var memClient = memjs.Client.create(process.env.MEMCACHEDCLOUD_SERVERS, {
   username: process.env.MEMCACHEDCLOUD_USERNAME,
   password: process.env.MEMCACHEDCLOUD_PASSWORD
 });
-
-memClient.set("foo", "bar");
-memClient.get("foo", function (err, value, key) {
-  if (value != null) {
-    console.log(value.toString()); // Will print "bar"
-  }
-});
+const raidWarnDiff = 10
+const sampleInterval = 1.5
 
 const numCommands = 1
 const interval = 1
@@ -86,13 +81,22 @@ client.on('message', msg => {
     if(msg.content === "$loop") {
 	var interval = setInterval (function () {
 		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
-		console.log("Member count: ", mc);
-		client.channels.fetch('817814828222775346') // coding
- 		 .then(channel => { 
-			channel.send(`new count: ${mc}`)
-			
-		})
-	}, 1.5 * 1000)
+                memClient.get("memberCount", (err, val) => {
+                    if(!err) {
+                        const storedCount = Number(val);
+                        console.log("OLD VS NEW: ", storedCount, mc);
+                        if(storedCount - mc > raidWarnDiff) {
+                            client.channels.fetch('817814828222775346') // coding
+                            .then(channel => { 
+                                channel.send(`POTENTAL RAID WARNING: new member count (${mc}) differs from old (${storedCount}) by ${raidWarnDiff} in past ${sampleInterval} seconds!`)
+                            })
+                        }
+                    }
+                });
+                memClient.set("memberCount", mc.toString(), {expires:60}, (err, val) => {
+                    console.log("NEW VALUE LOGGED: ", val);
+                }
+	}, sampleInterval * 1000)
     }
 	  
     if ( /flamewar/i.test(msg.content) ) {
