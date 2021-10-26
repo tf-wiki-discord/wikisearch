@@ -13,7 +13,7 @@ var memClient = memjs.Client.create(process.env.MEMCACHEDCLOUD_SERVERS, {
   password: process.env.MEMCACHEDCLOUD_PASSWORD
 });
 const raidWarnDiff = 10
-const sampleInterval = 3
+const sampleInterval = 5
 
 const numCommands = 1
 const interval = 1
@@ -85,7 +85,7 @@ client.on('message', msg => {
                     if(!err) {
                         const storedCount = Number(val);
                         //console.log("OLD VS NEW: ", storedCount, mc);
-                        if(storedCount - mc >= raidWarnDiff) {
+                        if(mc - storedCount >= raidWarnDiff) {
                             client.channels.fetch('674281602200633348') 
                             .then(channel => { 
                                 channel.send(`POTENTAL RAID WARNING: new member count (${mc}) differs from old (${storedCount}) by ${raidWarnDiff} in past ${sampleInterval} seconds!`)
@@ -94,7 +94,10 @@ client.on('message', msg => {
                     }
                 });
                 memClient.set("memberCount", mc.toString(), {expires:60}, (err, val) => {
-                    console.log("NEW VALUE LOGGED: ", val);
+                    if(err) {
+                        console.log("MEMCACHED WRITE ERR: ", err);
+                        throw err;
+                    }
                 });
 	}, sampleInterval * 1000)
     }
