@@ -12,9 +12,8 @@ var memClient = memjs.Client.create(process.env.MEMCACHEDCLOUD_SERVERS, {
   username: process.env.MEMCACHEDCLOUD_USERNAME,
   password: process.env.MEMCACHEDCLOUD_PASSWORD
 });
-const raidWarnDiff = 0
-//const raidWarnDiff = 10
-const sampleInterval = 1.5
+const raidWarnDiff = 10
+const sampleInterval = 3
 
 const numCommands = 1
 const interval = 1
@@ -85,7 +84,7 @@ client.on('message', msg => {
                 memClient.get("memberCount", (err, val) => {
                     if(!err) {
                         const storedCount = Number(val);
-                        console.log("OLD VS NEW: ", storedCount, mc);
+                        //console.log("OLD VS NEW: ", storedCount, mc);
                         if(storedCount - mc >= raidWarnDiff) {
                             client.channels.fetch('817814828222775346') // coding
                             .then(channel => { 
