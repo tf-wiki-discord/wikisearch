@@ -66,6 +66,9 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setUsername('Rad, the GO!-Bot')
   client.user.setActivity('with Carlos and Alexis')
+  memClient.set("sentinelActive", "false", {expires:0}, (e, d) => {
+            console.log("sentinelActive set to false");
+        });
 });
 
 client.on('message', msg => {
@@ -80,8 +83,10 @@ client.on('message', msg => {
     
     if(msg.content === "$sentinel online" && msg.member.roles.cache.has('656250893678936077')) {
         console.log("User:", msg.author.username, "just activated Sentinel defense");
-        //const lst = client.guilds.cache.get('656241088826441729')
-        //lst.members.cache.forEach(member => console.log(member.user.username));
+	msg.channel.send("[Sentinel]: Acknowledged.")
+        memClient.set("sentinelActive", "true", {expires:0}, (e, d) => {
+            console.log("sentinelActive set to true");
+        });
 	var interval = setInterval (function () {
 		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
                 memClient.get("memberCount", (err, val) => {
@@ -105,6 +110,18 @@ client.on('message', msg => {
 	}, sampleInterval * 1000)
     }
 	  
+    if ( msg.content === "$sentinel status" ) {
+        memClient.get("memberCount", (err, val) => {
+            if(!err) {
+                if (val == "true") {
+                    msg.channel.send("Sentinel is online.");
+                }
+                else {
+                    msg.channel.send("Sentinel is offline.");
+                }
+            }
+        });
+    }
     if ( /flamewar/i.test(msg.content) ) {
         msg.react("<:flamewar:691696266400235590>");
     }
