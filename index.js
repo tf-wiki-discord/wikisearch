@@ -113,7 +113,7 @@ client.on('message', msg => {
     if ( msg.content === "$sentinel status" ) {
         memClient.get("memberCount", (err, val) => {
             if(!err) {
-                if (val.toString() == "true") {
+                if (val && val.toString() == "true") {
                     msg.channel.send("Sentinel is online.");
                 }
                 else {
