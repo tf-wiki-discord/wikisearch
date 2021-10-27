@@ -78,8 +78,8 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     
-    if(msg.content === "$loop" && msg.member.roles.cache.has('656250893678936077')) {
-        console.log("User: ", msg.author.username, " just activated loop defense");
+    if(msg.content === "$sentinel online" && msg.member.roles.cache.has('656250893678936077')) {
+        console.log("User:", msg.author.username, "just activated Sentinel defense");
         //const lst = client.guilds.cache.get('656241088826441729')
         //lst.members.cache.forEach(member => console.log(member.user.username));
 	var interval = setInterval (function () {
