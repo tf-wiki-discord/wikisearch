@@ -5,15 +5,7 @@ const RateLimiter = require('discord.js-rate-limiter')
 const fs = require('fs')
 const https = require('https')
 const csv = require('csv-parser')
-var memjs = require('memjs');
 require('dotenv').config()
-
-var memClient = memjs.Client.create(process.env.MEMCACHEDCLOUD_SERVERS, {
-  username: process.env.MEMCACHEDCLOUD_USERNAME,
-  password: process.env.MEMCACHEDCLOUD_PASSWORD
-});
-const raidWarnDiff = 6
-const sampleInterval = 15 
 
 const numCommands = 1
 const interval = 1
@@ -66,9 +58,6 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setUsername('Rad, the GO!-Bot')
   client.user.setActivity('with Carlos and Alexis')
-  memClient.set("sentinelActive", "false", {expires:0}, (e, d) => {
-            console.log("sentinelActive set to false");
-        });
 });
 
 client.on('message', msg => {
@@ -81,47 +70,6 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     
-    if(msg.content === "$sentinel online" && msg.member.roles.cache.has('656250893678936077')) {
-        console.log("User:", msg.author.username, "just activated Sentinel defense");
-	msg.channel.send("[Sentinel]: Acknowledged.")
-        memClient.set("sentinelActive", "true", {expires:0}, (e, d) => {
-            console.log("sentinelActive set to true");
-        });
-	var interval = setInterval (function () {
-		const mc = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
-                memClient.get("memberCount", (err, val) => {
-                    if(!err) {
-                        const storedCount = Number(val);
-                        //console.log("OLD VS NEW: ", storedCount, mc);
-                        if(storedCount != 0 && mc - storedCount >= raidWarnDiff) {
-                            client.channels.fetch('674281602200633348') 
-                            .then(channel => { 
-                                channel.send(`POTENTAL RAID WARNING: new member count (${mc}) differs from old (${storedCount}) by ${raidWarnDiff} or more in the past ${sampleInterval} seconds!`)
-                            })
-                        }
-                    }
-                });
-                memClient.set("memberCount", mc.toString(), {expires:60}, (err, val) => {
-                    if(err) {
-                        console.log("MEMCACHED WRITE ERR: ", err);
-                        throw err;
-                    }
-                });
-	}, sampleInterval * 1000)
-    }
-	  
-    if ( msg.content === "$sentinel status" ) {
-        memClient.get("sentinelActive", (err, val) => {
-            if(!err) {
-                if (val && val.toString() == "true") {
-                    msg.channel.send("Sentinel is online.");
-                }
-                else {
-                    msg.channel.send("Sentinel is offline.");
-                }
-            }
-        });
-    }
     if ( /flamewar/i.test(msg.content) ) {
         msg.react("<:flamewar:691696266400235590>");
     }
