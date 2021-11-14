@@ -73,7 +73,7 @@ client.on('message', msg => {
     if ( /flamewar/i.test(msg.content) ) {
         msg.react("<:flamewar:691696266400235590>");
     }
-    if ( /^\_?\*?bah\.?\,?\*?\_?!*$/i.test(msg.content) ) {
+    if ( /^~*\_?\*?bah\.?\,?\*?\_?~*!*$/i.test(msg.content) ) {
         msg.channel.send("Bah!");
     }
     
