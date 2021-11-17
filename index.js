@@ -77,9 +77,9 @@ client.on('message', msg => {
         msg.channel.send("Bah!");
     }
     
-//   if (/[thank you(,?) rad|thanks(,?) rad]/i.test(msg.content)) {
-//       msg.react("<:aboutTheTransformers:656259059854344202>");
-//   }
+   if (/[thank you(,?) rad|thanks(,?) rad]/i.test(msg.content)) {
+       msg.react("<:aboutTheTransformers:656259059854344202>");
+   }
       
     if (/!!gobox/.test(msg.content)) {
         const options = {
