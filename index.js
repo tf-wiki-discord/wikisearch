@@ -77,7 +77,7 @@ client.on('message', msg => {
         msg.channel.send("Bah!");
     }
     
-   if (/(thanks|thank you|big ups)(.*)rad/i.test(msg.content)) {
+   if (/(thanks|thank you|big ups|poggers|coggers|based|thankee|ty|themk|toggers)(.*)rad/i.test(msg.content)) {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
       
