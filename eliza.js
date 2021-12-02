@@ -1,8 +1,8 @@
 var elizaInitials = [
-"How do you do.  Please tell me your problem.",
+"Yo, what's up?  Anything on your mind?",
 // additions (not original)
-"Please tell me what's been bothering you.",
-"Is something troubling you?"
+"Hey! Please tell me what's been bothering you.",
+"Hey! Is something bothering you?"
 ];
 
 var elizaFinals = [
@@ -95,7 +95,7 @@ var elizaKeywords = [
      "Do you feel strongly about discussing such things?",
      "That is interesting.  Please continue.",
      "Tell me more about that.",
-     "Does talking about this bother you ?"
+     "Does talking about this bother you?"
   ]]
 ]],
 ["sorry", 0, [
