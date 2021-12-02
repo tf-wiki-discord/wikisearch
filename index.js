@@ -5,7 +5,7 @@ const RateLimiter = require('discord.js-rate-limiter')
 const fs = require('fs')
 const https = require('https')
 const csv = require('csv-parser')
-const chatbot = require('eliza')
+const chatbot = require('./eliza')
 require('dotenv').config()
 
 const numCommands = 1
