@@ -5,6 +5,7 @@ const RateLimiter = require('discord.js-rate-limiter')
 const fs = require('fs')
 const https = require('https')
 const csv = require('csv-parser')
+const chatbot = require('eliza')
 require('dotenv').config()
 
 const numCommands = 1
@@ -77,11 +78,27 @@ client.on('message', msg => {
         msg.channel.send("Bah!");
     }
     
-   if (/(thanks|thank you|big ups|poggers|coggers|based|thankee|themk|toggers)(.*)rad/i.test(msg.content)) {
+   if (/(thanks|thank you|big ups|poggers|coggers|based|thankee|themk|toggers),? \brad\b/i.test(msg.content)) {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
       
-    if (/!!gobox/.test(msg.content)) {
+   if (/!!rad (.*)/i.test(msg.content)) {
+ 
+        var eliza = new chatbot.ElizaBot();
+        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
+
+        if (chatbotinput) {
+                var out = eliza.transform(chatbotinput);
+                console.log('YOU:   '+chatbotinput);
+                console.log('ELIZA: '+out);
+        }		
+        else
+        {
+                var out = eliza.getInitial();
+                console.log('ELIZA: '+out);
+        }
+   }
+   if (/!!gobox/.test(msg.content)) {
         const options = {
             hostname: 'tfwiki.net',
             port: 443,
