@@ -90,7 +90,7 @@ client.on('message', msg => {
        fs.createReadStream("badwords.csv")
        .pipe(csv())
        .on("data", (row) => {
-           if (bad.indexOf(row.badwords) != -1)  {
+           if (chatbotinput.indexOf(row.badwords) != -1)  {
                msg.reply("I...don't think I should be talking about this...")
            }
            else {
