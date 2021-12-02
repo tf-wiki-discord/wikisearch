@@ -936,4 +936,4 @@ ElizaBot.prototype.getInitial = function() {
         if (!elizaInitials) return '';
         return elizaInitials[Math.floor(Math.random()*elizaInitials.length)];
 }
-module.exports.Elizabot = Elizabot;
+module.exports.ElizaBot = ElizaBot;
