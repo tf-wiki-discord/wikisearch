@@ -97,11 +97,13 @@ client.on('message', msg => {
                 if (chatbotinput) {
                         var out = eliza.transform(chatbotinput);
                         msg.reply(out)
+                        return
                 }		
                 else
                 {
                         var out = eliza.getInitial();
                         msg.reply(out)
+                        return
                 }
            }
 
