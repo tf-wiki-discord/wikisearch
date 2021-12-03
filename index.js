@@ -88,12 +88,13 @@ client.on('message', msg => {
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
        
        var oktext = true
-       fs.createReadStream("badwords.csv")
+       fs.readFileSync("badwords.csv")
             .pipe(csv())
             .on("data", (row) => {
                 if (chatbotinput.indexOf(row.badwords) != -1)  {
                    console.log("bad word logged")
                    oktext = false
+                   msg.reply("I...don't think I should be talking about this...");
                 }
             })
         if(oktext) {
@@ -108,7 +109,6 @@ client.on('message', msg => {
                }		
            }
        else {
-            msg.reply("I...don't think I should be talking about this...");
        }
    }
    if (/!!gobox/.test(msg.content)) {
