@@ -394,7 +394,7 @@ var elizaKeywords = [
          "That's quite interesting."
   ]]
 ]],
-["you", 0, [
+["you", 2, [
  ["* you remind me of *", [
          "goto alike"
   ]],
@@ -420,7 +420,7 @@ var elizaKeywords = [
          "What are your feelings now ?"
   ]]
 ]],
-["yes", 0, [
+["yes", 4, [
  ["*", [
          "You seem to be quite positive.",
          "You are sure.",
@@ -428,7 +428,7 @@ var elizaKeywords = [
          "I understand."
   ]]
 ]],
-["no", 0, [
+["no", 5, [
  ["* no one *", [
          "Are you sure, no one (2) ?",
          "Surely someone (2) .",
@@ -465,7 +465,7 @@ var elizaKeywords = [
          "Is it important to you that your (2) ?"
   ]]
 ]],
-["can", 0, [
+["can", 6, [
  ["* can you *", [
          "You believe I can (2) don't you ?",
          "goto what",
@@ -479,7 +479,7 @@ var elizaKeywords = [
          "goto what"
   ]]
 ]],
-["what", 0, [
+["what", 8, [
  ["*", [
          "Why do you ask ?",
          "Does that question interest you ?",
