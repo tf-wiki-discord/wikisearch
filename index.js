@@ -103,7 +103,7 @@ client.on('message', msg => {
             })
             .on("end", () => {
                 if(oktext) {
-                   if(/(hi|hello|hey|greetings)/i.test(chatbotinput) ) {
+                   if(/(\bhi\b|\bhello\b|\bhey\b|\bgreetings\b)/i.test(chatbotinput) ) {
                        msg.reply(eliza.getInitial());
                    }
                    else if( /(bye|goodbye|see ya)/i.test(chatbotinput) ) {
