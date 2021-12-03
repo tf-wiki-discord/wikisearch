@@ -82,7 +82,8 @@ client.on('message', msg => {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
       
-   if (/!!rad (.*)/i.test(msg.content)) {
+   // wreck-room, mod, coding
+   if (/!!rad (.*)/i.test(msg.content) && (msg.channelId == '669519559283179543' || msg.channelId == '674281602200633348' || msg.channelId == '817814828222775346') {
  
        var eliza = new chatbot.ElizaBot();
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
