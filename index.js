@@ -88,17 +88,15 @@ client.on('message', msg => {
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
        
        const validator = new Promise((res, rej) => {
-            var oktext = true;
             fs.createReadStream("badwords.csv")
             .pipe(csv())
             .on("data", (row) => {
                 if (chatbotinput.indexOf(row.badwords) != -1)  {
-                   oktext = false
                    console.log("bad word logged")
-                   rej(oktext)
+                   rej(true)
                 }
             })
-            res(oktext)
+            res(true)
        })
        validator.then( ok => {
            console.log("THEN branch")
