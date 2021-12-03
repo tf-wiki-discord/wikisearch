@@ -84,6 +84,7 @@ client.on('message', msg => {
       
    if (/!!rad (.*)/i.test(msg.content)) {
  
+       var oktext = true;
        var eliza = new chatbot.ElizaBot();
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
        
@@ -91,23 +92,24 @@ client.on('message', msg => {
        .pipe(csv())
        .on("data", (row) => {
            if (chatbotinput.indexOf(row.badwords) != -1)  {
-               msg.reply("I...don't think I should be talking about this...")
+               msg.reply("I...don't think I should be talking about this...");
+               oktext = false;
            }
-           else {
+           return oktext
+       }).then(ok => {
+           if(ok) {
                 if (chatbotinput) {
                         var out = eliza.transform(chatbotinput);
                         msg.reply(out)
-                        return
                 }		
                 else
                 {
                         var out = eliza.getInitial();
                         msg.reply(out)
-                        return
                 }
            }
-
        })
+
    }
    if (/!!gobox/.test(msg.content)) {
         const options = {
