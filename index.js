@@ -86,7 +86,7 @@ client.on('message', msg => {
    // wreck-room, mod, coding
    if (/!!rad (.*)/i.test(msg.content)) {
  
-    console.log("MSG CHANNEL ID: ", msg.channelId)
+    console.log("MSG CHANNEL ID: ", msg)
        var eliza = new chatbot.ElizaBot();
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
        
@@ -95,7 +95,7 @@ client.on('message', msg => {
             .pipe(csv())
             .on("data", (row) => {
                 if (chatbotinput.indexOf(row.badwords) != -1)  {
-                   console.log("bad word logged")
+                   console.log("bad word logged:", row.badwords)
                    oktext = false
                    msg.reply("I...don't think I should be talking about this...");
                 }
