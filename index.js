@@ -93,8 +93,8 @@ client.on('message', msg => {
             .pipe(csv())
             .on("data", (row) => {
                 if (chatbotinput.indexOf(row.badwords) != -1)  {
-                   msg.reply("I...don't think I should be talking about this...");
                    oktext = false
+                   rej(oktext)
                 }
             })
             res(oktext)
@@ -111,7 +111,10 @@ client.on('message', msg => {
                    msg.reply(eliza.transform(chatbotinput));
                }		
            }
+       }).catch( ok => {
+            msg.reply("I...don't think I should be talking about this...");
        })
+
 //       fs.createReadStream("badwords.csv")
 //       .pipe(csv())
 //       .on("data", (row) => {
