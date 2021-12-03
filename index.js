@@ -94,12 +94,14 @@ client.on('message', msg => {
             .on("data", (row) => {
                 if (chatbotinput.indexOf(row.badwords) != -1)  {
                    oktext = false
+                   console.log("bad word logged")
                    rej(oktext)
                 }
             })
             res(oktext)
        })
        validator.then( ok => {
+           console.log("THEN branch")
            if(ok) {
                if(/(hi|hello|hey|greetings)/i.test(chatbotinput) ) {
                    msg.reply(eliza.getInitial());
@@ -112,6 +114,7 @@ client.on('message', msg => {
                }		
            }
        }).catch( ok => {
+           console.log("catch branch")
             msg.reply("I...don't think I should be talking about this...");
        })
 
