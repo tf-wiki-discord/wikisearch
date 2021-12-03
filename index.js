@@ -87,20 +87,16 @@ client.on('message', msg => {
        var eliza = new chatbot.ElizaBot();
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
        
-       const validator = new Promise((res, rej) => {
-            fs.createReadStream("badwords.csv")
+       var oktext = true
+       fs.createReadStream("badwords.csv")
             .pipe(csv())
             .on("data", (row) => {
                 if (chatbotinput.indexOf(row.badwords) != -1)  {
                    console.log("bad word logged")
-                   rej(true)
+                   oktext = false
                 }
             })
-            res(true)
-       })
-       validator.then( ok => {
-           console.log("THEN branch")
-           if(ok) {
+        if(oktext) {
                if(/(hi|hello|hey|greetings)/i.test(chatbotinput) ) {
                    msg.reply(eliza.getInitial());
                }
@@ -111,33 +107,9 @@ client.on('message', msg => {
                    msg.reply(eliza.transform(chatbotinput));
                }		
            }
-       }).catch( ok => {
-           console.log("catch branch")
+       else {
             msg.reply("I...don't think I should be talking about this...");
-       })
-
-//       fs.createReadStream("badwords.csv")
-//       .pipe(csv())
-//       .on("data", (row) => {
-//           if (chatbotinput.indexOf(row.badwords) != -1)  {
-//               msg.reply("I...don't think I should be talking about this...");
-//               oktext = false;
-//           }
-//           return oktext
-//       }).then(ok => {
-//           if(ok) {
-//                if (chatbotinput) {
-//                        var out = eliza.transform(chatbotinput);
-//                        msg.reply(out)
-//                }		
-//                else
-//                {
-//                        var out = eliza.getInitial();
-//                        msg.reply(out)
-//                }
-//           }
-//       })
-
+       }
    }
    if (/!!gobox/.test(msg.content)) {
         const options = {
