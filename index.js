@@ -102,10 +102,10 @@ client.on('message', msg => {
        validator.then( ok => {
            if(ok) {
                if(/(hi|hello|hey|greetings)/i.test(chatbotinput) ) {
-                   msg.reply(eliza.getInitial();
+                   msg.reply(eliza.getInitial());
                }
                else if( /(bye|goodbye|see ya)/i.test(chatbotinput) ) {
-                   msg.reply(eliza.getFinal();
+                   msg.reply(eliza.getFinal());
                }
                else if (chatbotinput) {
                    msg.reply(eliza.transform(chatbotinput));
