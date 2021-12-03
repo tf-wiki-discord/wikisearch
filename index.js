@@ -81,10 +81,12 @@ client.on('message', msg => {
    if (/(thanks|thank you|big ups|poggers|coggers|based|thankee|themk|toggers),? \brad\b/i.test(msg.content)) {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
+   //if (/!!rad (.*)/i.test(msg.content) && (msg.channelId == '669519559283179543' || msg.channelId == '674281602200633348' || msg.channelId == '817814828222775346')) {
       
    // wreck-room, mod, coding
-   if (/!!rad (.*)/i.test(msg.content) && (msg.channelId == '669519559283179543' || msg.channelId == '674281602200633348' || msg.channelId == '817814828222775346')) {
+   if (/!!rad (.*)/i.test(msg.content)) {
  
+    console.log("MSG CHANNEL ID: ", msg.channelId)
        var eliza = new chatbot.ElizaBot();
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
        
