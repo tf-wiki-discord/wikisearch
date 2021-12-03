@@ -88,7 +88,7 @@ client.on('message', msg => {
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
        
        var oktext = true
-       fs.readFileSync("badwords.csv")
+       fs.createReadStream("badwords.csv")
             .pipe(csv())
             .on("data", (row) => {
                 if (chatbotinput.indexOf(row.badwords) != -1)  {
@@ -97,19 +97,19 @@ client.on('message', msg => {
                    msg.reply("I...don't think I should be talking about this...");
                 }
             })
-        if(oktext) {
-               if(/(hi|hello|hey|greetings)/i.test(chatbotinput) ) {
-                   msg.reply(eliza.getInitial());
+            .on("end", () => {
+                if(oktext) {
+                   if(/(hi|hello|hey|greetings)/i.test(chatbotinput) ) {
+                       msg.reply(eliza.getInitial());
+                   }
+                   else if( /(bye|goodbye|see ya)/i.test(chatbotinput) ) {
+                       msg.reply(eliza.getFinal());
+                   }
+                   else if (chatbotinput) {
+                       msg.reply(eliza.transform(chatbotinput));
+                   }		
                }
-               else if( /(bye|goodbye|see ya)/i.test(chatbotinput) ) {
-                   msg.reply(eliza.getFinal());
-               }
-               else if (chatbotinput) {
-                   msg.reply(eliza.transform(chatbotinput));
-               }		
-           }
-       else {
-       }
+            })
    }
    if (/!!gobox/.test(msg.content)) {
         const options = {
