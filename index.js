@@ -101,15 +101,15 @@ client.on('message', msg => {
        })
        validator.then( ok => {
            if(ok) {
-                if (chatbotinput) {
-                        var out = eliza.transform(chatbotinput);
-                        msg.reply(out)
-                }		
-                else
-                {
-                        var out = eliza.getInitial();
-                        msg.reply(out)
-                }
+               if(/(hi|hello|hey|greetings)/i.test(chatbotinput) ) {
+                   msg.reply(eliza.getInitial();
+               }
+               else if( /(bye|goodbye|see ya)/i.test(chatbotinput) ) {
+                   msg.reply(eliza.getFinal();
+               }
+               else if (chatbotinput) {
+                   msg.reply(eliza.transform(chatbotinput));
+               }		
            }
        })
 //       fs.createReadStream("badwords.csv")
