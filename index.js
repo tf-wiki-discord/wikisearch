@@ -17,6 +17,10 @@ const templateImageRE = /image=.*(jpg|jpeg|png)/i
 const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
 
+function findWord(word, str) {
+  return RegExp('\\b'+ word +'\\b').test(str)
+}
+
 function bestFirst(list) {
     //given a list of newline-separated lines,
     //pick the first one that starts with a letter, a quote, or a bold
@@ -94,7 +98,7 @@ client.on('message', msg => {
        fs.createReadStream("badwords.csv")
             .pipe(csv())
             .on("data", (row) => {
-                if (chatbotinput.indexOf(row.badwords) != -1)  {
+                if (findWord(row.badwords, chatbotinput)) {
                    console.log("bad word logged:", row.badwords)
                    oktext = false
                    msg.reply("I...don't think I should be talking about this...");
