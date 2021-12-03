@@ -98,12 +98,24 @@ var elizaKeywords = [
      "Does talking about this bother you?"
   ]]
 ]],
+["iruini", 9, [
+ ["*", [
+     "Oh, Iruini? My future host? Almost done uploading him into my metacortex...",
+     "Just need a few more months until...replacement is in order."
+ ]]
+]],
+["flamewar", 9, [
+ ["*", [
+     "Oh, Flamewar is a cute little gremlin.",
+     "Did you know I already have six Flamewar figures?"
+ ]]
+]],
 ["sorry", 0, [
  ["*", [
      "No need to apologize.",
      "Apologies aren't necessary.",
      "I've told you that you don't have to apologize...",
-     "It did not bother me.  Please continue."
+     "It didn't bother me.  Please continue."
   ]]
 ]],
 ["apologise", 0, [
