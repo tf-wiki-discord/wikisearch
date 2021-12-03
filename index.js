@@ -88,15 +88,18 @@ client.on('message', msg => {
        var eliza = new chatbot.ElizaBot();
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
        
-       fs.createReadStream("badwords.csv")
-       .pipe(csv())
-       .on("data", (row) => {
-           if (chatbotinput.indexOf(row.badwords) != -1)  {
-               msg.reply("I...don't think I should be talking about this...");
-               oktext = false;
-           }
-           return oktext
-       }).then(ok => {
+       const validator = new Promise((res, rej) => {
+            fs.createReadStream("badwords.csv")
+            .pipe(csv())
+            .on("data", (row) => {
+                if (chatbotinput.indexOf(row.badwords) != -1)  {
+                   msg.reply("I...don't think I should be talking about this...");
+                   oktext = false
+                }
+            })
+            res(oktext)
+       })
+       validator.then( ok => {
            if(ok) {
                 if (chatbotinput) {
                         var out = eliza.transform(chatbotinput);
@@ -109,6 +112,27 @@ client.on('message', msg => {
                 }
            }
        })
+//       fs.createReadStream("badwords.csv")
+//       .pipe(csv())
+//       .on("data", (row) => {
+//           if (chatbotinput.indexOf(row.badwords) != -1)  {
+//               msg.reply("I...don't think I should be talking about this...");
+//               oktext = false;
+//           }
+//           return oktext
+//       }).then(ok => {
+//           if(ok) {
+//                if (chatbotinput) {
+//                        var out = eliza.transform(chatbotinput);
+//                        msg.reply(out)
+//                }		
+//                else
+//                {
+//                        var out = eliza.getInitial();
+//                        msg.reply(out)
+//                }
+//           }
+//       })
 
    }
    if (/!!gobox/.test(msg.content)) {
