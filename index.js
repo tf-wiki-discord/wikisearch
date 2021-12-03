@@ -86,9 +86,7 @@ client.on('message', msg => {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
       
-   if (/!!rad (.*)/i.test(msg.content) && (msg.channel.name.includes("wreck-room") 
-                                        || msg.channel.name.includes("coding")
-                                        || msg.channel.name.includes("moderation")) {
+   if (/!!rad (.*)/i.test(msg.content) && (msg.channel.name.includes("wreck-room") || msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
  
        var eliza = new chatbot.ElizaBot();
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
