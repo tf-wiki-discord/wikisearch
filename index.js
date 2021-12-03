@@ -84,11 +84,11 @@ client.on('message', msg => {
       
    if (/!!rad (.*)/i.test(msg.content)) {
  
-       var oktext = true;
        var eliza = new chatbot.ElizaBot();
        var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
        
        const validator = new Promise((res, rej) => {
+            var oktext = true;
             fs.createReadStream("badwords.csv")
             .pipe(csv())
             .on("data", (row) => {
