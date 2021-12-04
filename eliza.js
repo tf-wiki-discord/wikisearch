@@ -135,7 +135,7 @@ var elizaKeywords = [
 ]],
 ["rad", 9, [
  ["*", [
-     "You. You keep talking. I like hearing about me."
+     "You. You keep talking. I like hearing about me.",
      "Yes, I'm Rad. You know? The guy who wants to tell you about the Transformers? Now, back to you..."
  ]]
 ]],
