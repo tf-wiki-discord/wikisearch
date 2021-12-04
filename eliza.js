@@ -98,6 +98,13 @@ var elizaKeywords = [
      "Does talking about this bother you?"
   ]]
 ]],
+["transformers", 9, [
+ ["*", [
+     "Hi! My name's Rad, and I wanna tell you about the Transformers, mechanical beings from another world!",
+     "There's the Autobots, the good guys, and the Decepticons. They're all fighting over a tiny race of robots called the Mini-Cons.",
+     "The Decepticons want to collect the Mini-Cons and use'em, but the Autobots'll put a stop to that!"
+ ]]
+]],
 ["iruini", 9, [
  ["*", [
      "Oh, Iruini? My future host? Almost done uploading him into my metacortex...",
@@ -108,6 +115,27 @@ var elizaKeywords = [
  ["*", [
      "Oh, Flamewar is a cute little gremlin.",
      "Did you know I already have six Flamewar figures?"
+ ]]
+]],
+["among", 9, [
+ ["* among us *", [
+     "Do you actually even play Among Us?",
+     "Next you'll call me 'sus'? Ooooh, wow, sick burn"
+ ]]
+]],
+["pat", 9, [
+ ["* pat lee *", [
+     "Never speak that name again."
+ ]]
+]],
+["thank", 9, [
+ ["* thank you *", [
+     "You had me at 'thank'. You're welcome."
+ ]]
+]],
+["rad", 9, [
+ ["*", [
+     "You. You keep talking. I like hearing about me."
  ]]
 ]],
 ["sorry", 0, [
