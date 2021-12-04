@@ -298,7 +298,7 @@ var elizaKeywords = [
          "I don't understand that."
   ]]
 ]],
-["are", 0, [
+["are", 1, [
  ["* are you *", [
          "Why are you interested in whether I am (2) or not ?",
          "Would you prefer if I weren't (2) ?",
@@ -320,7 +320,7 @@ var elizaKeywords = [
          "Are you positive they are (2) ?"
   ]]
 ]],
-["your", 0, [
+["your", 2, [
  ["* your *", [
          "Why are you concerned over my (2) ?",
          "What about your own (2) ?",
@@ -351,7 +351,7 @@ var elizaKeywords = [
          "What if I had been (2) ?"
   ]]
 ]],
-["i", 0, [
+["i", 3, [
  ["* i @desire *", [
          "What would it mean to you if you got (3) ?",
          "Why do you want (3) ?",
@@ -567,7 +567,7 @@ var elizaKeywords = [
          "goto what"
   ]]
 ]],
-["everyone", 2, [
+["everyone", 3, [
  ["* @everyone *", [
          "Really, (2) ?",
          "Surely not (2).",
