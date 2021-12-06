@@ -111,6 +111,12 @@ var elizaKeywords = [
      "Just need a few more months until...replacement is in order."
  ]]
 ]],
+["shiny", 9, [
+ ["*", [
+     "Incorrect opinion scanners: 0% detected",
+     "I tried pilk, am addicted."
+ ]]
+]],
 ["based", 9, [
  ["*", [
      "Based? Based on what?"
