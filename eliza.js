@@ -117,6 +117,31 @@ var elizaKeywords = [
      "I tried pilk, am addicted."
  ]]
 ]],
+["tindalos", 9, [
+ ["*", [
+     "I think he's got a chart for that."
+ ]]
+]],
+["vagdra", 9, [
+ ["*", [
+     "Ahh yes, the honorary Primus Vanguardian."
+ ]]
+]],
+["star-spangled", 9, [
+ ["*", [
+     "Star-Spangled Sam, Commander of the Blue Order!"
+ ]]
+]],
+["broadside", 9, [
+ ["*", [
+     "(JIAI) Jo!",
+ ]]
+]],
+["wadapan", 9, [
+ ["*", [
+     "wadsssspinator"
+ ]]
+]],
 ["skysplitter", 9, [
  ["*", [
      "Zack! Zack! Legomaniac"
