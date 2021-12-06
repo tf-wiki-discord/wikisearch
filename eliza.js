@@ -111,6 +111,11 @@ var elizaKeywords = [
      "Just need a few more months until...replacement is in order."
  ]]
 ]],
+["based", 9, [
+ ["*", [
+     "Based? Based on what?"
+ ]]
+]],
 ["flamewar", 9, [
  ["*", [
      "Oh, Flamewar is a cute little gremlin.",
