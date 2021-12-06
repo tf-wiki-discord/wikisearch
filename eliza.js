@@ -117,6 +117,21 @@ var elizaKeywords = [
      "I tried pilk, am addicted."
  ]]
 ]],
+["skysplitter", 9, [
+ ["*", [
+     "Zack! Zack! Legomaniac"
+ ]]
+]],
+["mcfeely", 9, [
+ ["*", [
+     "The BASICS on Rad: I wanna tell you about the Transformers."
+ ]]
+]],
+["comfy", 9, [
+ ["*", [
+     "Uncertain if I'm talking with a human or cloth of some kind."
+ ]]
+]],
 ["victor", 9, [
  ["*", [
      "Hey! GGs on GG!",
