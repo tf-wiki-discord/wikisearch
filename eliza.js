@@ -117,6 +117,12 @@ var elizaKeywords = [
      "I tried pilk, am addicted."
  ]]
 ]],
+["victor", 9, [
+ ["*", [
+     "Hey! GGs on GG!",
+     "Am I on the iceberg?"
+ ]]
+]],
 ["based", 9, [
  ["*", [
      "Based? Based on what?"
