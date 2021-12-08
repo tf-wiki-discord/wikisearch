@@ -111,6 +111,16 @@ var elizaKeywords = [
      "Just need a few more months until...replacement is in order."
  ]]
 ]],
+["mcbaggins", 9, [
+ ["*", [
+     "Okay. I'll allow you one Among Us posting. ONE."
+ ]]
+]],
+["radiant", 9, [
+ ["*", [
+     "Prime Radiant is a block-colored background character from the G1 continuity family."
+ ]]
+]],
 ["shiny", 9, [
  ["*", [
      "Incorrect opinion scanners: 0% detected",
