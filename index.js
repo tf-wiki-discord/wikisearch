@@ -289,7 +289,15 @@ client.on('message', msg => {
                 var captionline = data.match(captionRE)
                 const captionarray = captionline[0].split("|")
                 var caption = captionarray.pop()
-                caption = caption.slice(0, caption.length-2)
+                caption = caption.replace(/'''/g, "");
+                caption = caption.replace( /(<ref>.*?<\/ref>)/g, ""); // remove ref tags, assuming they aren't nested
+                caption = caption.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2") // change [[abc|123]] to 123
+                caption = caption.replace(/\{\{w\|([^\}\}]*?)\|(.*?)\}\}/g, "$2") // remove wikipedia links
+                caption = caption.replace(/\{\{storylink\|([^\}\}]*?)\|(.*?)\}\}/g, "(From: $2)")  // prettify storylinks
+                caption = caption.replace(/\{\{([^\}\}]*?)\|(.*?)\}\}/g, "$2") // change {{abc|123}} to 123
+                caption = caption.replace(/\[\[/g, ""); // remove opening tags
+                caption = caption.replace(/\]\]/g, ""); // remove closing tags
+                //caption = caption.slice(0, caption.length-2)
                 console.log("Caption? " +  caption)
 
               console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL) IN ARTICLE: "+matches[0])
