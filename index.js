@@ -287,10 +287,9 @@ client.on('message', msg => {
             }
             else if(matches) {
                 var captionline = data.match(captionRE)
-                //const captionarray = captionline.split("|")
-                //var caption = captionarray.pop()
-                console.log("Caption? " + typeof captionline)
-                console.log("Caption0? " + typeof captionline[0])
+                const captionarray = captionline[0].split("|")
+                var caption = captionarray.pop()
+                console.log("Caption? " +  caption)
 
               console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL) IN ARTICLE: "+matches[0])
                 imageName = matches[0].split(" ").join("_");
