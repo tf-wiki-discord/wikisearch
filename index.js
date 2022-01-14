@@ -281,11 +281,12 @@ client.on('message', msg => {
             const templateMatches = data.match(templateImageRE)
             const matches = data.match(imageRE)
             if(templateMatches) {
-                console.log("(msg from " + author + "): TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
+                console.log("(msg from " + author + "): TEMPLATE FOUND (URL) IN ARTICLE: " + templateMatches[0].split(" ").join("_").slice(6))
                 imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
             }
             else if(matches) {
-                console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL): "+matches[0])
+                console.log(matches)
+                console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL) IN ARTICLE: "+matches[0])
                 imageName = matches[0].split(" ").join("_");
             }
             if(imageName) {
