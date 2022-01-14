@@ -16,7 +16,7 @@ let rateLimiter = new RateLimiter.RateLimiter(numCommands, intervalSec)
 const templateImageRE = /image=.*(jpg|jpeg|png)/i
 const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
-const captionRE = /File:.*]]|Image:.*]]/
+const captionRE = /File:.*]].*<br>|Image:.*]].*<br>/i
 
 function findWord(word, str) {
   return RegExp('\\b'+ word +'\\b').test(str)
