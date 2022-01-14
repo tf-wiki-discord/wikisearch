@@ -16,6 +16,7 @@ let rateLimiter = new RateLimiter.RateLimiter(numCommands, intervalSec)
 const templateImageRE = /image=.*(jpg|jpeg|png)/i
 const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
+const captionRE = /[Image:|File:]/
 
 function findWord(word, str) {
   return RegExp('\\b'+ word +'\\b').test(str)
@@ -285,7 +286,8 @@ client.on('message', msg => {
                 imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
             }
             else if(matches) {
-                console.log(matches[0])
+                var captionline = data.match(captionRE)
+                console.log("Caption? " + captionline[0])
                 console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL) IN ARTICLE: "+matches[0])
                 imageName = matches[0].split(" ").join("_");
             }
