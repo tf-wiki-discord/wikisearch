@@ -285,7 +285,7 @@ client.on('message', msg => {
                 imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
             }
             else if(matches) {
-                console.log(matches)
+                console.log(matches[0])
                 console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL) IN ARTICLE: "+matches[0])
                 imageName = matches[0].split(" ").join("_");
             }
