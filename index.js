@@ -14,7 +14,7 @@ const intervalSec = interval * 1000
 let rateLimiter = new RateLimiter.RateLimiter(numCommands, intervalSec)
 
 const templateImageRE = /image=.*(jpg|jpeg|png)/i
-const templateCaptionRE = /caption=/i
+const templateCaptionRE = /caption=(.*)/i
 const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
 const captionRE = /File:.*]]|Image:.*]]/i
