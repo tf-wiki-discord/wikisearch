@@ -291,7 +291,7 @@ client.on('message', msg => {
             }
             else if(matches) {
                 var captionline = data.match(captionRE)
-                caption = captionline.input
+                caption = captionline[1]
                 console.log("CAPTION: " + captionline)
                 caption = caption.replace(/'''/g, "");
                 caption = caption.replace( /(<ref>.*?<\/ref>)/g, ""); // remove ref tags, assuming they aren't nested
