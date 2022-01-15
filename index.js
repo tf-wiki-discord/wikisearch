@@ -316,7 +316,7 @@ client.on('message', msg => {
             if(imageName) {
                  // get the direct image file path via Special:FilePath
                  radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
-                 if(caption != undefined) {
+                 if(caption != undefined && caption != "left" && caption != "right" && !caption.test(/px/) ) {
                    radEmbed.footer = {text: caption}
                  }
             }
