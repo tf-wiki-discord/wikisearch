@@ -239,27 +239,10 @@ client.on('message', msg => {
       const templateMatches = pageURL.match(templateImageRE)
       const matches = pageURL.match(imageRE)
       if(templateMatches) {
-         var captionline = pageURL.match(templateCaptionRE)
-                caption = captionline[0]
-                caption = caption.split("=")[1]
         console.log("(msg from " + author + "): TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
         imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
       }
       else if(matches) {
-        var captionline = pageURL.match(captionRE)
-                caption = captionline[0]
-                if(caption) {
-                caption = caption.replace(/'''/g, "");
-                caption = caption.replace( /(<ref>.*?<\/ref>)/g, ""); // remove ref tags, assuming they aren't nested
-                caption = caption.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2") // change [[abc|123]] to 123
-                caption = caption.replace(/\{\{w\|([^\}\}]*?)\|(.*?)\}\}/g, "$2") // remove wikipedia links
-                caption = caption.replace(/\{\{storylink\|([^\}\}]*?)\|(.*?)\}\}/g, "(From: $2)")  // prettify storylinks
-                caption = caption.replace(/\{\{([^\}\}]*?)\|(.*?)\}\}/g, "$2") // change {{abc|123}} to 123
-                caption = caption.replace(/\[\[/g, ""); // remove opening tags
-                caption = caption.replace(/\]\]/g, ""); // remove closing tags
-                caption = caption.split("|").pop()
-                console.log("Caption? " +  caption)
-                }
         console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL): "+matches[0])
         imageName = matches[0].split(" ").join("_");
       }
