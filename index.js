@@ -304,6 +304,8 @@ client.on('message', msg => {
                 caption = caption.replace(/\{\{([^\}\}]*?)\|(.*?)\}\}/g, "$2") // change {{abc|123}} to 123
                 caption = caption.replace(/\[\[/g, ""); // remove opening tags
                 caption = caption.replace(/\]\]/g, ""); // remove closing tags
+                caption = caption.replace(/''/g, "");
+                caption = caption.replace(/<br><hr>/g, ": ");
                 caption = caption.split("|").pop()
                 console.log("Caption? " +  caption)
                 }
