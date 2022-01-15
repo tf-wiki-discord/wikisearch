@@ -302,8 +302,6 @@ client.on('message', msg => {
                 caption = caption.replace(/\{\{([^\}\}]*?)\|(.*?)\}\}/g, "$2") // change {{abc|123}} to 123
                 caption = caption.replace(/\[\[/g, ""); // remove opening tags
                 caption = caption.replace(/\]\]/g, ""); // remove closing tags
-                console.log("Scrubbed caption: "
-                //caption = caption.slice(0, caption.length-2)
                 console.log("Caption? " +  caption)
 
               console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL) IN ARTICLE: "+matches[0])
