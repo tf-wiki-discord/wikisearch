@@ -14,6 +14,7 @@ const intervalSec = interval * 1000
 let rateLimiter = new RateLimiter.RateLimiter(numCommands, intervalSec)
 
 const templateImageRE = /image=.*(jpg|jpeg|png)/i
+const templateCaptionRE = /caption=(.*?)/i
 const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
 const captionRE = /File:.*]]|Image:.*]]/i
@@ -198,7 +199,6 @@ client.on('message', msg => {
     }
     
     else if (/\[\[(.*?)\]\]/.test(msg.content)) {
-       //     else if (/\[\[(.*?)\]\]/.test(msg.content) || /^rad look up (.*?) on the wiki$/.test(msg.content)) {
 
         var author = msg.author.username
 
@@ -209,7 +209,6 @@ client.on('message', msg => {
            return;
         }
         
-       
       //strip off the [[ ]]s
       var pageName = msg.content.match(/\[\[(.*?)\]\]/)[1];
       var pageNameSlug = pageName.split(" ").join("_");
@@ -281,7 +280,12 @@ client.on('message', msg => {
         if(!imageName) {
             const templateMatches = data.match(templateImageRE)
             const matches = data.match(imageRE)
+            var caption = ''
             if(templateMatches) {
+                var captionline = data.match(templateCaptionRE)
+                const captionarray = captionline[0].split("|")
+                var caption = captionarray.pop()
+                console.log("TEMPLATE CAPTION: " + caption)
                 console.log("(msg from " + author + "): TEMPLATE FOUND (URL) IN ARTICLE: " + templateMatches[0].split(" ").join("_").slice(6))
                 imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
             }
