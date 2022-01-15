@@ -16,7 +16,7 @@ let rateLimiter = new RateLimiter.RateLimiter(numCommands, intervalSec)
 const templateImageRE = /image=.*(jpg|jpeg|png)/i
 const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
-const captionRE = /File:.*]].*(<br>)?|Image:.*]].*(<br>)?/i
+const captionRE = /File:.*]]|Image:.*]]/i
 
 function findWord(word, str) {
   return RegExp('\\b'+ word +'\\b').test(str)
@@ -289,7 +289,7 @@ client.on('message', msg => {
                 var captionline = data.match(captionRE)
                 const captionarray = captionline[0].split("|")
                 var caption = captionarray.pop()
-                console.log("CAPTION: " + captionarray)
+                console.log("CAPTION: " + captionline)
                 caption = caption.replace(/'''/g, "");
                 caption = caption.replace( /(<ref>.*?<\/ref>)/g, ""); // remove ref tags, assuming they aren't nested
                 caption = caption.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2") // change [[abc|123]] to 123
