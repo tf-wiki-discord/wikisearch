@@ -239,14 +239,14 @@ client.on('message', msg => {
       const templateMatches = pageURL.match(templateImageRE)
       const matches = pageURL.match(imageRE)
       if(templateMatches) {
-         var captionline = data.match(templateCaptionRE)
+         var captionline = pageURL.match(templateCaptionRE)
                 caption = captionline[0]
                 caption = caption.split("=")[1]
         console.log("(msg from " + author + "): TEMPLATE FOUND (URL): " + templateMatches[0].split(" ").join("_").slice(6))
         imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
       }
       else if(matches) {
-        var captionline = data.match(captionRE)
+        var captionline = pageURL.match(captionRE)
                 caption = captionline[0]
                 if(caption) {
                 caption = caption.replace(/'''/g, "");
