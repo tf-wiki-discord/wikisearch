@@ -293,7 +293,7 @@ client.on('message', msg => {
                 var captionline = data.match(captionRE)
                 const captionarray = captionline[0].split("|")
                 caption = captionarray.pop()
-                console.log("CAPTION: " + captionarray)
+                console.log("CAPTION: " + captionline)
                 caption = caption.replace(/'''/g, "");
                 caption = caption.replace( /(<ref>.*?<\/ref>)/g, ""); // remove ref tags, assuming they aren't nested
                 caption = caption.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2") // change [[abc|123]] to 123
