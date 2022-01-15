@@ -284,6 +284,7 @@ client.on('message', msg => {
             if(templateMatches) {
                 var captionline = data.match(templateCaptionRE)
                 caption = captionline[0]
+                caption = caption.split("=")[1]
                 console.log("TEMPLATE CAPTION: " + caption)
                 console.log("(msg from " + author + "): TEMPLATE FOUND (URL) IN ARTICLE: " + templateMatches[0].split(" ").join("_").slice(6))
                 imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
