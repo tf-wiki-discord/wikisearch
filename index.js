@@ -283,8 +283,7 @@ client.on('message', msg => {
             var caption = ''
             if(templateMatches) {
                 var captionline = data.match(templateCaptionRE)
-                const captionarray = captionline[0].split("|")
-                var caption = captionarray.pop()
+                caption = captionline[0]
                 console.log("TEMPLATE CAPTION: " + caption)
                 console.log("(msg from " + author + "): TEMPLATE FOUND (URL) IN ARTICLE: " + templateMatches[0].split(" ").join("_").slice(6))
                 imageName = "FILE:" + templateMatches[0].split(" ").join("_").slice(6)
@@ -292,7 +291,7 @@ client.on('message', msg => {
             else if(matches) {
                 var captionline = data.match(captionRE)
                 const captionarray = captionline[0].split("|")
-                var caption = captionarray.pop()
+                caption = captionarray.pop()
                 console.log("CAPTION: " + captionline)
                 caption = caption.replace(/'''/g, "");
                 caption = caption.replace( /(<ref>.*?<\/ref>)/g, ""); // remove ref tags, assuming they aren't nested
