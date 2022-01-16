@@ -306,6 +306,7 @@ client.on('message', msg => {
                 caption = caption.replace(/\]\]/g, ""); // remove closing tags
                 caption = caption.replace(/''/g, "");
                 caption = caption.replace(/<br><hr>/g, ": ");
+                caption = caption.replace(/<br>/g, " ");
                 caption = caption.split("|").pop()
                 console.log("Caption? " +  caption)
                 }
