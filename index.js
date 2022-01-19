@@ -294,8 +294,8 @@ client.on('message', msg => {
             }
             else if(matches) {
                 var captionline = data.match(captionRE)
+                if(captionline and captionline.length > 0) {
                 caption = captionline[0]
-                if(caption) {
                 caption = caption.replace(/'''/g, "");
                 caption = caption.replace( /(<ref>.*?<\/ref>)/g, ""); // remove ref tags, assuming they aren't nested
                 caption = caption.replace(/\[\[([^\]\]]*?)\|(.*?)\]\]/g, "$2") // change [[abc|123]] to 123
