@@ -1,4 +1,10 @@
 name,faction,year,Strength,Intelligence,Speed,Endurance,Rank,Courage,Firepower,Skill,Teamwork,Cooperation
+OrionPax,Autobot,2013,3,9,4,4,2,10,1,9,,,
+Prima,Autobot,2007,10,10,7,10,10,10,10,9,,,
+Jolt,Mini-Con,2005,4,6,8,6,2,5,7,5,,,
+Mindset,Autobot,2011,8,6,3,9,7,5,8,6,,,
+Dropkick,Decepticon,2007,6,4,6,9,3,5,5,4,,,
+Skyblast,Autobot,2007,6,5,9,7,4,9,8,10,,,
 Evac,Autobot,2012,6,5,9,4,5,9,5,8,,
 Gigawatt,Autobot,2020,7,9,10,,,6,10,,,
 Arcee,Autobot,1986,5,7,7,7,6,9,5,7,,,
