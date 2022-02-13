@@ -166,7 +166,7 @@ client.on('message', msg => {
 	}
 	finally {
 		if(typeof mathResult != undefined) {
-			msg.channel.send(mathResult)
+			msg.channel.send(expr + " = " + mathResult)
 		}
 	}
     }
