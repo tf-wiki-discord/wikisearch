@@ -156,13 +156,18 @@ client.on('message', msg => {
     if (/!!math (.*?)/.test(msg.content)) {
 	
 	var expr = msg.content.match(/!!math (.*)/)[1]
+	var mathResult = undefined
 	try {
-		msg.channel.send(math.evaluate(expr))
+		mathResult = math.evaluate(expr)
 	}
 	catch (err) {
 		console.log("MATH ERROR: " + err)
 	}
-	
+	finally {
+		if(typeof mathResult != undefined) {
+			msg.channel.send(mathResult)
+		}
+	}
     }
     if (/!!techspec (.*?)/.test(msg.content)) {
         var matchData = msg.content.match(/!!techspec (.*)/)[1]
