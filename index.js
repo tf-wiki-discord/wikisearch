@@ -162,6 +162,7 @@ client.on('message', msg => {
 	}
 	catch (err) {
 		console.log("MATH ERROR: " + err)
+		mathResult = "Oof, sorry. Didn't understand that..."
 	}
 	finally {
 		if(typeof mathResult != undefined) {
