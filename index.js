@@ -6,6 +6,7 @@ const fs = require('fs')
 const https = require('https')
 const csv = require('csv-parser')
 const chatbot = require('./eliza')
+const math = require('mathjs')
 require('dotenv').config()
 
 const numCommands = 1
@@ -151,6 +152,17 @@ client.on('message', msg => {
         })
 
         req.end()    
+    }
+    if (/!!math (.*?)/.test(msg.content)) {
+	
+	var expr = msg.content.match(/!!math (.*)/)[1]
+	try {
+		msg.channel.send(math.evaluate(expr))
+	}
+	catch (err) {
+		console.log("MATH ERROR: " + err)
+	}
+	
     }
     if (/!!techspec (.*?)/.test(msg.content)) {
         var matchData = msg.content.match(/!!techspec (.*)/)[1]
