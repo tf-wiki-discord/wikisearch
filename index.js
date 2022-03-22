@@ -90,13 +90,8 @@ client.on('message', msg => {
    }
 
    if (/!!lurkers/i.test(msg.content) && (msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
-	  msg.guild.members.fetch()
-          .then(members => {
-	  	members.forEach(member => {
-	  		console.log(member.user.username)
-			msg.channel.send(member.user.username)	  
-	  	})
-	  })
+	const list = client.guilds.get("656241088826441729"); 
+	list.members.forEach(member => console.log(member.user.username)); 
    }
 	  
    if (/!!rad (.*)/i.test(msg.content) && (msg.channel.name.includes("wreck-room") || msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
