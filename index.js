@@ -91,10 +91,24 @@ client.on('message', msg => {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
 
-   if (/!!lurkers/i.test(msg.content) && (msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
+   if (/!!sus/i.test(msg.content) && (msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
 	msg.guild.members.fetch()
                 .then(members => {
-		members.forEach(member => console.log(member.user.username))
+		members.forEach(member => {
+			msg.guild.channels.cache.forEach(ch => {
+			if(ch.type == 'text') {
+				ch.messages.fetch({
+					limit: 1
+				}).then(ms => {
+					const msgs = ms.filter(m => m.author.id === member.user.id)
+					if(msgs.length == 0) {
+						console.log(member.user.username)
+					}
+				})
+				
+			}
+			})
+		})
 	})
    }
 	  
