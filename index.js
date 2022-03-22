@@ -90,12 +90,12 @@ client.on('message', msg => {
    }
 
    if (/!!lurkers/i.test(msg.content) && (msg.channel.name.includes("wreck-room") || msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
-	  msg.guild.members.fetch().then(members => {
-		  members.forEach(member => {
-			  console.log(member.user.username)
-			  msg.channel.send(member.user.username)
+	  const guild = client.guilds.fetch('656241088826441729')
+	  const members = await guild.members.fetch()
+	  members.forEach(member => {
+	  	console.log(member.user.username)
+		msg.channel.send(member.user.username)
 			  
-		  })
 	  })
    }
 	  
