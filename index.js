@@ -88,7 +88,16 @@ client.on('message', msg => {
    if (/(thanks|thank you|big ups|poggers|coggers|based|thankee|themk|toggers),? \brad\b/i.test(msg.content)) {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
-      
+
+   if (/!!rad (.*)/i.test(msg.content) && (!msg.author.bot && msg.member.roles.cache.has('656250893678936077'))) {
+	  msg.guild.members.fetch().then(members => {
+		  members.forEach(member => {
+			  console.log(member.user.username)
+			  
+		  })
+	  })
+   }
+	  
    if (/!!rad (.*)/i.test(msg.content) && (msg.channel.name.includes("wreck-room") || msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
  
        var eliza = new chatbot.ElizaBot();
