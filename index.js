@@ -1,4 +1,4 @@
-const {Client, Intents}  = require('discord.js')
+const {Client, Intents, MessageEmbed}  = require('discord.js')
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]
 });
@@ -144,7 +144,7 @@ client.on('message', msg => {
                 const randLink = d.toString().match(randLinkRegex)[1]
                 console.log("GOBOX LINK: ", randLink)
                 console.log("GOBOX IMG: ", randImage)
-                const randEmbed = new Discord.MessageEmbed()
+                const randEmbed = new MessageEmbed()
                     .setColor('#0099ff')
                     .setURL(randLink)
                     .setImage(randImage)
@@ -255,7 +255,7 @@ client.on('message', msg => {
 
       // handle https://tfwiki.net/wiki/Special:Random separately
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
-      const radEmbed = new Client.MessageEmbed()
+      const radEmbed = new MessageEmbed()
               .setColor('#0099ff')
               .setURL(pageURL)
 
@@ -370,7 +370,7 @@ client.on('message', msg => {
     }
     else if (/jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
        //msg.channel.send("JIAI JO!")
-       const jiaijoEmbed = new Client.MessageEmbed()
+       const jiaijoEmbed = new MessageEmbed()
         .setTitle("JIAI JO!")
         .attachFiles(['./jiaijo.png'])
         .setImage('attachment://jiaijo.png')
@@ -391,7 +391,7 @@ client.on('message', msg => {
                     console.log("JPG found")
                     const inkjet = require('inkjet');
                     
-                    const qrEmbed = new Client.MessageEmbed()
+                    const qrEmbed = new MessageEmbed()
                     request({uri: filename, encoding: null }, (err, resp, buffer) => {
                         inkjet.decode(buffer, (err, decoded) => {
                             const code = jsQR(decoded.data, decoded.width, decoded.height)
@@ -417,7 +417,7 @@ client.on('message', msg => {
                              const code = jsQR(data, width, height)
                              if (code) {
                                  console.log("Found QR code", code)
-                                 const qrEmbed = new Client.MessageEmbed()
+                                 const qrEmbed = new MessageEmbed()
                                  qrEmbed.image = {url: code.data}
                                  qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
                                  msg.channel.send(qrEmbed)
@@ -438,7 +438,7 @@ client.on('message', msg => {
     //    msg.channel.send(randomChoice(sayings))
     //}
     else if (/wicked sweet/i.test(msg.content)) {
-       msg.channel.send(new Client.MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg'))
+       msg.channel.send(new MessageEmbed().setImage('https://tfwiki.net/wiki/Special:FilePath/PaniniRadWhite.jpg'))
     }
   }
 });
