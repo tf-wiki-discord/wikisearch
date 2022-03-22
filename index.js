@@ -112,7 +112,6 @@ client.on('message', msg => {
                 .then(members => {
 		members.forEach(member => {
 			msg.guild.channels.cache.forEach(ch => {
-			if(
 			if(ch.type == 'text' && channels.includes(ch.id)) {
 				ch.messages.fetch({
 					limit: 1
