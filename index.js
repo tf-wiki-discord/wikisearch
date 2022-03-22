@@ -92,6 +92,7 @@ client.on('message', msg => {
    if (/!!lurkers/i.test(msg.content) && (!msg.author.bot && msg.member.roles.cache.has('656250893678936077'))) {
 	  msg.guild.members.fetch().then(members => {
 		  members.forEach(member => {
+			  console.log(member.user.username)
 			  msg.channel.send(member.user.username)
 			  
 		  })
