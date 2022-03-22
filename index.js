@@ -92,11 +92,28 @@ client.on('message', msg => {
    }
 
    if (/!!sus/i.test(msg.content) && (msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
+	const channels = ['656241089312718860', //general
+			  '656248887534944265', //editing
+			  '853621844079149109', //archival
+			  '926881259664318537', //images
+			  '674063451877933091', //toys
+			  '674045482158522369', //media
+			  '674056181224046614', //writing
+			  '700071149266272346', //art
+			  '674702407774502922', //other
+			  '694886606804353124', //animals
+			  '678596976010330122', //capes
+			  '740639644668133582', //tokusamime
+			  '674045430283239424', //bioniclego
+			  '669519559283179543', //wreck-room
+			  '656241273673613362', //comic  
+			 ]
 	msg.guild.members.fetch()
                 .then(members => {
 		members.forEach(member => {
 			msg.guild.channels.cache.forEach(ch => {
-			if(ch.type == 'text') {
+			if(
+			if(ch.type == 'text' && channels.includes(ch.id)) {
 				ch.messages.fetch({
 					limit: 1
 				}).then(ms => {
