@@ -22,6 +22,20 @@ const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
 const captionRE = /File:.*]]|Image:.*]]/i
 
+function getUserFromMention(mention) {
+	// The id is the first and only match found by the RegEx.
+	const matches = mention.match(/^<@!?(\d+)>$/);
+
+	// If supplied variable was not a mention, matches will be null instead of an array.
+	if (!matches) return;
+
+	// However, the first element in the matches array will be the entire mention, not just the ID,
+	// so use index 1.
+	const id = matches[1];
+
+	return client.users.cache.get(id);
+}
+
 function findWord(word, str) {
   return RegExp('\\b'+ word +'\\b').test(str)
 }
@@ -94,15 +108,13 @@ client.on('message', msg => {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
 	  
-   if ( (/!!rad (.*)/i.test(msg.content) || /<@817394869479145503> (.*)/i.test(msg.content) ) && (msg.channel.name.includes("wreck-room") || msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
+   if ( (/!!rad (.*)/i.test(msg.content) ) && (msg.channel.name.includes("wreck-room") || msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
  
        var eliza = new chatbot.ElizaBot();
        if(/!!rad (.*)/i.test(msg.content)) {
        		var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
 	}
-	else if(/<@817394869479145503> (.*)/i.test(msg.content)) {
-		 var chatbotinput = msg.content.match(/<@817394869479145503>/)[1]
-	}
+
        
        var oktext = true
        fs.createReadStream("badwords.csv")
