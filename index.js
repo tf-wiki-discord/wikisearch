@@ -97,7 +97,12 @@ client.on('message', msg => {
    if ( (/!!rad (.*)/i.test(msg.content) || /<@817394869479145503>/i.test(msg.content) ) && (msg.channel.name.includes("wreck-room") || msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
  
        var eliza = new chatbot.ElizaBot();
-       var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
+       if(/!!rad (.*)/i.test(msg.content)) {
+       		var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
+	}
+	else if(/<@817394869479145503>/i.test(msg.content)) {
+		 var chatbotinput = msg.content.match(/<@817394869479145503>/)[1]
+	}
        
        var oktext = true
        fs.createReadStream("badwords.csv")
