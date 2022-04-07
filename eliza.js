@@ -178,7 +178,7 @@ var elizaKeywords = [
      "Based? Based on what?"
  ]]
 ]],
-["i want to tell you about the transformers", 9, [
+["i want to tell you about the transformers", 10, [
  ["*", [
      "[Secret phrase] Oh...oh my god. Thank you. I'm always the one doing it. It feels so...nice. Thank you. Shutting down."
  ]]
