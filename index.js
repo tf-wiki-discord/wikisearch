@@ -100,7 +100,7 @@ client.on('message', msg => {
        if(/!!rad (.*)/i.test(msg.content)) {
        		var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
 	}
-	else if(/<@817394869479145503>/i.test(msg.content)) {
+	else if(/<@817394869479145503> (.*)/i.test(msg.content)) {
 		 var chatbotinput = msg.content.match(/<@817394869479145503>/)[1]
 	}
        
