@@ -365,16 +365,8 @@ client.on('message', msg => {
             }
         }
       }
-      else if(pageName == "Special:RecentChanges") {
-	embedTitle = `Hi ${author}, my name's Rad, and here's a link to recent changes on the wiki!`
-      }
-      else if(pageName == "Special:Random") {
-	embedTitle = `Hi ${author}, my name's Rad, and here's a page on the wiki!`
-      }
-      else {
-        embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
         console.log(author + " sent " + pageName)
-      }
+
         if(/among us/i.test(pageName)
             || /amongus/i.test(pageName)
             || /amogus/i.test(pageName)
@@ -384,6 +376,15 @@ client.on('message', msg => {
             msg.channel.send(`Hi ${author}, my name's Rad, and I'd like to tell you about the Transformers instead of Among Us!`)
         }
         else {
+	 if(pageName == "Special:RecentChanges") {
+		embedTitle = `Hi ${author}, my name's Rad, and here's a link to recent changes on the wiki!`
+      	 }
+      	 else if(pageName == "Special:Random") {
+		embedTitle = `Hi ${author}, my name's Rad, and here's a page on the wiki!`
+      	 }
+	 else {
+		embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
+	 }
             radEmbed.title = embedTitle
             msg.channel.send(radEmbed);
         }
