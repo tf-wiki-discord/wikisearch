@@ -376,10 +376,10 @@ client.on('message', msg => {
             msg.channel.send(`Hi ${author}, my name's Rad, and I'd like to tell you about the Transformers instead of Among Us!`)
         }
         else {
-	 if(pageName == "Special:RecentChanges") {
+	 if(pageName === "Special:RecentChanges") {
 		embedTitle = `Hi ${author}, my name's Rad, and here's a link to recent changes on the wiki!`
       	 }
-      	 else if(pageName == "Special:Random") {
+      	 else if(pageName === "Special:Random") {
 		embedTitle = `Hi ${author}, my name's Rad, and here's a page on the wiki!`
       	 }
 	 else {
