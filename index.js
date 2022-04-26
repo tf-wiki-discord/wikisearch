@@ -413,8 +413,8 @@ client.on('message', msg => {
 		embedTitle = `Hi ${author}, my name's Rad, and here's a page on the wiki!`
       	 }
 	 else if(data) {
-                embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
-         }
+        	embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
+	 }
 	 else {
 		embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
 	 }
