@@ -1,4 +1,5 @@
 name,faction,year,Strength,Intelligence,Speed,Endurance,Rank,Courage,Firepower,Skill,Teamwork,Cooperation
+MagnaConvoy,Autobot,10,10,10,10,10,10,10,10,10,,,
 OrionPax,Autobot,2013,3,9,4,4,2,10,1,9,,,
 Prima,Autobot,2007,10,10,7,10,10,10,10,9,,,
 Jolt,Decepticon,2007,4,6,8,6,2,5,7,5,,,
