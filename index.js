@@ -463,7 +463,7 @@ client.on('message', msg => {
     //    msg.channel.send(randomChoice(sayings))
     //}
     else if (/wicked sweet/i.test(msg.content)) {
-       msg.channel.send(new MessageEmbed().setImage('wickedsweet.png'))
+       msg.channel.send(new MessageEmbed().setImage('./wickedsweet.png'))
     }
   }
 });
