@@ -88,13 +88,17 @@ client.on('message', msg => {
   if(msg.embeds.length != 0) {
 	  console.log(msg.embeds[0])
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
-		const chan = msg.channel
-		msg.delete()
 	  	//const badEmbed = msg.embeds[0];
 		const replaceEmbed = new MessageEmbed()
 		.setTitle('No Jobby-posting!')
 		.setAuthor({ name: 'Radbot'})
+		const videourl = msg.embeds[0].url
 		msg.channel.send(replaceEmbed);
+		msg.delete()
+		msg.channel.fetchMessages().then(msgs => { // Get messages
+    			let msgDel = msgs.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
+    			msg.channel.bulkDelete(msgDel) // Deletes all messages that got found
+  		});
 	  }
   }
   // [[ ]] activates the bot
