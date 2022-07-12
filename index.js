@@ -95,7 +95,6 @@ client.on('message', msg => {
 		const replaceEmbed = new MessageEmbed(badEmbed)
 		.setTitle('No Jobby-posting!')
 		.setAuthor({ name: 'Radbot'})
-		.addfield({ name: 'video', value: '' })
 		msg.channel.send({ embeds: [replaceEmbed] });
 	  }
   }
