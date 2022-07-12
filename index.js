@@ -92,7 +92,7 @@ client.on('message', msg => {
 	  console.log(msg.embeds[0].author.name)
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
 	  	const badEmbed = msg.embeds[0];
-		const replaceEmbed = new MessageEmbed(badEmbed)
+		const replaceEmbed = new MessageEmbed()
 		.setTitle('No Jobby-posting!')
 		.setAuthor({ name: 'Radbot'})
 		msg.channel.send({ embeds: [replaceEmbed] });
