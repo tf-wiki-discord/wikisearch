@@ -86,10 +86,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if(msg.embeds.length != 0) {
-	  //console.log(msg.embeds[0])
-	  console.log("embed author:")
-	  console.log(msg.embeds[0].title)
-	  console.log(msg.embeds[0].author.name)
+	  console.log(msg.embeds[0])
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
 		const chan = msg.channel
 		msg.delete()
