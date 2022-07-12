@@ -85,7 +85,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if(msg.embeds && msg.embeds[0]) {
+  if(msg.embeds) {
 	  console.log("embed title:")
 	  console.log(msg.embeds[0])
   }
