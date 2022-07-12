@@ -87,7 +87,7 @@ client.on('ready', () => {
 client.on('message', msg => {
   if(msg.embeds) {
 	  console.log("embed title:")
-	  console.log(msg.embeds[0])
+	  console.log(msg.embeds)
   }
   // [[ ]] activates the bot
   if (!msg.author.bot) {
