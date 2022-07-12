@@ -91,11 +91,12 @@ client.on('message', msg => {
 	  console.log(msg.embeds[0].title)
 	  console.log(msg.embeds[0].author.name)
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
+		msg.suppressEmbeds(true)
 	  	const badEmbed = msg.embeds[0];
-		const replaceEmbed = new MessageEmbed(badEmbed)
+		const replaceEmbed = new MessageEmbed()
 		.setTitle('No Jobby-posting!')
 		.setAuthor({ name: 'Radbot'})
-		msg.edit(replaceEmbed);
+		msg.channel.send(replaceEmbed);
 	  }
   }
   // [[ ]] activates the bot
