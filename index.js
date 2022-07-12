@@ -94,12 +94,12 @@ client.on('message', msg => {
 		.setAuthor({ name: 'Radbot'})
 		const videourl = msg.embeds[0].url
 		msg.channel.send(replaceEmbed);
-		msg.delete()
 		msg.channel.fetch().then(msgs => { // Get messages
 			console.log(msgs.messages)
-    			//let msgDel = msgs.messages.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
-    			//msg.channel.bulkDelete(msgDel) // Deletes all messages that got found
+    			let msgDel = msgs.messages.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
+    			msg.channel.bulkDelete(msgDel) // Deletes all messages that got found
   		});
+		msg.delete()
 	  }
   }
   // [[ ]] activates the bot
