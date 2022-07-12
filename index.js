@@ -89,6 +89,7 @@ client.on('message', msg => {
 	  console.log(msg.embeds[0])
 	  console.log("embed title:")
 	  console.log(msg.embeds[0].title)
+	  console.log(msg.embeds[0].author.name)
 
   }
   // [[ ]] activates the bot
