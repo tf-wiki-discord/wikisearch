@@ -92,7 +92,7 @@ client.on('message', msg => {
 	  console.log(msg.embeds[0].author.name)
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
 		const chan = msg.channel
-		msg.content.delete()
+		msg.delete()
 	  	//const badEmbed = msg.embeds[0];
 		const replaceEmbed = new MessageEmbed()
 		.setTitle('No Jobby-posting!')
