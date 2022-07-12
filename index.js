@@ -90,7 +90,7 @@ client.on('message', msg => {
 	  console.log("embed author:")
 	  console.log(msg.embeds[0].title)
 	  console.log(msg.embeds[0].author.name)
-	  if(msg.embeds[0].author != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
+	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
 		const chan = msg.channel
 		msg.delete()
 	  	//const badEmbed = msg.embeds[0];
