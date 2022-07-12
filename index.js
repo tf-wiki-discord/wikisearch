@@ -95,7 +95,7 @@ client.on('message', msg => {
 		const replaceEmbed = new MessageEmbed(badEmbed)
 		.setTitle('No Jobby-posting!')
 		.setAuthor({ name: 'Radbot'})
-		msg.channel.send(replaceEmbed);
+		msg.edit(replaceEmbed);
 	  }
   }
   // [[ ]] activates the bot
