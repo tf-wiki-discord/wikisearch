@@ -86,10 +86,19 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if(msg.embeds.length != 0) {
-	  console.log(msg.embeds[0])
-	  console.log("embed title:")
+	  //console.log(msg.embeds[0])
+	  console.log("embed author:")
 	  console.log(msg.embeds[0].title)
 	  console.log(msg.embeds[0].author.name)
+	  if(msg.embeds[0].author != null && msg.embeds[0].author.name.includes("JobbytheHong") {
+	  	const badEmbed = msg.embeds[0];
+		const replaceEmbed = new MessageEmbed(badEmbed)
+		.setTitle('No Jobby-posting!')
+		.setAuthor({ name: 'Radbot'})
+		.addfield({ name: 'video', value: '' })
+		
+		channel.send({ embeds: [replaceEmbed] });
+	  }
 
   }
   // [[ ]] activates the bot
