@@ -85,8 +85,13 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+  if(msg.embeds) {
+	  console.log("embed title:")
+	  console.log(msg.embeds[0].title
+  }
   // [[ ]] activates the bot
   if (!msg.author.bot) {
+	  
     var bot = new TFWiki({
       protocol: 'https',           // HTTPS is good
       server: 'tfwiki.net',  // host name of MediaWiki-powered site
