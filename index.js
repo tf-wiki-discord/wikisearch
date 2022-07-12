@@ -95,8 +95,8 @@ client.on('message', msg => {
 		const videourl = msg.embeds[0].url
 		msg.channel.send(replaceEmbed);
 		msg.channel.fetch().then(msgs => { // Get messages
-			console.log(msgs.messages)
-    			let msgDel = msgs.messages.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
+			console.log(msgs.messages.cache)
+    			let msgDel = msgs.messages.cache.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
     			msg.channel.bulkDelete(msgDel) // Deletes all messages that got found
   		});
 		msg.delete()
