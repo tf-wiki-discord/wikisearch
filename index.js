@@ -96,10 +96,8 @@ client.on('message', msg => {
 		.setTitle('No Jobby-posting!')
 		.setAuthor({ name: 'Radbot'})
 		.addfield({ name: 'video', value: '' })
-		
-		channel.send({ embeds: [replaceEmbed] });
+		msg.channel.send({ embeds: [replaceEmbed] });
 	  }
-
   }
   // [[ ]] activates the bot
   if (!msg.author.bot) {
