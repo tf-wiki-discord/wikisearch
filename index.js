@@ -85,7 +85,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-
+  console.log("msg recv!")
 	
   // [[ ]] activates the bot
   if (!msg.author.bot) {
