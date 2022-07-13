@@ -91,12 +91,13 @@ client.on('message', msg => {
   if (!msg.author.bot) {
 
   if(msg.embeds.length != 0) {
-	  //console.log(msg.embeds[0])
+	  console.log("message has embed!")
+	  console.log(msg.embeds[0])
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
 		msg.delete().then(m => {
 		console.log("bad embed detected!")
 	  	const badEmbed = msg.embeds[0];
-		console.log(badEmbed)
+		//console.log(badEmbed)
 		const replaceEmbed = new MessageEmbed(badEmbed)
 		.setTitle('No Jobby-posting! Come see my page instead.')
 		.setAuthor({ name: 'Radbot'})
