@@ -97,7 +97,7 @@ client.on('message', msg => {
 		console.log("bad embed detected!")
 	  	const badEmbed = msg.embeds[0];
 		console.log(badEmbed)
-		const replaceEmbed = new MessageEmbed()
+		const replaceEmbed = new MessageEmbed(badEmbed)
 		.setTitle('No Jobby-posting! Come see my page instead.')
 		.setAuthor({ name: 'Radbot'})
 		.setDescription('')
