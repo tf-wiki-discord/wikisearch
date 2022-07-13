@@ -85,17 +85,12 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	console.log(msg)
-  console.log(msg.embeds.length)
-  console.log("$$$")
   if(msg.embeds.length != 0) {
 	  console.log("message has embed!")
 	  //console.log(msg.embeds[0])
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {  
 		const badEmbed = msg.embeds[0];
 		console.log("bad embed detected!")
-		console.log(msg.embeds[0].author.name)
-		  		console.log(msg.embeds[0].title)
 		  console.log("***")
 
 		//console.log(badEmbed)
