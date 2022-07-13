@@ -81,7 +81,7 @@ function findHashedText(articleList, articleName) {
 
 async function getYT(videoid) {
 	const ytkey = process.env.TFWIKISEARCH_YOUTUBE_API_KEY
-	let url = `https://www.googleapis.com/youtube/v3/search?key=${ytkey}&type=video&part=snippet&id=${videoid}&maxResults=1`;
+	let url = `https://www.googleapis.com/youtube/v3/videos?key=${ytkey}&type=video&part=snippet&id=${videoid}&maxResults=1`;
 	const res = await fetch(url)
 	const resdata = await res.json()
 	console.log("YT data: ", resdata.items[0])
@@ -95,6 +95,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+  //const ytregex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/
   if(/youtube\.com\/watch\?v=/.test(msg.content)) {
 	  console.log("message is YT!")
 	  //console.log(msg)
