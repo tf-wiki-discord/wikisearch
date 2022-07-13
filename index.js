@@ -86,7 +86,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if(msg.embeds.length != 0) {
-	  console.log(msg.embeds[0])
+	  //console.log(msg.embeds[0])
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
 	  	const badEmbed = msg.embeds[0];
 		const replaceEmbed = new MessageEmbed(badEmbed)
@@ -94,6 +94,7 @@ client.on('message', msg => {
 		.setAuthor({ name: 'Radbot'})
 		.setDescription('')
 		.setAuthor({ name: ''})
+		.setThumbnail()
 		//const videourl = msg.embeds[0].url
 		msg.channel.send(replaceEmbed);
 		//msg.channel.fetch().then(msgs => { // Get messages
