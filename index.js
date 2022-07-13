@@ -85,11 +85,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	
-  // [[ ]] activates the bot
-  if (!msg.author.bot) {
-
-  console.log(msg.embeds)
+	console.log(msg.embeds)
   console.log(msg.embeds.length)
   console.log("$$$")
   if(msg.embeds.length != 0) {
@@ -120,6 +116,9 @@ client.on('message', msg => {
   		//});
 	  }
   }
+	
+  // [[ ]] activates the bot
+  if (!msg.author.bot) {
 	  
     var bot = new TFWiki({
       protocol: 'https',           // HTTPS is good
