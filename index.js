@@ -85,6 +85,11 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+
+	
+  // [[ ]] activates the bot
+  if (!msg.author.bot) {
+
   if(msg.embeds.length != 0) {
 	  //console.log(msg.embeds[0])
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
@@ -107,9 +112,6 @@ client.on('message', msg => {
   		//});
 	  }
   }
-	
-  // [[ ]] activates the bot
-  if (!msg.author.bot) {
 	  
     var bot = new TFWiki({
       protocol: 'https',           // HTTPS is good
