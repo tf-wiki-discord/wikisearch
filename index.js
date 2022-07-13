@@ -81,11 +81,11 @@ function findHashedText(articleList, articleName) {
 
 async function getYT(videoid) {
 	const ytkey = process.env.TFWIKISEARCH_YOUTUBE_API_KEY
-	let url = `https://www.googleapis.com/youtube/v3/search?key=${ytkey}&type=video&part=snippet&id=${videoid}`;
+	let url = `https://www.googleapis.com/youtube/v3/search?key=${ytkey}&type=video&part=snippet&id=${videoid}&maxResults=1`;
 	const res = await fetch(url)
 	const resdata = await res.json()
-	console.log("YT data: ", resdata)
-	return resdata
+	console.log("YT data: ", resdata.items[0])
+	return resdata.items[0]
 }
 
 client.on('ready', () => {
@@ -113,7 +113,8 @@ client.on('message', msg => {
 		.setThumbnail()
 		.setURL('https://tfwiki.net/wiki/Rad_White')
 		const videourl = msg.embeds[0].url
-		const ytdata = getYT(videourl)
+		const urlslug = videourl.split("v=")[1]
+		const ytdata = getYT(urlslug)
 		msg.channel.send(replaceEmbed).then(emsg => {
 			msg.delete()	
 		})
