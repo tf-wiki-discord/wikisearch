@@ -92,13 +92,13 @@ client.on('message', msg => {
 		const replaceEmbed = new MessageEmbed()
 		.setTitle('No Jobby-posting!')
 		.setAuthor({ name: 'Radbot'})
-		const videourl = msg.embeds[0].url
+		//const videourl = msg.embeds[0].url
 		msg.channel.send(replaceEmbed);
-		msg.channel.fetch().then(msgs => { // Get messages
-			console.log(msgs.messages.cache)
-    			let msgDel = msgs.messages.cache.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
-    			msg.channel.bulkDelete(msgDel) // Deletes all messages that got found
-  		});
+		//msg.channel.fetch().then(msgs => { // Get messages
+		//	console.log(msgs.messages.cache)
+    		//	let msgDel = msgs.messages.cache.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
+    		//	msg.channel.bulkDelete(msgDel) // Deletes all messages that got found
+  		//});
 		msg.delete()
 	  }
   }
