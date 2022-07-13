@@ -86,6 +86,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if(/youtube\.com\//.test(msg.content)) {
+	  const ytkey = process.env.TFWIKISEARCH_YOUTUBE_API_KEY
 	  console.log("message is YT!")
 	  console.log(msg)
 	  //console.log(msg.embeds[0])
