@@ -90,11 +90,11 @@ client.on('message', msg => {
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
 		console.log("bad embed detected!")
 	  	const badEmbed = msg.embeds[0];
+		console.log(badEmbed)
 		const replaceEmbed = new MessageEmbed(badEmbed)
 		.setTitle('No Jobby-posting! Come see my page instead.')
 		.setAuthor({ name: 'Radbot'})
 		.setDescription('')
-		.setAuthor({ name: 'Radbot'})
 		.setThumbnail()
 		.setURL('https://tfwiki.net/wiki/Rad_White')
 		//const videourl = msg.embeds[0].url
