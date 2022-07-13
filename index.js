@@ -113,7 +113,7 @@ client.on('message', msg => {
 		.setThumbnail()
 		.setURL('https://tfwiki.net/wiki/Rad_White')
 		const videourl = msg.embeds[0].url
-		const ytdata = await getYT(videourl)
+		const ytdata = getYT(videourl)
 		msg.channel.send(replaceEmbed).then(emsg => {
 			msg.delete()	
 		})
