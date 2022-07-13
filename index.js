@@ -93,7 +93,7 @@ client.on('message', msg => {
   if(msg.embeds.length != 0) {
 	  //console.log(msg.embeds[0])
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
-		msg.delete()
+		//msg.delete()
 		console.log("bad embed detected!")
 	  	const badEmbed = msg.embeds[0];
 		console.log(badEmbed)
@@ -104,7 +104,7 @@ client.on('message', msg => {
 		.setThumbnail()
 		.setURL('https://tfwiki.net/wiki/Rad_White')
 		//const videourl = msg.embeds[0].url
-		msg.channel.send(replaceEmbed);
+		msg.channel.send(replaceEmbed).then(m => m.delete());
 		//msg.channel.fetch().then(msgs => { // Get messages
 		//	console.log(msgs.messages.cache)
     		//	let msgDel = msgs.messages.cache.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
