@@ -91,20 +91,20 @@ client.on('message', msg => {
 		console.log("bad embed detected!")
 	  	const badEmbed = msg.embeds[0];
 		console.log(badEmbed)
-		const replaceEmbed = new MessageEmbed(badEmbed)
+		const replaceEmbed = new MessageEmbed()
 		.setTitle('No Jobby-posting! Come see my page instead.')
 		.setAuthor({ name: 'Radbot'})
 		.setDescription('')
 		.setThumbnail()
 		.setURL('https://tfwiki.net/wiki/Rad_White')
 		//const videourl = msg.embeds[0].url
-		msg.channel.send(replaceEmbed);
+		//msg.channel.send(replaceEmbed);
 		//msg.channel.fetch().then(msgs => { // Get messages
 		//	console.log(msgs.messages.cache)
     		//	let msgDel = msgs.messages.cache.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
     		//	msg.channel.bulkDelete(msgDel) // Deletes all messages that got found
   		//});
-		msg.delete()
+		msg.edit({ embeds: [replaceEmbed] })
 	  }
   }
   // [[ ]] activates the bot
