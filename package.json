@@ -18,11 +18,12 @@
     "inkjet": "^3.0.0",
     "jsqr": "^1.4.0",
     "mathjs": "^10.1.1",
+    "node-fetch": "^2.6.7",
     "nodemw": "^0.14.0",
     "png-js": "^1.0.0",
     "pngjs": "^6.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.19"
   }
 }

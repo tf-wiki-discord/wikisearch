@@ -9,6 +9,7 @@ const https = require('https')
 const csv = require('csv-parser')
 const chatbot = require('./eliza')
 const math = require('mathjs')
+const fetch = require("node-fetch");
 require('dotenv').config()
 
 const numCommands = 1
@@ -78,6 +79,15 @@ function findHashedText(articleList, articleName) {
     return ''
 }
 
+async function getYT(videoid) {
+	const ytkey = process.env.TFWIKISEARCH_YOUTUBE_API_KEY
+	let url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&type=video&part=snippet&id=${videoid}`;
+	const res = await fetch(url)
+	const resdata = await res.json()
+	console.log("YT data: ", resdata)
+	return resdata
+}
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setUsername('Rad, the GO!-Bot')
@@ -86,7 +96,6 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if(/youtube\.com\//.test(msg.content)) {
-	  const ytkey = process.env.TFWIKISEARCH_YOUTUBE_API_KEY
 	  console.log("message is YT!")
 	  console.log(msg)
 	  //console.log(msg.embeds[0])
@@ -103,15 +112,11 @@ client.on('message', msg => {
 		.setDescription('')
 		.setThumbnail()
 		.setURL('https://tfwiki.net/wiki/Rad_White')
-		//const videourl = msg.embeds[0].url
+		const videourl = msg.embeds[0].url
+		const ytdata = await getYT(videourl)
 		msg.channel.send(replaceEmbed).then(emsg => {
 			msg.delete()	
 		})
-		//msg.channel.fetch().then(msgs => { // Get messages
-		//	console.log(msgs.messages.cache)
-    		//	let msgDel = msgs.messages.cache.filter(msgss => msgss.content.includes(videourl)) // Finds all messages with offending URL
-    		//	msg.channel.bulkDelete(msgDel) // Deletes all messages that got found
-  		//});
 	  }
   }
 	
