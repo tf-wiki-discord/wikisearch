@@ -85,7 +85,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	console.log(msg.embeds)
+	console.log(msg)
   console.log(msg.embeds.length)
   console.log("$$$")
   if(msg.embeds.length != 0) {
