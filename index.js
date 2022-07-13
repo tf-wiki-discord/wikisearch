@@ -97,7 +97,7 @@ client.on('ready', () => {
 client.on('message', msg => {
   if(/youtube\.com\//.test(msg.content)) {
 	  console.log("message is YT!")
-	  console.log(msg)
+	  //console.log(msg)
 	  //console.log(msg.embeds[0])
 	  if(msg.embeds.length != 0 && msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {  
 
