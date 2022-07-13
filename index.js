@@ -81,7 +81,7 @@ function findHashedText(articleList, articleName) {
 
 async function getYT(videoid) {
 	const ytkey = process.env.TFWIKISEARCH_YOUTUBE_API_KEY
-	let url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&type=video&part=snippet&id=${videoid}`;
+	let url = `https://www.googleapis.com/youtube/v3/search?key=${ytkey}&type=video&part=snippet&id=${videoid}`;
 	const res = await fetch(url)
 	const resdata = await res.json()
 	console.log("YT data: ", resdata)
