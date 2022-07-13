@@ -89,6 +89,9 @@ client.on('message', msg => {
   // [[ ]] activates the bot
   if (!msg.author.bot) {
 
+  console.log(msg.embeds)
+  console.log(msg.embeds.length)
+  console.log("$$$")
   if(msg.embeds.length != 0) {
 	  console.log("message has embed!")
 	  //console.log(msg.embeds[0])
