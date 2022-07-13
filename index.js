@@ -96,6 +96,10 @@ client.on('message', msg => {
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {  
 		const badEmbed = msg.embeds[0];
 		console.log("bad embed detected!")
+		console.log(msg.embeds[0].author.name)
+		  		console.log(msg.embeds[0].title)
+		  console.log("***")
+
 		//console.log(badEmbed)
 		const replaceEmbed = new MessageEmbed(badEmbed)
 		.setTitle('No Jobby-posting! Come see my page instead.')
