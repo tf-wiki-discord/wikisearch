@@ -95,26 +95,20 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if(/youtube\.com\//.test(msg.content)) {
+  if(/youtube\.com\/watch\?v=/.test(msg.content)) {
 	  console.log("message is YT!")
 	  //console.log(msg)
 	  //console.log(msg.embeds[0])
-	  if(msg.embeds.length != 0 && msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {  
-
-		  const badEmbed = msg.embeds[0];
-		console.log("bad embed detected!")
-		  console.log("***")
-
-		//console.log(badEmbed)
-		const replaceEmbed = new MessageEmbed(badEmbed)
+	  const ytslug = msg.content.match(/youtube\.com\/watch\?v=(.*)/i)[1]
+	  const ytdata = getYT(ytslug)
+	  
+	  const replaceEmbed = new MessageEmbed()
 		.setTitle('No Jobby-posting! Come see my page instead.')
 		.setAuthor({ name: 'Radbot'})
 		.setDescription('')
 		.setThumbnail()
 		.setURL('https://tfwiki.net/wiki/Rad_White')
-		const videourl = msg.embeds[0].url
-		const urlslug = videourl.split("v=")[1]
-		const ytdata = getYT(urlslug)
+	  if(msg.embeds.length != 0 && msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {  
 		msg.channel.send(replaceEmbed).then(emsg => {
 			msg.delete()	
 		})
