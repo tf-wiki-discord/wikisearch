@@ -92,7 +92,7 @@ client.on('message', msg => {
 
   if(msg.embeds.length != 0) {
 	  console.log("message has embed!")
-	  console.log(msg.embeds[0])
+	  //console.log(msg.embeds[0])
 	  if(msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {
 		const badEmbed = msg.embeds[0];
 
