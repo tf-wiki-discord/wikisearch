@@ -106,7 +106,7 @@ client.on('message', msg => {
 		if(ytdata.items[0].snippet.channelTitle.includes("JobbytheHong")) {
 			const replaceEmbed = new MessageEmbed()
 			.setTitle("No Jobby-posting! Instead let\'s talk about anything else.")
-			.setAuthor({ name: 'Radbot'})
+			.setAuthor('Radbot')
 			.setDescription('')
 			.setThumbnail()
 			.setURL('https://tfwiki.net/wiki/Special:Random')
