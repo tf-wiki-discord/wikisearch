@@ -102,7 +102,7 @@ client.on('message', msg => {
 	  //console.log(msg.embeds[0])
 	  const ytslug = msg.content.match(/youtube\.com\/watch\?v=(.*)/i)[1]
 	  getYTtitle(ytslug).then(ytdata => {
-	  	console.log("YT title: ", ytdata)
+	  	console.log("YT title: ", ytdata.items.snippet)
 	  })
 	  
 	  const replaceEmbed = new MessageEmbed()
