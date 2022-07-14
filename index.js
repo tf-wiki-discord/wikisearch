@@ -109,7 +109,7 @@ client.on('message', msg => {
 			.setAuthor({ name: 'Radbot'})
 			.setDescription('')
 			.setThumbnail()
-			.setURL('https://tfwiki.net/wiki/Special:Random)
+			.setURL('https://tfwiki.net/wiki/Special:Random')
 			msg.channel.send(replaceEmbed).then(emsg => {
 				msg.delete()	
 			})
