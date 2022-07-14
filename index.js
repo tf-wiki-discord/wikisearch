@@ -105,7 +105,7 @@ client.on('message', msg => {
 	  	console.log("YT title: ", ytdata.items[0].snippet.channelTitle)
 		if(ytdata.items[0].snippet.channelTitle.includes("JobbytheHong")) {
 			const replaceEmbed = new MessageEmbed()
-			.setTitle("No Jobby-posting! Instead let\'s talk about anything else.")
+			.setTitle("No Jobby-posting! Instead let\'s talk about ANYTHING else.")
 			.setAuthor('Radbot')
 			.setDescription('')
 			.setThumbnail()
