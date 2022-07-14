@@ -103,19 +103,19 @@ client.on('message', msg => {
 	  const ytslug = msg.content.match(/youtube\.com\/watch\?v=(.*)/i)[1]
 	  getYTtitle(ytslug).then(ytdata => {
 	  	console.log("YT title: ", ytdata.items[0].snippet.channelTitle)
+		if(ytdata.items[0].snippet.channelTitle.includes("JobbytheHong") {
+			const replaceEmbed = new MessageEmbed()
+			.setTitle("No Jobby-posting! Instead let\'s talk about anything else.")
+			.setAuthor({ name: 'Radbot'})
+			.setDescription('')
+			.setThumbnail()
+			.setURL('https://tfwiki.net/wiki/Special:Random)
+			msg.channel.send(replaceEmbed).then(emsg => {
+				msg.delete()	
+			})
+		}
+		
 	  })
-	  
-	  const replaceEmbed = new MessageEmbed()
-		.setTitle("No Jobby-posting! Instead let\'s talk about anything else.")
-		.setAuthor({ name: 'Radbot'})
-		.setDescription('')
-		.setThumbnail()
-		.setURL('https://tfwiki.net/wiki/Rad_White')
-	  if(msg.embeds.length != 0 && msg.embeds[0].author != null && msg.embeds[0].author.name != null && msg.embeds[0].author.name.includes("JobbytheHong") ) {  
-		msg.channel.send(replaceEmbed).then(emsg => {
-			msg.delete()	
-		})
-	  }
   }
 	
   // [[ ]] activates the bot
