@@ -101,8 +101,9 @@ client.on('message', msg => {
 	  //console.log(msg)
 	  //console.log(msg.embeds[0])
 	  const ytslug = msg.content.match(/youtube\.com\/watch\?v=(.*)/i)[1]
-	  const ytdata = getYTtitle(ytslug)
-	  console.log("YT title: ", ytdata)
+	  getYTtitle(ytslug).then(ytdata => {
+	  	console.log("YT title: ", ytdata)
+	  })
 	  
 	  const replaceEmbed = new MessageEmbed()
 		.setTitle("No Jobby-posting! Instead let\'s talk about anything else.")
