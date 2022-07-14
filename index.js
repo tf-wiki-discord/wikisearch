@@ -85,7 +85,7 @@ async function getYTtitle(videoid) {
 	const res = await fetch(url)
 	const resdata = await res.json()
 	//console.log("YT data: ", resdata.items[0])
-	return resdata.items[0].snippet.channelTitle
+	return resdata.items[0]
 }
 
 client.on('ready', () => {
@@ -102,7 +102,7 @@ client.on('message', msg => {
 	  //console.log(msg.embeds[0])
 	  const ytslug = msg.content.match(/youtube\.com\/watch\?v=(.*)/i)[1]
 	  const ytdata = getYTtitle(ytslug)
-	  console.log("YT title: ", ytdata)
+	  console.log("YT title: ", ytdata.snippet)
 	  
 	  const replaceEmbed = new MessageEmbed()
 		.setTitle("No Jobby-posting! Instead let\'s talk about anything else.")
