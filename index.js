@@ -105,7 +105,7 @@ client.on('message', msg => {
 	  	console.log("YT title: ", ytdata.items[0].snippet.channelTitle)
 		if(ytdata.items[0].snippet.channelTitle.includes("JobbytheHong")) {
 			const replaceEmbed = new MessageEmbed()
-			.setTitle("No Jobby-posting! Instead let\'s talk about <i>ANYTHING</i> else.")
+			.setTitle("${msg.author.username}, no Jobby-posting! Instead let\'s talk about <i>ANYTHING</i> else.")
 			.setAuthor('Radbot')
 			.setDescription('')
 			.setThumbnail()
@@ -137,7 +137,7 @@ client.on('message', msg => {
     if ( /^`*~*\_*\**bah\.?\,?\**\_*~*`*!*$/i.test(msg.content) ) {
         msg.channel.send("Bah!");
     }
-    
+   
    if (/(thanks|thank you|big ups|poggers|coggers|based|thankee|themk|toggers),? \brad\b/i.test(msg.content)) {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
