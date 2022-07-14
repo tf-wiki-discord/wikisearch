@@ -85,7 +85,7 @@ async function getYTtitle(videoid) {
 	const res = await fetch(url)
 	const resdata = await res.json()
 	//console.log("YT data: ", resdata.items[0])
-	return resdata.items[0]
+	return resdata
 }
 
 client.on('ready', () => {
