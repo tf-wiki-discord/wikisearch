@@ -103,7 +103,7 @@ client.on('message', msg => {
 	  const ytslug = msg.content.match(/youtube\.com\/watch\?v=(.*)/i)[1]
 	  getYTtitle(ytslug).then(ytdata => {
 	  	console.log("YT title: ", ytdata.items[0].snippet.channelTitle)
-		if(ytdata.items[0].snippet.channelTitle.includes("JobbytheHong") {
+		if(ytdata.items[0].snippet.channelTitle.includes("JobbytheHong")) {
 			const replaceEmbed = new MessageEmbed()
 			.setTitle("No Jobby-posting! Instead let\'s talk about anything else.")
 			.setAuthor({ name: 'Radbot'})
