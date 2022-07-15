@@ -103,9 +103,13 @@ client.on('message', msg => {
 	  const ytslug = msg.content.match(/youtube\.com\/watch\?v=(.*)/i)[1]
 	  getYTtitle(ytslug).then(ytdata => {
 	  	console.log("YT title: ", ytdata.items[0].snippet.channelTitle)
-		if(ytdata.items[0].snippet.channelTitle.includes("JobbytheHong")) {
+		const ytchannelname = ytdata.items[0].snippet.channelTitle
+		if(ytchannelname.includes("JobbytheHong") || ytchannelname.includes("JonTronShow")) {
+			var callout;
+			if(ytchannelname == "JobbytheHong") callout = "Jobby-posting"
+			if(ytchannelname == "JonTronShow") callout = "Jontron-posting"
 			const replaceEmbed = new MessageEmbed()
-			.setTitle(`${msg.author.username}, no Jobby-posting! Instead let\'s talk about ANYTHING else.`)
+			.setTitle(`${msg.author.username}, no ${callout}! Instead let\'s talk about ANYTHING else.`)
 			.setAuthor('Radbot')
 			.setDescription('')
 			.setThumbnail()
