@@ -132,15 +132,15 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     
-    if ( /flamewar/i.test(msg.content) ) {
-        msg.react("<:flamewar:691696266400235590>");
-    }
-    if ( /beast machines/i.test(msg.content) ) {
-        msg.react("<:yvonco:715978467728031814>");
-    }
-    if ( /^`*~*\_*\**bah\.?\,?\**\_*~*`*!*$/i.test(msg.content) ) {
-        msg.channel.send("Bah!");
-    }
+    //if ( /flamewar/i.test(msg.content) ) {
+    //    msg.react("<:flamewar:691696266400235590>");
+    //}
+    //if ( /beast machines/i.test(msg.content) ) {
+    //    msg.react("<:yvonco:715978467728031814>");
+    //}
+    //if ( /^`*~*\_*\**bah\.?\,?\**\_*~*`*!*$/i.test(msg.content) ) {
+    //    msg.channel.send("Bah!");
+    //}
    
    if (/(thanks|thank you|big ups|poggers|coggers|based|thankee|themk|toggers),? \brad\b/i.test(msg.content)) {
        msg.react("<:aboutTheTransformers:656259059854344202>");
