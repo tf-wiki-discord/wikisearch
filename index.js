@@ -23,6 +23,21 @@ const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
 const captionRE = /File:.*]]|Image:.*]]/i
 
+const furmanisms = Array(
+	"A SHORT, SHARP LESSON!", "A WHOLE WORLD OF PAIN!",
+	"ALL THE DIRTY JOBS...","CAN I DO LESS?",
+	"CANNOT, WILL NOT...!","DIE SCREAMING!",
+	"DOWN TO EARTH--LITERALLY!","FIGHT AND DIE!",
+	"IT CAN BE HURT!","IT IS OVER -- FINISHED!",
+	"IT NEVER ENDS!","LIKE SOME PREDATORY BIRD",
+	"NEVER DID WANT TO LIVE FOREVER!","NO! YOU'RE DEAD!"
+	"POWER BEYOND MEASURE!","REAP THE WHIRLWIND!",
+	"SURPLUS TO REQUIREMENTS!","THE WORST CASE OF INDIGESTION IT'S EVER HAD!",
+	"TIME I MADE A STAND!","TIME I WASN'T HERE!",
+	"WELL AND TRULY!","WHAT ARE YOU PLAYING AT?",
+	"WHAT CHANCE DO WE HAVE?","YOU WON'T BELIEVE THE THINGS I CAN DO NOW!"
+)
+
 function getUserFromMention(mention) {
 	// The id is the first and only match found by the RegEx.
 	const matches = mention.match(/^<@!?(\d+)>$/);
@@ -88,6 +103,10 @@ async function getYTtitle(videoid) {
 	return resdata
 }
 
+function randomChoice(arr) {
+	return arr[Math.floor(arr.length * Math.random())];
+}
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setUsername('Rad, the GO!-Bot')
@@ -95,7 +114,11 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  //const ytregex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/
+	
+  if (/furman/i.test(msg.content) && Math.random() >= 0.2 ) {
+	  msg.reply(randomChoice(furmanisms))
+  }
+  
   if(/youtube\.com\/watch\?v=/.test(msg.content)) {
 	  console.log("message is YT!")
 	  //console.log(msg)
