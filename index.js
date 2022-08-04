@@ -115,8 +115,10 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	
-  if (/furman/i.test(msg.content) && Math.random() >= 0.95 ) {
-	  msg.reply(randomChoice(furmanisms))
+  if (/furman/i.test(msg.content)) {
+	  if(/!!furmanism/i.test(msg.content) || Math.random() >= 0.95) {
+	  	msg.reply(randomChoice(furmanisms))
+	  }
   }
   
   if(/youtube\.com\/watch\?v=/.test(msg.content)) {
