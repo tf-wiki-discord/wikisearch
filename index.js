@@ -115,7 +115,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	
-  if (/furman/i.test(msg.content) && Math.random() >= 0.2 ) {
+  if (/furman/i.test(msg.content) && Math.random() >= 0.95 ) {
 	  msg.reply(randomChoice(furmanisms))
   }
   
