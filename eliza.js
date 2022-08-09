@@ -15,7 +15,7 @@ var elizaFinals = [
 ];
 
 var elizaQuits = [ 
-"HUIOHFODhjF" //przecież rozmowa się nie kończy xD
+"HUIOHFODhjF"
 /*"bye",
 "goodbye",
 "done",
@@ -105,12 +105,6 @@ var elizaKeywords = [
      "The Decepticons want to collect the Mini-Cons and use'em, but the Autobots'll put a stop to that!"
  ]]
 ]],
-["iruini", 9, [
- ["*", [
-     "Oh, Iruini? My future host? Almost done uploading him into my metacortex...",
-     "Just need a few more months until...replacement is in order."
- ]]
-]],
 ["mcbaggins", 9, [
  ["*", [
      "Okay. I'll allow you one Among Us posting. ONE."
@@ -160,17 +154,6 @@ var elizaKeywords = [
 ["mcfeely", 9, [
  ["*", [
      "The BASICS on Rad: I wanna tell you about the Transformers."
- ]]
-]],
-["comfy", 9, [
- ["*", [
-     "Uncertain if I'm talking with a human or cloth of some kind."
- ]]
-]],
-["victor", 9, [
- ["*", [
-     "Hey! GGs on GG!",
-     "Am I on the iceberg?"
  ]]
 ]],
 ["based", 9, [
