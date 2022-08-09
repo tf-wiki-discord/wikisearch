@@ -146,11 +146,6 @@ var elizaKeywords = [
      "wadsssspinator"
  ]]
 ]],
-["skysplitter", 9, [
- ["*", [
-     "Zack! Zack! Legomaniac"
- ]]
-]],
 ["mcfeely", 9, [
  ["*", [
      "The BASICS on Rad: I wanna tell you about the Transformers."
