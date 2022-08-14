@@ -115,7 +115,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	
-  if (/furman/i.test(msg.content)) {
+  if (!msg.channel.name.includes("editing") && /furman/i.test(msg.content)) {
 	  if(/!!furmanism/i.test(msg.content) || Math.random() >= 0.95) {
 	  	msg.reply(randomChoice(furmanisms))
 	  }
@@ -158,6 +158,7 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     
+  if(!msg.channel.name.includes("editing")) {
     if ( /flamewar/i.test(msg.content) ) {
         msg.react("<:flamewar:691696266400235590>");
     }
@@ -172,6 +173,7 @@ client.on('message', msg => {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
 	  
+  }
    if ( (/!!rad (.*)/i.test(msg.content) ) && (msg.channel.name.includes("wreck-room") || msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
  
        var eliza = new chatbot.ElizaBot();
@@ -204,7 +206,7 @@ client.on('message', msg => {
                }
             })
    }
-   if (/!!gobox/.test(msg.content)) {
+   if (!msg.channel.name.includes("editing") && /!!gobox/.test(msg.content)) {
         const options = {
             hostname: 'tfwiki.net',
             port: 443,
@@ -213,8 +215,6 @@ client.on('message', msg => {
         }
 
         const req = https.request(options, res => {
-            //console.log(`GEN JS: statusCode: ${res.statusCode}`)
-
             res.on('data', d => {
                 //process.stdout.write(d)
                 var randLinkRegex = /href='(.*?)'/
@@ -239,7 +239,7 @@ client.on('message', msg => {
 
         req.end()    
     }
-    if (/!!math (.*?)/.test(msg.content)) {
+    if (!msg.channel.name.includes("editing") && /!!math (.*?)/.test(msg.content)) {
 	
 	var expr = msg.content.match(/!!math (.*)/)[1]
 	var mathResult = undefined
@@ -256,7 +256,7 @@ client.on('message', msg => {
 		}
 	}
     }
-    if (/!!techspec (.*?)/.test(msg.content)) {
+    if (!msg.channel.name.includes("editing") && /!!techspec (.*?)/.test(msg.content)) {
         var matchData = msg.content.match(/!!techspec (.*)/)[1]
         var matchYear = undefined
         var charName = undefined
@@ -457,7 +457,7 @@ client.on('message', msg => {
         }
       })
     }
-    else if (/jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
+    else if (!msg.channel.name.includes("editing") && /jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
        //msg.channel.send("JIAI JO!")
        const jiaijoEmbed = new MessageEmbed()
         .setTitle("JIAI JO!")
@@ -518,15 +518,8 @@ client.on('message', msg => {
         })
         .catch(console.error)
     }
-    
-    //else if (/!iru/i.test(msg.content)) {
-    //    function randomChoice(arr) {
-    //        return arr[Math.floor(arr.length * Math.random())];
-    //    }
-    //    var sayings = Array("noncomb", "Bah!", "[BWU Bisk quote]", "Why it is X, it's not even a Y!", ":O");
-    //    msg.channel.send(randomChoice(sayings))
-    //}
-    else if (/wicked sweet/i.test(msg.content)) {
+
+    else if (!msg.channel.name.includes("editing") && /wicked sweet/i.test(msg.content)) {
 	    
 	const wickedEmbed = new MessageEmbed()
         .attachFiles(['./wickedsweet.png'])
