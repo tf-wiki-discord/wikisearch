@@ -114,8 +114,9 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	
-  if (!msg.channel.name.includes("editing") && /furman/i.test(msg.content)) {
+ 
+  const notserious = !msg.channel.name.includes("editing") && !msg.channel.name.includes("archival") && !msg.channel.name.includes("image-editing")
+  if (notserious && /furman/i.test(msg.content)) {
 	  if(/!!furmanism/i.test(msg.content) || Math.random() >= 0.95) {
 	  	msg.reply(randomChoice(furmanisms))
 	  }
@@ -158,7 +159,7 @@ client.on('message', msg => {
       debug: false                 // is more verbose when set to true
     });
     
-  if(!msg.channel.name.includes("editing")) {
+  if(notserious) {
     if ( /flamewar/i.test(msg.content) ) {
         msg.react("<:flamewar:691696266400235590>");
     }
@@ -180,8 +181,6 @@ client.on('message', msg => {
        if(/!!rad (.*)/i.test(msg.content)) {
        		var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
 	}
-
-       
        var oktext = true
        fs.createReadStream("badwords.csv")
             .pipe(csv())
@@ -206,7 +205,7 @@ client.on('message', msg => {
                }
             })
    }
-   if (!msg.channel.name.includes("editing") && /!!gobox/.test(msg.content)) {
+   if (notserious && /!!gobox/.test(msg.content)) {
         const options = {
             hostname: 'tfwiki.net',
             port: 443,
@@ -239,7 +238,7 @@ client.on('message', msg => {
 
         req.end()    
     }
-    if (!msg.channel.name.includes("editing") && /!!math (.*?)/.test(msg.content)) {
+    if (notserious && /!!math (.*?)/.test(msg.content)) {
 	
 	var expr = msg.content.match(/!!math (.*)/)[1]
 	var mathResult = undefined
@@ -256,7 +255,7 @@ client.on('message', msg => {
 		}
 	}
     }
-    if (!msg.channel.name.includes("editing") && /!!techspec (.*?)/.test(msg.content)) {
+    if (notserious && /!!techspec (.*?)/.test(msg.content)) {
         var matchData = msg.content.match(/!!techspec (.*)/)[1]
         var matchYear = undefined
         var charName = undefined
@@ -457,8 +456,7 @@ client.on('message', msg => {
         }
       })
     }
-    else if (!msg.channel.name.includes("editing") && /jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
-       //msg.channel.send("JIAI JO!")
+    else if (notserious && /jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
        const jiaijoEmbed = new MessageEmbed()
         .setTitle("JIAI JO!")
         .attachFiles(['./jiaijo.png'])
@@ -519,13 +517,11 @@ client.on('message', msg => {
         .catch(console.error)
     }
 
-    else if (!msg.channel.name.includes("editing") && /wicked sweet/i.test(msg.content)) {
-	    
+    else if (notserious && /wicked sweet/i.test(msg.content)) {
 	const wickedEmbed = new MessageEmbed()
         .attachFiles(['./wickedsweet.png'])
         .setImage('attachment://wickedsweet.png')
        msg.channel.send(wickedEmbed)
-       //msg.channel.send(new MessageEmbed().setImage('./wickedsweet.png'))
     }
   }
 });
