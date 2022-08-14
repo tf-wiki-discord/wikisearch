@@ -161,7 +161,7 @@ client.on('message', msg => {
     if ( /flamewar/i.test(msg.content) ) {
         msg.react("<:flamewar:691696266400235590>");
     }
-    if ( /beast machines/i.test(msg.content) ) {
+    if ( /yvonco/i.test(msg.content) ) {
         msg.react("<:yvonco:715978467728031814>");
     }
     if ( /^`*~*\_*\**bah\.?\,?\**\_*~*`*!*$/i.test(msg.content) ) {
