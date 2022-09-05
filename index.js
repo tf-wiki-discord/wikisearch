@@ -333,6 +333,7 @@ client.on('message', msg => {
 
       // handle https://tfwiki.net/wiki/Special:Random separately
       const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
+	    pageURL = pageURL.replace(/\?/, "%3F");
       const radEmbed = new MessageEmbed()
               .setColor('#0099ff')
               .setURL(pageURL)
@@ -447,7 +448,7 @@ client.on('message', msg => {
       	 }
 	 else if(data) {
         	embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
-		embedTitle = embedTitle.replace(/\?/g, "%3F");  // escape rare articles with ?s in them
+		//embedTitle = embedTitle.replace(/\?/g, "%3F");  // escape rare articles with ?s in them
 	 }
 	 else {
 		embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
