@@ -314,8 +314,6 @@ client.on('message', msg => {
         
       //strip off the [[ ]]s
       var pageName = msg.content.match(/\[\[(.*?)\]\]/)[1];
-      pageName = pageName.replace(/\?/g, "%3F");  // escape rare articles with ?s in them
-      pageName = pageName.replace(/'/g, "%27");  // escape rare articles with ?s in them
       var pageNameSlug = pageName.split(" ").join("_");
 
       // various channel in Discord expand to a channel ID, which confuses the bot if searching for #Toys in the wiki article
@@ -369,6 +367,7 @@ client.on('message', msg => {
       if(toyMatch || writeMatch) {
         embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
       }
+      embedTitle = embedTitle.replace(/\?/g, "%3F");  // escape rare articles with ?s in them
         
       if(data) {
         const articleAsList = data.split(/\n/)
