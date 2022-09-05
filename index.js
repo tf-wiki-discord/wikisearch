@@ -367,7 +367,6 @@ client.on('message', msg => {
       if(toyMatch || writeMatch) {
         embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageNameSlug + "!"
       }
-      embedTitle = embedTitle.replace(/\?/g, "%3F");  // escape rare articles with ?s in them
         
       if(data) {
         const articleAsList = data.split(/\n/)
@@ -448,6 +447,7 @@ client.on('message', msg => {
       	 }
 	 else if(data) {
         	embedTitle = "Hi, my name's Rad, and I wanna tell you about " + pageName + "!"
+		embedTitle = embedTitle.replace(/\?/g, "%3F");  // escape rare articles with ?s in them
 	 }
 	 else {
 		embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
