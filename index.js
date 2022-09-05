@@ -332,7 +332,7 @@ client.on('message', msg => {
       }
 
       // handle https://tfwiki.net/wiki/Special:Random separately
-      const pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
+      var pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
 	    pageURL = pageURL.replace(/\?/, "%3F");
       const radEmbed = new MessageEmbed()
               .setColor('#0099ff')
