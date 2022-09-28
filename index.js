@@ -121,33 +121,6 @@ client.on('message', msg => {
 	  	msg.reply(randomChoice(furmanisms))
 	  }
   }
-  
-  if(/youtube\.com\/watch\?v=/.test(msg.content)) {
-	  console.log("message is YT!")
-	  //console.log(msg)
-	  //console.log(msg.embeds[0])
-	  const ytslug = msg.content.match(/youtube\.com\/watch\?v=(.*)/i)[1]
-	  getYTtitle(ytslug).then(ytdata => {
-		if(ytdata.items[0].hasOwnProperty('snippet')) {
-	  		console.log("YT title: ", ytdata.items[0].snippet.channelTitle)
-			const ytchannelname = ytdata.items[0].snippet.channelTitle
-			if(ytchannelname.includes("JobbytheHong") || ytchannelname.includes("JonTronShow")) {
-				var callout;
-				if(ytchannelname == "JobbytheHong") callout = "Jobby-posting"
-				if(ytchannelname == "JonTronShow") callout = "Jontron-posting"
-				const replaceEmbed = new MessageEmbed()
-				.setTitle(`${msg.author.username}, no ${callout}! Instead let\'s talk about ANYTHING else.`)
-				.setAuthor('Radbot')
-				.setDescription('')
-				.setThumbnail()
-				.setURL('https://tfwiki.net/wiki/Special:Random')
-				msg.channel.send(replaceEmbed).then(emsg => {
-					msg.delete()	
-				})
-			}
-		}
-	  })
-  }
 	
   // [[ ]] activates the bot
   if (!msg.author.bot) {
