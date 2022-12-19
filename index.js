@@ -94,15 +94,6 @@ function findHashedText(articleList, articleName) {
     return ''
 }
 
-async function getYTtitle(videoid) {
-	const ytkey = process.env.TFWIKISEARCH_YOUTUBE_API_KEY
-	let url = `https://www.googleapis.com/youtube/v3/videos?key=${ytkey}&type=video&part=snippet&id=${videoid}&maxResults=1`;
-	const res = await fetch(url)
-	const resdata = await res.json()
-	//console.log("YT data: ", resdata.items[0])
-	return resdata
-}
-
 function randomChoice(arr) {
 	return arr[Math.floor(arr.length * Math.random())];
 }
@@ -438,60 +429,7 @@ client.on('message', msg => {
         .setImage('attachment://jiaijo.png')
        msg.channel.send(jiaijoEmbed)
     }
-    else if (/!!qrcode (.*?)/.test(msg.content)) {
-        var msgid = msg.content.match(/!!qrcode (.*)/)[1]
-        console.log("MSG ID INPUT: " + msgid)
-        msg.channel.messages.fetch(msgid)
-        .then(m => {
-            for(const [key, attach] of m.attachments.entries()) {
-                let height = attach.height
-                let width = attach.width
-                let filename = attach.attachment
-                const jsQR = require("jsqr");
-                const request = require('request');
-                if(/jpg$/.test(filename) || /jpeg$/.test(filename)) {
-                    console.log("JPG found")
-                    const inkjet = require('inkjet');
-                    
-                    const qrEmbed = new MessageEmbed()
-                    request({uri: filename, encoding: null }, (err, resp, buffer) => {
-                        inkjet.decode(buffer, (err, decoded) => {
-                            const code = jsQR(decoded.data, decoded.width, decoded.height)
-                            if (code) {
-                                console.log("Found QR code", code)
-                                console.log("URL: ", code.data)
-                                qrEmbed.image = {url: code.data}
-                                qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
-                                msg.channel.send(qrEmbed)
-                            }
-                        })
-                    })
-                }
-                else if (/png$/.test(filename)) {
-                    console.log("PNG found")
-                    const PNG = require("png-js")
-                    var f = fs.createWriteStream("./test.png");
-                    var req = https.get(filename, function(response) {
-                        response.pipe(f);
-                    });
-                    f.on('finish', function() {
-                        PNG.decode("./test.png", function(data) {
-                             const code = jsQR(data, width, height)
-                             if (code) {
-                                 console.log("Found QR code", code)
-                                 const qrEmbed = new MessageEmbed()
-                                 qrEmbed.image = {url: code.data}
-                                 qrEmbed.title = `Looks like a QR code. It's trying to take you to ${code.data}.`
-                                 msg.channel.send(qrEmbed)
-                             }
-                        })
-                    })
-                }
-            }
-        })
-        .catch(console.error)
-    }
-
+    
     else if (notserious && /wicked sweet/i.test(msg.content)) {
 	const wickedEmbed = new MessageEmbed()
         .attachFiles(['./wickedsweet.png'])

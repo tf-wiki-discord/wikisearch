@@ -15,13 +15,9 @@
     "discord.js": "^12.5.1",
     "discord.js-rate-limiter": "^1.0.5",
     "dotenv": "^8.2.0",
-    "inkjet": "^3.0.0",
-    "jsqr": "^1.4.0",
     "mathjs": "^10.1.1",
     "node-fetch": "^2.6.7",
-    "nodemw": "^0.14.0",
-    "png-js": "^1.0.0",
-    "pngjs": "^6.0.0"
+    "nodemw": "^0.14.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
