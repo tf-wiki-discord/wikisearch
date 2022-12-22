@@ -190,7 +190,7 @@ client.on('message', msg => {
                     .setColor('#0099ff')
                     .setURL(randLink)
                     .setImage(randImage)
-                    .setTitle("Hi, my name's Rad. Here's a random Gobox!")
+                    .setTitle("Hi, my name's Rad! Here's a random Gobox!")
                 
                 msg.channel.send(randEmbed)
             })
