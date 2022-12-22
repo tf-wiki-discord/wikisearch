@@ -1,8 +1,8 @@
-# fly.toml file generated for radbot on 2022-12-21T22:22:14-05:00
+# fly.toml file generated for radbot on 2022-12-22T00:38:10-05:00
 
 app = "radbot"
 kill_signal = "SIGINT"
-kill_timeout = 5
+kill_timeout = 10
 processes = []
 
 [env]
