@@ -192,7 +192,7 @@ client.on('message', msg => {
                     .setImage(randImage)
                     .setTitle("Hi, my name's Rad!! Here's a random Gobox!")
                 
-                msg.channel.send(randEmbed)
+                msg.channel.send({embeds: [randEmbed]})
             })
         })
 
@@ -215,6 +215,7 @@ client.on('message', msg => {
 	}
 	finally {
 		if(typeof mathResult != undefined) {
+			let result = expr + " = " + mathResult
 			msg.channel.send(expr + " = " + mathResult)
 		}
 	}
@@ -418,23 +419,21 @@ client.on('message', msg => {
 		embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
 	 }
             radEmbed.title = embedTitle
-            msg.channel.send(radEmbed);
+            msg.channel.send({embeds: [radEmbed]});
         }
       })
     }
     else if (notserious && /jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
        const jiaijoEmbed = new MessageEmbed()
         .setTitle("JIAI JO!")
-        .attachFiles(['./jiaijo.png'])
-        .setImage('attachment://jiaijo.png')
-       msg.channel.send(jiaijoEmbed)
+        //.setImage('attachment://jiaijo.png')
+       msg.channel.send({embeds: [jiaijoEmbed], files: ['./jiaijo.png']})
     }
     
     else if (notserious && /wicked sweet/i.test(msg.content)) {
 	const wickedEmbed = new MessageEmbed()
-        .attachFiles(['./wickedsweet.png'])
-        .setImage('attachment://wickedsweet.png')
-       msg.channel.send(wickedEmbed)
+        //.setImage('attachment://wickedsweet.png')
+       msg.channel.send({embeds: [wickedEmbed], files: ['./wickedsweet.png']})
     }
   }
 });
