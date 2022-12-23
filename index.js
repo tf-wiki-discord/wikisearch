@@ -106,6 +106,8 @@ client.on('ready', () => {
 
 client.on('message', msg => {
  
+  console.log("MSG")
+  console.log(msg)
   const notserious = !msg.channel.name.includes("editing") && !msg.channel.name.includes("archival") && !msg.channel.name.includes("image-editing")
   if (notserious && /furman/i.test(msg.content)) {
 	  if(/!!furmanism/i.test(msg.content) || Math.random() >= 0.95) {
