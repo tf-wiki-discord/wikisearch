@@ -1,6 +1,9 @@
-const {Client, GatewayIntentBits, MessageEmbed}  = require('discord.js')
+const {Client, Events, GatewayIntentBits, EmbedBuilder}  = require('discord.js')
 const client = new Client({
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent]
+    intents: [GatewayIntentBits.Guilds,
+	      GatewayIntentBits.GuildMessages,
+	      GatewayIntentBits.GuildMembers,
+	      GatewayIntentBits.MessageContent]
 });
 const TFWiki = require('nodemw')
 const RateLimiter = require('discord.js-rate-limiter')
@@ -98,16 +101,14 @@ function randomChoice(arr) {
 	return arr[Math.floor(arr.length * Math.random())];
 }
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+client.once(Events.ClientReady, c => {
+  console.log(`Logged in as ${c.user.tag}!`);
   client.user.setUsername('Rad, the GO!-Bot')
   client.user.setActivity('with Carlos and Alexis')
 });
 
-client.on('message', msg => {
+client.on('messageCreate', msg => {
  
-  console.log("MSG")
-  console.log(msg)
   const notserious = !msg.channel.name.includes("editing") && !msg.channel.name.includes("archival") && !msg.channel.name.includes("image-editing")
   if (notserious && /furman/i.test(msg.content)) {
 	  if(/!!furmanism/i.test(msg.content) || Math.random() >= 0.95) {
@@ -188,7 +189,7 @@ client.on('message', msg => {
                 const randLink = d.toString().match(randLinkRegex)[1]
                 console.log("GOBOX LINK: ", randLink)
                 console.log("GOBOX IMG: ", randImage)
-                const randEmbed = new MessageEmbed()
+                const randEmbed = new EmbedBuilder()
                     .setColor('#0099ff')
                     .setURL(randLink)
                     .setImage(randImage)
@@ -301,7 +302,7 @@ client.on('message', msg => {
       // handle https://tfwiki.net/wiki/Special:Random separately
       var pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
 	    pageURL = pageURL.replace(/\?/g, "%3F");
-      const radEmbed = new MessageEmbed()
+      const radEmbed = new EmbedBuilder()
               .setColor('#0099ff')
               .setURL(pageURL)
 
@@ -421,20 +422,40 @@ client.on('message', msg => {
 		embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
 	 }
             radEmbed.title = embedTitle
-            msg.channel.send({embeds: [radEmbed]});
+	    console.log(radEmbed)
+
+//if this is stable, this is the new radEmbed
+var exampleEmbed = new EmbedBuilder()
+	.setColor(0x0099FF)
+	.setTitle(embedTitle)
+	.setTimestamp()
+	if(pageURL) {
+	  exampleEmbed.setURL(pageURL)
+	}
+	if(description) {
+	  exampleEmbed.setDescription(description)
+	}
+
+        if(imageName) {     
+	  exampleEmbed.setImage("https://tfwiki.net/wiki/Special:FilePath/" + imageName)
+	}
+        if(caption) {
+	  exampleEmbed.setFooter({text: caption});
+	}
+
+        msg.channel.send({embeds: [exampleEmbed]})
         }
       })
     }
     else if (notserious && /jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
-       const jiaijoEmbed = new MessageEmbed()
-        .setTitle("JIAI JO!")
-        //.setImage('attachment://jiaijo.png')
+       const jiaijoEmbed = new EmbedBuilder()
+        .setColor(0x0099FF).setTitle("JIAI JO!!")
        msg.channel.send({embeds: [jiaijoEmbed], files: ['./jiaijo.png']})
     }
     
     else if (notserious && /wicked sweet/i.test(msg.content)) {
-	const wickedEmbed = new MessageEmbed()
-        //.setImage('attachment://wickedsweet.png')
+	const wickedEmbed = new EmbedBuilder()
+        .setColor(0x0099FF).setFooter({text: "Hi! I'm Rad! You're wicked sweet!"})
        msg.channel.send({embeds: [wickedEmbed], files: ['./wickedsweet.png']})
     }
   }
