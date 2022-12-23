@@ -1,6 +1,6 @@
 const {Client, GatewayIntentBits, MessageEmbed}  = require('discord.js')
 const client = new Client({
-    intents: [GatewayIntentBits.GUILDS, GatewayIntentBits.GUILD_MESSAGES, GatewayIntentBits.GUILD_MEMBERS, GatewayIntentBits.MANAGE_MESSAGES]
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent]
 });
 const TFWiki = require('nodemw')
 const RateLimiter = require('discord.js-rate-limiter')
