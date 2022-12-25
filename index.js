@@ -422,7 +422,6 @@ client.on('messageCreate', msg => {
 		embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
 	 }
             radEmbed.title = embedTitle
-	    console.log(radEmbed)
 
 //if this is stable, this is the new radEmbed
 var exampleEmbed = new EmbedBuilder()
