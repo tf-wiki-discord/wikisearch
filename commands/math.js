@@ -11,6 +11,7 @@ module.exports = {
 			  .setRequired(true)
 			  .setMaxLength(200)),
 	      async execute(interaction) {
+		      const expr = interaction.options.getString('expr')
 		      var mathResult = undefined
 		      try {
 			      mathResult = math.evaluate(expr)
