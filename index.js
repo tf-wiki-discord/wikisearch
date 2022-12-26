@@ -12,7 +12,6 @@ const path = require('node:path')
 const https = require('https')
 const csv = require('csv-parser')
 const chatbot = require('./eliza')
-const math = require('mathjs')
 const fetch = require("node-fetch");
 require('dotenv').config()
 
@@ -26,21 +25,6 @@ const templateCaptionRE = /caption=(.*)/i
 const imageRE = /(Image:|File:).*?(png|jpg|jpeg|gif)/i
 const bracketRE = /\{\{/
 const captionRE = /File:.*]]|Image:.*]]/i
-
-const furmanisms = Array(
-	"A SHORT, SHARP LESSON!", "A WHOLE WORLD OF PAIN!",
-	"ALL THE DIRTY JOBS...","CAN I DO LESS?",
-	"CANNOT, WILL NOT...!","DIE SCREAMING!",
-	"DOWN TO EARTH--LITERALLY!","FIGHT AND DIE!",
-	"IT CAN BE HURT!","IT IS OVER -- FINISHED!",
-	"IT NEVER ENDS!","LIKE SOME PREDATORY BIRD!",
-	"NEVER DID WANT TO LIVE FOREVER!","NO! YOU'RE DEAD!",
-	"POWER BEYOND MEASURE!","REAP THE WHIRLWIND!",
-	"SURPLUS TO REQUIREMENTS!","THE WORST CASE OF INDIGESTION IT'S EVER HAD!",
-	"TIME I MADE A STAND!","TIME I WASN'T HERE!",
-	"WELL AND TRULY!","WHAT ARE YOU PLAYING AT?",
-	"WHAT CHANCE DO WE HAVE?","YOU WON'T BELIEVE THE THINGS I CAN DO NOW!"
-)
 
 function getUserFromMention(mention) {
 	// The id is the first and only match found by the RegEx.
@@ -98,10 +82,6 @@ function findHashedText(articleList, articleName) {
     return ''
 }
 
-function randomChoice(arr) {
-	return arr[Math.floor(arr.length * Math.random())];
-}
-
 client.once(Events.ClientReady, c => {
   console.log(`Logged in as ${c.user.tag}!`);
   client.user.setUsername('Rad, the GO!-Bot')
@@ -111,11 +91,6 @@ client.once(Events.ClientReady, c => {
 client.on('messageCreate', msg => {
  
   const notserious = !msg.channel.name.includes("editing") && !msg.channel.name.includes("archival") && !msg.channel.name.includes("image-editing")
-  if (notserious && /furman/i.test(msg.content)) {
-	  if(/!!furmanism/i.test(msg.content) || Math.random() >= 0.95) {
-	  	msg.reply(randomChoice(furmanisms))
-	  }
-  }
 	
   // [[ ]] activates the bot
   if (!msg.author.bot) {
@@ -206,24 +181,7 @@ client.on('messageCreate', msg => {
 
         req.end()    
     }
-    if (notserious && /!!math (.*?)/.test(msg.content)) {
-	
-	var expr = msg.content.match(/!!math (.*)/)[1]
-	var mathResult = undefined
-	try {
-		mathResult = math.evaluate(expr)
-	}
-	catch (err) {
-		console.log("MATH ERROR: " + err)
-		mathResult = "Oof, sorry. Didn't understand that..."
-	}
-	finally {
-		if(typeof mathResult != undefined) {
-			let result = expr + " = " + mathResult
-			msg.channel.send(expr + " = " + mathResult)
-		}
-	}
-    }
+    
     if (notserious && /!!techspec (.*?)/.test(msg.content)) {
         var matchData = msg.content.match(/!!techspec (.*)/)[1]
         var matchYear = undefined
