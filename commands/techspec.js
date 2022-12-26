@@ -52,7 +52,7 @@ module.exports = {
 				if(result.Teamwork && result.Cooperation) {
 				    radmsg += `Teamwork: ${result.Teamwork}         Cooperation: ${result.Cooperation}\n`
 				}
-				await interaction.reply(radmsg)
+				interaction.reply(radmsg)
 			    }
 			});
 	      },
