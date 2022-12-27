@@ -23,7 +23,7 @@ module.exports = {
 		      fs.createReadStream("badwords.csv")
 			    .pipe(csv())
 			    .on("data", (row) => {
-				if (findWord(row.badwords, chatbotinput)) {
+				if (findWord(row.badwords, input)) {
 				   console.log("bad word logged:", row.badwords)
 				   oktext = false
 				   interaction.reply("I...don't think I should be talking about this...");
