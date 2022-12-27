@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js')
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js')
 const https = require('https')
 const options = {
             hostname: 'tfwiki.net',
@@ -10,7 +10,7 @@ const options = {
 module.exports = {
 	data: new SlashCommandBuilder()
 	          .setName('gobox')
-	          .setDescription('A random gobox from TFWiki'),
+	          .setDescription('A random gobox from TFWiki!'),
 	      async execute(interaction) {
 
 		const req = https.request(options, res => {
