@@ -12,12 +12,12 @@ module.exports = {
 	          .setName('rad')
 	          .setDescription('Rogerian psychology with Radbot.')
 	          .addStringOption(option => 
-			  option.setName('chatbotinput')
+			  option.setName('input')
 			  .setDescription('your question for Radley')
 			  .setRequired(true)
 			  .setMaxLength(200)),
 	      async execute(interaction) {
-		      const chatbotinput = interaction.options.getString('chatbotinput')
+		      const input = interaction.options.getString('input')
 		      var eliza = new chatbot.ElizaBot();
                       var oktext = true
 		      fs.createReadStream("badwords.csv")
@@ -31,14 +31,15 @@ module.exports = {
 			    })
 			    .on("end", () => {
 				if(oktext) {
-				   if(/(\bhi\b|\bhello\b|\bhey\b|\bgreetings\b)/i.test(chatbotinput) ) {
-				       interaction.reply(eliza.getInitial());
+				   var reply = "You said: " + input + "\n"
+				   if(/(\bhi\b|\bhello\b|\bhey\b|\bgreetings\b)/i.test(input) ) {
+				       interaction.reply(reply + eliza.getInitial());
 				   }
-				   else if( /(bye|goodbye|see ya)/i.test(chatbotinput) ) {
-				       interaction.reply(eliza.getFinal());
+				   else if( /(bye|goodbye|see ya)/i.test(input) ) {
+				       interaction.reply(reply + eliza.getFinal());
 				   }
-				   else if (chatbotinput) {
-				       interaction.reply(eliza.transform(chatbotinput));
+				   else if (input) {
+				       interaction.reply(reply + eliza.transform(input));
 				   }		
 			       }
 			    })
