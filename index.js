@@ -109,7 +109,6 @@ client.on('messageCreate', msg => {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
 	  
-  }
      
   else if (/\[\[(.*?)\]\]/.test(msg.content)) {
 
@@ -288,17 +287,18 @@ var exampleEmbed = new EmbedBuilder()
         }
       })
     }
-    else if (notserious && /jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
+    else if (/jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
        const jiaijoEmbed = new EmbedBuilder()
         .setColor(0x0099FF).setTitle("JIAI JO!!")
        msg.channel.send({embeds: [jiaijoEmbed], files: ['./jiaijo.png']})
     }
     
-    else if (notserious && /wicked sweet/i.test(msg.content)) {
+    else if (/wicked sweet/i.test(msg.content)) {
 	const wickedEmbed = new EmbedBuilder()
         .setColor(0x0099FF).setFooter({text: "Hi! I'm Rad! You're wicked sweet!"})
        msg.channel.send({embeds: [wickedEmbed], files: ['./wickedsweet.png']})
     }
+   }
   }
 });
 
