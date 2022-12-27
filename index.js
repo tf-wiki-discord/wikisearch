@@ -40,10 +40,6 @@ function getUserFromMention(mention) {
 	return client.users.cache.get(id);
 }
 
-function findWord(word, str) {
-  return RegExp('\\b'+ word +'\\b').test(str)
-}
-
 function bestFirst(list) {
     //given a list of newline-separated lines,
     //pick the first one that starts with a letter, a quote, or a bold
@@ -118,37 +114,7 @@ client.on('messageCreate', msg => {
    }
 	  
   }
-   if ( (/!!rad (.*)/i.test(msg.content) ) && (msg.channel.name.includes("wreck-room") || msg.channel.name.includes("coding") || msg.channel.name.includes("moderation"))) {
- 
-       var eliza = new chatbot.ElizaBot();
-       if(/!!rad (.*)/i.test(msg.content)) {
-       		var chatbotinput = msg.content.match(/!!rad (.*)/)[1]
-	}
-       var oktext = true
-       fs.createReadStream("badwords.csv")
-            .pipe(csv())
-            .on("data", (row) => {
-                if (findWord(row.badwords, chatbotinput)) {
-                   console.log("bad word logged:", row.badwords)
-                   oktext = false
-                   msg.reply("I...don't think I should be talking about this...");
-                }
-            })
-            .on("end", () => {
-                if(oktext) {
-                   if(/(\bhi\b|\bhello\b|\bhey\b|\bgreetings\b)/i.test(chatbotinput) ) {
-                       msg.reply(eliza.getInitial());
-                   }
-                   else if( /(bye|goodbye|see ya)/i.test(chatbotinput) ) {
-                       msg.reply(eliza.getFinal());
-                   }
-                   else if (chatbotinput) {
-                       msg.reply(eliza.transform(chatbotinput));
-                   }		
-               }
-            })
-   }
-   if (notserious && /!!gobox/.test(msg.content)) {
+      if (notserious && /!!gobox/.test(msg.content)) {
         const options = {
             hostname: 'tfwiki.net',
             port: 443,

@@ -31,7 +31,7 @@ module.exports = {
 			    })
 			    .on("end", () => {
 				if(oktext) {
-				   var reply = "You said: " + input + "\n"
+				   var reply = "You said: \"" + input + "\"\n"
 				   if(/(\bhi\b|\bhello\b|\bhey\b|\bgreetings\b)/i.test(input) ) {
 				       interaction.reply(reply + eliza.getInitial());
 				   }
