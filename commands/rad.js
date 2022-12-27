@@ -3,6 +3,10 @@ const chatbot = require('../eliza')
 const csv = require('csv-parser')
 const fs = require('fs')
 
+function findWord(word, str) {
+  return RegExp('\\b'+ word +'\\b').test(str)
+}
+
 module.exports = {
 	data: new SlashCommandBuilder()
 	          .setName('rad')
