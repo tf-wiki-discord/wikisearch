@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js')
 const chatbot = require('../eliza')
+const csv = require('csv-parser')
 const fs = require('fs')
 
 module.exports = {
