@@ -9,10 +9,6 @@ const TFWiki = require('nodemw')
 const RateLimiter = require('discord.js-rate-limiter')
 const fs = require('fs')
 const path = require('node:path')
-const https = require('https')
-const csv = require('csv-parser')
-const chatbot = require('./eliza')
-const fetch = require("node-fetch");
 require('dotenv').config()
 
 const numCommands = 1
@@ -114,41 +110,8 @@ client.on('messageCreate', msg => {
    }
 	  
   }
-      if (notserious && /!!gobox/.test(msg.content)) {
-        const options = {
-            hostname: 'tfwiki.net',
-            port: 443,
-            path: '/generate_js.php',
-            method: 'GET'
-        }
-
-        const req = https.request(options, res => {
-            res.on('data', d => {
-                //process.stdout.write(d)
-                var randLinkRegex = /href='(.*?)'/
-                var randImageRegex = /img src='(.*?)'/
-                const randImage = d.toString().match(randImageRegex)[1]
-                const randLink = d.toString().match(randLinkRegex)[1]
-                console.log("GOBOX LINK: ", randLink)
-                console.log("GOBOX IMG: ", randImage)
-                const randEmbed = new EmbedBuilder()
-                    .setColor('#0099ff')
-                    .setURL(randLink)
-                    .setImage(randImage)
-                    .setTitle("Hi, my name's Rad!! Here's a random Gobox!")
-                
-                msg.channel.send({embeds: [randEmbed]})
-            })
-        })
-
-        req.on('error', error => {
-            console.error(error)
-        })
-
-        req.end()    
-    }
-    
-    else if (/\[\[(.*?)\]\]/.test(msg.content)) {
+     
+  else if (/\[\[(.*?)\]\]/.test(msg.content)) {
 
         var author = msg.author.username
 
