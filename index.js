@@ -328,5 +328,4 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 
-//client.login(process.env.TFWIKISEARCH_BOT_TOKEN)
-client.login("ODE3Mzk0ODY5NDc5MTQ1NTAz.YEI4Sw.NnWvlflqEZQCfjD-RGffAqsAcDU")
+client.login(process.env.TFWIKISEARCH_BOT_TOKEN)
