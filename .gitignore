@@ -4,3 +4,4 @@ test.js
 .swp
 config.json
 deploy-commands.js
+package-lock.json

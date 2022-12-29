@@ -110,7 +110,7 @@ client.on('messageCreate', msg => {
    }
   }
      
-  else if (/\[\[(.*?)\]\]/.test(msg.content)) {
+  if (/\[\[(.*?)\]\]/.test(msg.content)) {
 
         var author = msg.author.username
 
