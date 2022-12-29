@@ -108,7 +108,7 @@ client.on('messageCreate', msg => {
    if (/(thanks|thank you|big ups|poggers|coggers|based|thankee|themk|toggers),? \brad\b/i.test(msg.content)) {
        msg.react("<:aboutTheTransformers:656259059854344202>");
    }
-	  
+  }
      
   else if (/\[\[(.*?)\]\]/.test(msg.content)) {
 
@@ -143,9 +143,7 @@ client.on('messageCreate', msg => {
       // handle https://tfwiki.net/wiki/Special:Random separately
       var pageURL = "https://tfwiki.net/wiki/" + pageNameSlug;
 	    pageURL = pageURL.replace(/\?/g, "%3F");
-      const radEmbed = new EmbedBuilder()
-              .setColor('#0099ff')
-              .setURL(pageURL)
+      //const radEmbed = new EmbedBuilder().setColor('#0099ff').setURL(pageURL)
 
       var imageName;
       var caption;
@@ -159,13 +157,7 @@ client.on('messageCreate', msg => {
         console.log("(msg from "+ author + "): WIKI FILE or IMAGE FOUND (URL): "+matches[0])
         imageName = matches[0].split(" ").join("_");
       }
-      if(imageName) {
-        // get the direct image file path via Special:FilePath
-        radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
-        if(caption != undefined) {
-          radEmbed.footer = {text: caption}
-         }
-      }
+      //if(imageName) { // get the direct image file path via Special:FilePath //radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName} if(caption != undefined) { radEmbed.footer = {text: caption} } }
 
       bot.getArticle(pageNameSlug, true, function(err, data) { 
       if (err) {
@@ -192,7 +184,7 @@ client.on('messageCreate', msg => {
         description = description.replace(/^:/g, ""); 
         description = description.replace(/''/g, "")
         console.log(description)
-        radEmbed.description = description
+        //radEmbed.description = description
 
         if(!imageName) {
             const templateMatches = data.match(templateImageRE)
@@ -231,9 +223,9 @@ client.on('messageCreate', msg => {
             }
             if(imageName) {
                  // get the direct image file path via Special:FilePath
-                 radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
+                 //radEmbed.image = {url: "https://tfwiki.net/wiki/Special:FilePath/" + imageName}
                  if(caption != undefined && caption != "left" && caption != "right" && caption != "center" && caption != "thumb" && !/upright=/.test(caption) && !/px/.test(caption) ) {
-                   radEmbed.footer = {text: caption}
+                   //radEmbed.footer = {text: caption}
                  }
             }
         }
@@ -262,31 +254,32 @@ client.on('messageCreate', msg => {
 	 else {
 		embedTitle = `Hi ${author}, my name's Rad, and I'd like to tell you about ${pageName}, but I can't!`
 	 }
-            radEmbed.title = embedTitle
+            //radEmbed.title = embedTitle
 
-//if this is stable, this is the new radEmbed
-var exampleEmbed = new EmbedBuilder()
+	//if this is stable, this is the new radEmbed
+	var radEmbed = new EmbedBuilder()
 	.setColor(0x0099FF)
 	.setTitle(embedTitle)
 	.setTimestamp()
 	if(pageURL) {
-	  exampleEmbed.setURL(pageURL)
+	  radEmbed.setURL(pageURL)
 	}
 	if(description) {
-	  exampleEmbed.setDescription(description)
+	  radEmbed.setDescription(description)
 	}
 
         if(imageName) {     
-	  exampleEmbed.setImage("https://tfwiki.net/wiki/Special:FilePath/" + imageName)
+	  radEmbed.setImage("https://tfwiki.net/wiki/Special:FilePath/" + imageName)
 	}
-        if(caption) {
-	  exampleEmbed.setFooter({text: caption});
+        if(caption != undefined && caption != "left" && caption != "right" && caption != "center" && caption != "thumb" && !/upright=/.test(caption) && !/px/.test(caption) ) {
+	  radEmbed.setFooter({text: caption});
 	}
 
-        msg.channel.send({embeds: [exampleEmbed]})
+        msg.channel.send({embeds: [radEmbed]})
         }
       })
     }
+
     else if (/jiai jo/i.test(msg.content) && Math.random() >= 0.7 ) { // 30% success rate
        const jiaijoEmbed = new EmbedBuilder()
         .setColor(0x0099FF).setTitle("JIAI JO!!")
@@ -298,7 +291,7 @@ var exampleEmbed = new EmbedBuilder()
         .setColor(0x0099FF).setFooter({text: "Hi! I'm Rad! You're wicked sweet!"})
        msg.channel.send({embeds: [wickedEmbed], files: ['./wickedsweet.png']})
     }
-   }
+
   }
 });
 
