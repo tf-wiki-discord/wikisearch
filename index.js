@@ -271,7 +271,7 @@ client.on('messageCreate', msg => {
         if(imageName) {     
 	  radEmbed.setImage("https://tfwiki.net/wiki/Special:FilePath/" + imageName)
 	}
-        if(caption != undefined && caption != "left" && caption != "right" && caption != "center" && caption != "thumb" && !/upright=/.test(caption) && !/px/.test(caption) ) {
+        if(caption) {
 	  radEmbed.setFooter({text: caption});
 	}
 
@@ -328,4 +328,5 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 
-client.login(process.env.TFWIKISEARCH_BOT_TOKEN)
+//client.login(process.env.TFWIKISEARCH_BOT_TOKEN)
+client.login("ODE3Mzk0ODY5NDc5MTQ1NTAz.YEI4Sw.NnWvlflqEZQCfjD-RGffAqsAcDU")
