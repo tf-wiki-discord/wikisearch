@@ -511,11 +511,11 @@ var elizaKeywords = [
  ["* no one *", [
          "Are you sure, no one (2) ?",
          "Surely someone (2) .",
-         "Can you think of anyone at all ?",
-         "Are you thinking of a very special person ?",
+         "Can you think of anyone at all?",
+         "Are you thinking of a very special person?",
          "Who, may I ask?",
-         "You have a particular person in mind, don't you ?",
-         "Who do you think you are talking about ?"
+         "You have a particular person in mind, don't you?",
+         "Who do you think you are talking about?"
   ]],
  ["*", [
          "Are you saying no just to be negative?",
@@ -561,14 +561,14 @@ var elizaKeywords = [
 ["what", 8, [
  ["*", [
          "Why do you ask ?",
-         "Does that question interest you ?",
-         "What is it you really want to know ?",
-         "Are such questions much on your mind ?",
-         "What answer would please you most ?",
-         "What do you think ?",
-         "What comes to mind when you ask that ?",
-         "Have you asked such questions before ?",
-         "Have you asked anyone else ?"
+         "Does that question interest you?",
+         "What is it you really want to know?",
+         "Are such questions much on your mind?",
+         "What answer would please you most?",
+         "What do you think?",
+         "What comes to mind when you ask that?",
+         "Have you asked such questions before?",
+         "Have you asked anyone else?"
   ]]
 ]],
 ["who", 0, [
@@ -648,10 +648,10 @@ var elizaKeywords = [
 ]],
 ["always", 1, [
  ["*", [
-         "Can you think of a specific example ?",
-         "When ?",
-         "What incident are you thinking of ?",
-         "Really, always ?"
+         "Can you think of a specific example?",
+         "When?",
+         "What incident are you thinking of?",
+         "Really, always?"
   ]]
 ]],
 ["alike", 10, [
@@ -660,7 +660,7 @@ var elizaKeywords = [
          "What resemblance do you see?",
          "What does that similarity suggest to you?",
          "What other connections do you see?",
-         "What do you suppose that resemblence means?",
+         "What do you suppose that resemblance means?",
          "What is the connection, do you suppose?",
          "Could there really be some connection?",
          "How?"
