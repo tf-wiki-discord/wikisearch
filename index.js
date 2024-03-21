@@ -88,7 +88,8 @@ client.on('messageCreate', msg => {
   if (!msg.author.bot) {
 	  
     var bot = new TFWiki({
-      protocol: 'https',           // HTTPS is good
+      //protocol: 'https',           // HTTPS is good
+      protocol: 'http',           // HTTPS is good
       server: 'tfwiki.net',  // host name of MediaWiki-powered site
       path: 'mediawiki',                  // path to api.php script
       debug: false                 // is more verbose when set to true
