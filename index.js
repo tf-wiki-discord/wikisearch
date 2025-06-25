@@ -330,3 +330,4 @@ client.on(Events.InteractionCreate, async interaction => {
 
 
 client.login(process.env.TFWIKISEARCH_BOT_TOKEN)
+console.log("TOKEN is:", process.env.TFWIKISEARCH_BOT_TOKEN);
