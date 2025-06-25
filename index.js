@@ -296,20 +296,20 @@ client.on('messageCreate', msg => {
   }
 });
 
-client.commands = new Collection();
+//client.commands = new Collection();
 
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(f => f.endsWith('.js'));
+//const commandsPath = path.join(__dirname, 'commands');
+//const commandFiles = fs.readdirSync(commandsPath).filter(f => f.endsWith('.js'));
 
-for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	if('data' in command && 'execute' in command) {
-		client.commands.set(command.data.name, command);
-	} else {
-		console.log(`[WARNING] The command at ${filePath} is missing required "data" or "execute" properties.`);
-	}
-}
+//for (const file of commandFiles) {
+//	const filePath = path.join(commandsPath, file);
+//	const command = require(filePath);
+//	if('data' in command && 'execute' in command) {
+//		client.commands.set(command.data.name, command);
+//	} else {
+//		console.log(`[WARNING] The command at ${filePath} is missing required "data" or "execute" properties.`);
+//	}
+//}
 
 client.on(Events.InteractionCreate, async interaction => {
 	if(!interaction.isChatInputCommand()) return;
@@ -330,4 +330,3 @@ client.on(Events.InteractionCreate, async interaction => {
 
 
 client.login(process.env.TFWIKISEARCH_BOT_TOKEN)
-console.log("TOKEN is:", process.env.TFWIKISEARCH_BOT_TOKEN);
