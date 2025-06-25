@@ -296,7 +296,7 @@ client.on('messageCreate', msg => {
   }
 });
 
-//client.commands = new Collection();
+client.commands = new Collection();
 
 //const commandsPath = path.join(__dirname, 'commands');
 //const commandFiles = fs.readdirSync(commandsPath).filter(f => f.endsWith('.js'));
