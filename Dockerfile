@@ -2,7 +2,7 @@ FROM debian:bullseye as builder
 
 ARG NODE_VERSION=latest
 
-RUN apt-get update; apt install -y curl
+RUN apt-get update; apt install -y curl libatomic1
 RUN curl https://get.volta.sh | bash
 ENV VOLTA_HOME /root/.volta
 ENV PATH /root/.volta/bin:$PATH
