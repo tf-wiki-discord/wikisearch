@@ -1,4 +1,5 @@
 const {Client, Collection, Events, GatewayIntentBits, EmbedBuilder, REST, Routes}  = require('discord.js')
+const http = require('http')
 const client = new Client({
     intents: [GatewayIntentBits.Guilds,
 	      GatewayIntentBits.GuildMessages,
@@ -90,6 +91,32 @@ for (const file of commandFiles) {
 	}
 }
 
+// Health check server for Fly.io
+let botReady = false;
+const server = http.createServer((req, res) => {
+  if (req.url === '/health' || req.url === '/') {
+    if (botReady) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ 
+        status: 'ok', 
+        bot: client.user ? client.user.tag : 'connecting',
+        uptime: process.uptime()
+      }));
+    } else {
+      res.writeHead(503, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ status: 'starting' }));
+    }
+  } else {
+    res.writeHead(404);
+    res.end('Not Found');
+  }
+});
+
+const PORT = process.env.PORT || 8080;
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Health check server running on port ${PORT}`);
+});
+
 client.once(Events.ClientReady, async c => {
   console.log(`Logged in as ${c.user.tag}!`);
   client.user.setUsername('Rad, the GO!-Bot')
@@ -112,6 +139,7 @@ client.once(Events.ClientReady, async c => {
     );
     
     console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+    botReady = true; // Mark bot as ready for health checks
   } catch (error) {
     console.error('Error registering commands:', error);
   }
