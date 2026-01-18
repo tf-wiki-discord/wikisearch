@@ -3,9 +3,11 @@ const { SlashCommandBuilder } = require('discord.js')
 function randomChoice(arr) {
 	return arr[Math.floor(arr.length * Math.random())];
 }
+
 function isNumeric(value) {
     return /^\d+$/.test(value);
 }
+
 const furmanisms = Array("IT NEVER ENDS!","IT IS OVER -- FINISHED!",
 	"A SHORT, SHARP LESSON!", "A WHOLE WORLD OF PAIN!",
 	"ALL THE DIRTY JOBS...","CAN I DO LESS?",
@@ -29,17 +31,24 @@ module.exports = {
 		  .addStringOption(option =>
 			option
 				.setName('index')
-				.setDescription(`[optional] pick an index between 0 and ${cmdlen}`)),
-	      async execute(interaction) {
-		      const index = interaction.options.getString('index') ?? '-1';
-		      if (index == '-1') {
-	      	      	await interaction.reply(randomChoice(furmanisms))
-		      }
-		      const numIndex = index*1
-		      if(isNumeric(numIndex) && numIndex >= 0 && numIndex < cmdlen) {
-			      await interaction.reply(furmanisms[numIndex])
-		      } else {
-			      await interaction.reply(randomChoice(furmanisms))
-		      }
-	      },
+				.setDescription(`[optional] pick an index between 0 and ${cmdlen-1}`)),
+	async execute(interaction) {
+		const index = interaction.options.getString('index');
+		
+		// If no index provided, return random furmanism
+		if (!index) {
+			await interaction.reply(randomChoice(furmanisms));
+			return;
+		}
+		
+		const numIndex = parseInt(index);
+		
+		// If valid numeric index, return that furmanism
+		if (isNumeric(index) && numIndex >= 0 && numIndex < cmdlen) {
+			await interaction.reply(furmanisms[numIndex]);
+		} else {
+			// If invalid index, return random furmanism
+			await interaction.reply(randomChoice(furmanisms));
+		}
+	},
 };
