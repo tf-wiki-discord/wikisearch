@@ -1,4 +1,4 @@
-const {Client, Collection, Events, GatewayIntentBits, EmbedBuilder, REST, Routes}  = require('discord.js')
+const {Client, Collection, Events, GatewayIntentBits, EmbedBuilder}  = require('discord.js')
 const client = new Client({
     intents: [GatewayIntentBits.Guilds,
 	      GatewayIntentBits.GuildMessages,
@@ -74,47 +74,10 @@ function findHashedText(articleList, articleName) {
     return ''
 }
 
-// Load commands
-client.commands = new Collection();
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(f => f.endsWith('.js'));
-
-for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	if('data' in command && 'execute' in command) {
-		client.commands.set(command.data.name, command);
-		console.log(`[INFO] Loaded command: ${command.data.name}`);
-	} else {
-		console.log(`[WARNING] The command at ${filePath} is missing required "data" or "execute" properties.`);
-	}
-}
-
-client.once(Events.ClientReady, async c => {
+client.once(Events.ClientReady, c => {
   console.log(`Logged in as ${c.user.tag}!`);
   client.user.setUsername('Rad, the GO!-Bot')
   client.user.setActivity('with Carlos and Alexis')
-  
-  // Register slash commands
-  const commands = [];
-  for (const [name, command] of client.commands) {
-    commands.push(command.data.toJSON());
-  }
-  
-  const rest = new REST().setToken(process.env.TFWIKISEARCH_BOT_TOKEN);
-  
-  try {
-    console.log(`Started refreshing ${commands.length} application (/) commands.`);
-    
-    const data = await rest.put(
-      Routes.applicationCommands(c.user.id),
-      { body: commands },
-    );
-    
-    console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-  } catch (error) {
-    console.error('Error registering commands:', error);
-  }
 });
 
 client.on('messageCreate', msg => {
@@ -333,6 +296,21 @@ client.on('messageCreate', msg => {
   }
 });
 
+client.commands = new Collection();
+
+//const commandsPath = path.join(__dirname, 'commands');
+//const commandFiles = fs.readdirSync(commandsPath).filter(f => f.endsWith('.js'));
+
+//for (const file of commandFiles) {
+//	const filePath = path.join(commandsPath, file);
+//	const command = require(filePath);
+//	if('data' in command && 'execute' in command) {
+//		client.commands.set(command.data.name, command);
+//	} else {
+//		console.log(`[WARNING] The command at ${filePath} is missing required "data" or "execute" properties.`);
+//	}
+//}
+
 client.on(Events.InteractionCreate, async interaction => {
 	if(!interaction.isChatInputCommand()) return;
 
@@ -346,11 +324,7 @@ client.on(Events.InteractionCreate, async interaction => {
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-		}
+		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
 
